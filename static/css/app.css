@@ -134,16 +134,21 @@ body {
   background-image: url(/static/img/lined_paper.png);
 }
 
+.font-georgia {
+  font-family: Georgia;
+}
 
+.font-arial {
+  font-family: Arial;
+}
 
+.font-verdana {
+  font-family: Verdana;
+}
 
-
-
-
-
-
-
-
+.font-opensans {
+  font-family:'Open Sans';
+}
 
 
 
