@@ -6,4 +6,20 @@
     This is an index card. It fits four lines of text, which for now is about 100 characters. Yes sir.
   </div>
 
+  <div class='card'>
+    Here's another index card.
+  </div>
+
+  <div class='card'>
+    Numero tres. 
+  </div>
+
+{% endblock %}
+
+{% block js %}
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $('.card').draggable();
+    });
+  </script>
 {% endblock %}
