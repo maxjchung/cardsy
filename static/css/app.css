@@ -114,7 +114,7 @@ body {
   box-shadow: 0 0 2px #888;
 }
 
-.exclusive {
+.paper-exclusive {
   background-image:url(/static/img/exclusive_paper.png);
 }
 
@@ -128,6 +128,10 @@ body {
 
 .paper-three {
   background-image:url(/static/img/paper_3.png);
+}
+
+.paper-lined {
+  background-image:url(/static/img/lined_paper.png);
 }
 
 
