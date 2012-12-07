@@ -105,6 +105,8 @@ body {
 }
 
 .card {
+  float: left;
+
   width: 200px;
   height: 120px;
   padding: 10px;
@@ -147,7 +149,7 @@ body {
 }
 
 .font-opensans {
-  font-family:'Open Sans';
+  font-family: 'Open Sans';
 }
 
 
