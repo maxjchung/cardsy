@@ -12,6 +12,11 @@ class Index(webapp2.RequestHandler):
       template = jinja_environment.get_template('index.html')
       self.response.out.write(template.render())
 
+class StyleGuide(webapp2.RequestHandler):
+  def get(self):
+      template = jinja_environment.get_template('styleguide.html')
+      self.response.out.write(template.render())
+
 # Error Handlers
 
 def handle_404(request, response, exception):
@@ -21,5 +26,5 @@ def handle_404(request, response, exception):
 
 # Run, app, run!
 
-app = webapp2.WSGIApplication([('/', Index)], debug=True)
+app = webapp2.WSGIApplication([('/', Index),('/styleguide', StyleGuide)], debug=True)
 app.error_handlers[404] = handle_404

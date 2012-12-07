@@ -4,3 +4,7 @@
 static/.DS_Store
 
 static/img/.DS_Store
+
+*.swp
+
+*.pyc
