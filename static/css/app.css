@@ -139,6 +139,10 @@ body {
   background-image: url(/static/img/bgnoise_lg.png);
 }
 
+.canvas-cork {
+  background-image: url(/static/img/cork_1.png);
+}
+
 .paper-exclusive {
   background-image: url(/static/img/exclusive_paper.png);
 }
