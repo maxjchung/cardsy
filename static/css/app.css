@@ -111,6 +111,8 @@ body {
   height: 120px;
   padding: 10px;
 
+  background-color: #fff;
+
   -moz-box-shadow: 0 0 2px #888;
   -webkit-box-shadow: 0 0 2px #888;
   box-shadow: 0 0 2px #888;
