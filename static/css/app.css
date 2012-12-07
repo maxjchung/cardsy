@@ -100,10 +100,15 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+  background-color:#ccc;
+}
+
 .card {
   width:200px;
   height:120px;
 
+  background-color:#fff;
   border:1px solid #000;
 
   padding:10px;
