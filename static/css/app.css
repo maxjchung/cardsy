@@ -118,8 +118,33 @@ body {
   box-shadow: 0 0 2px #888;
 }
 
+.canvas {
+  width: 500px;
+  height: 300px;
+}
+
+.canvas-wood {
+  background-image: url(/static/img/wood_1.png);
+}
+
+.canvas-retinawood {
+  background-image: url(/static/img/retina_wood.png);
+}
+
+.canvas-darkwood {
+  background-image: url(/static/img/dark_wood.png);
+}
+
+.canvas-bgnoise {
+  background-image: url(/static/img/bgnoise_lg.png);
+}
+
 .paper-exclusive {
   background-image: url(/static/img/exclusive_paper.png);
+}
+
+.paper-lined {
+  background-image: url(/static/img/lined_paper.png);
 }
 
 .paper-one {
