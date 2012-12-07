@@ -101,21 +101,30 @@ textarea {
    ========================================================================== */
 
 body {
-  background-color:#ccc;
+  background-color:#333;
 }
 
 .card {
   width:200px;
   height:120px;
-
-  background-color:#fff;
-  border:1px solid #000;
-
   padding:10px;
 }
 
+.exclusive {
+  background-image:url(/static/img/exclusive_paper.png);
+}
 
+.paper-one {
+  background-image:url(/static/img/paper_1.png);
+}
 
+.paper-two {
+  background-image:url(/static/img/paper_2.png);
+}
+
+.paper-three {
+  background-image:url(/static/img/paper_3.png);
+}
 
 
 
