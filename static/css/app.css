@@ -101,13 +101,17 @@ textarea {
    ========================================================================== */
 
 body {
-  background-color:#333;
+
 }
 
 .card {
   width:200px;
   height:120px;
   padding:10px;
+
+  -moz-box-shadow: 0 0 2px #888;
+  -webkit-box-shadow: 0 0 2px #888;
+  box-shadow: 0 0 2px #888;
 }
 
 .exclusive {
