@@ -8,3 +8,5 @@ static/img/.DS_Store
 *.swp
 
 *.pyc
+
+.DS_Store
