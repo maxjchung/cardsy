@@ -24,6 +24,7 @@ select,
 textarea {
     color: #222;
     font-size:14px;
+
 }
 
 body {
@@ -102,7 +103,7 @@ textarea {
    ========================================================================== */
 
 body {
-
+  background-image: url(/static/img/applefabric.jpeg);
 }
 
 .card {
@@ -119,63 +120,6 @@ body {
   box-shadow: 0 0 2px #888;
 }
 
-.canvas {
-  width: 100%;
-  height: 500px;
-}
-
-.canvas-applefabric {
-  background-image: url(/static/img/applefabric.jpeg);
-}
-
-.canvas-darkgrid {
-  background-image: url(/static/img/darkgrid.png);
-}
-
-.canvas-ioslinen {
-  background-image: url(/static/img/ios-linen.png);
-}
-
-.canvas-wood {
-  background-image: url(/static/img/wood_1.png);
-}
-
-.canvas-retinawood {
-  background-image: url(/static/img/retina_wood.png);
-}
-
-.canvas-darkwood {
-  background-image: url(/static/img/dark_wood.png);
-}
-
-.canvas-bgnoise {
-  background-image: url(/static/img/bgnoise_lg.png);
-}
-
-.canvas-cork {
-  background-image: url(/static/img/cork_1.png);
-}
-
-.paper-exclusive {
-  background-image: url(/static/img/exclusive_paper.png);
-}
-
-.paper-lined {
-  background-image: url(/static/img/lined_paper.png);
-}
-
-.paper-one {
-  background-image: url(/static/img/paper_1.png);
-}
-
-.paper-two {
-  background-image: url(/static/img/paper_2.png);
-}
-
-.paper-three {
-  background-image: url(/static/img/paper_3.png);
-}
-
 .paper-lined {
   background-image: url(/static/img/lined_paper.png);
 }
@@ -186,10 +130,6 @@ body {
 
 .font-arial {
   font-family: Arial;
-}
-
-.font-verdana {
-  font-family: Verdana;
 }
 
 .font-opensans {
