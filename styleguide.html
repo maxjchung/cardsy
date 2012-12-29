@@ -39,9 +39,7 @@
   <script type='text/javascript'>
     $(document).ready(function() {
       $('.card').draggable();
-      $('.delete').click(function(event) {
-        $(event.target.parentElement).remove();
-      });
+      $('.delete').click(function(e) { deleteCard(e) }); 
     });
   </script>
 {% endblock %}
