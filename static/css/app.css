@@ -106,6 +106,17 @@ body {
   background-image: url(/static/img/applefabric.jpeg);
 }
 
+#logo {
+  color: #fff;
+  font-family: 'Arvo', serif;
+  font-size: 16px; 
+
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: -1;
+}
+
 .card {
   float: left;
 
