@@ -39,7 +39,9 @@
   <script type='text/javascript'>
     $(document).ready(function() {
       $('.card').draggable();
-      $('.delete').click(function(e) { deleteCard(e) }); 
+      $('.card').mouseover(function(e) { showDeleteButton(e) });
+
+      $('.delete').click(function(e) { deleteCard(e) });
     });
   </script>
 {% endblock %}
