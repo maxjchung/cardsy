@@ -123,6 +123,18 @@ body {
   height: 500px;
 }
 
+.canvas-applefabric {
+  background-image: url(/static/img/applefabric.jpeg);
+}
+
+.canvas-darkgrid {
+  background-image: url(/static/img/darkgrid.png);
+}
+
+.canvas-ioslinen {
+  background-image: url(/static/img/ios-linen.png);
+}
+
 .canvas-wood {
   background-image: url(/static/img/wood_1.png);
 }
