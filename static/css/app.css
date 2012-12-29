@@ -129,6 +129,25 @@ body {
   box-shadow: 0 0 2px #888;
 }
 
+.delete {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  height: 25px;
+  width: 25px;
+
+  moz-border-radius: 25px;
+  webkit-border-radius: 25px;
+  border-radius: 25px;
+
+  border:2px solid #fff;
+
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+
 .paper-lined {
   background-image: url(/static/img/lined_paper.png);
 }
