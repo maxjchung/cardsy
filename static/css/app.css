@@ -104,6 +104,7 @@ textarea {
 
 body {
   background-image: url(/static/img/applefabric.jpeg);
+  overflow: hidden;
 }
 
 #logo {

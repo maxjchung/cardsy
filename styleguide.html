@@ -41,7 +41,7 @@
 
       $('.delete').hide();
 
-      $('.card').draggable();
+      $('.card').draggable({ containment: 'document' });
 
       $('.card').hover(
         function(e) { showDeleteButton(e) },
