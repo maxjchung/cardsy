@@ -3,33 +3,33 @@
 {% block body %}
 
   <div class='card paper-lined'>
-    A lined card background.
+    <div class='text'>A lined card background.</div>
     <div class='delete'>&#10006;</div>
   </div>
 
 
   <div class='card paper-lined'>
-    A lined card background.
+    <div class='text'>A lined card background.</div>
     <div class='delete'>&#10006;</div>
   </div>
 
   <div class='card paper-lined'>
-    A lined card background.
+    <div class='text'>A lined card background.</div>
     <div class='delete'>&#10006;</div>
   </div>
 
   <div class='card paper-lined'>
-    A lined card background.
+    <div class='text'>A lined card background.</div>
     <div class='delete'>&#10006;</div>
   </div>
 
   <div class='card paper-lined'>
-    A lined card background.
+    <div class='text'>A lined card background.</div>
     <div class='delete'>&#10006;</div>
   </div>
 
   <div class='card paper-lined'>
-    A lined card background.
+    <div class='text'>A lined card background.</div>
     <div class='delete'>&#10006;</div>
   </div>
 
@@ -47,6 +47,8 @@
         function(e) { showDeleteButton(e) },
         function(e) { hideDeleteButton(e) }
       );
+
+      $('.text').editable();
 
       $('.delete').click(function(e) { deleteCard(e) });
     });
