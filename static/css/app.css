@@ -132,6 +132,10 @@ body {
   box-shadow: 0 0 2px #888;
 }
 
+.text.hover {
+  background-color: #ffeaaa;
+}
+
 .delete {
   position: absolute;
   top: -10px;

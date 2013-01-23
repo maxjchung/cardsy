@@ -50,6 +50,11 @@
 
       $('.text').editable();
 
+      $('.text').hover(
+        function(e) { $(this).addClass('hover') },
+        function(e) { $(this).removeClass('hover') } 
+      );
+
       $('.delete').click(function(e) { deleteCard(e) });
     });
   </script>
