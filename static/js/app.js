@@ -7,14 +7,14 @@ function deleteCard(e) {
 
 function showDeleteButton(e) {
 
-  $(e.target.children[0]).css('visibility', 'visible');
+  $(e.target.children[0]).show();
   return;
 
 }
 
 function hideDeleteButton(e) {
 
-  $(e.target.children[0]).css('visibility', 'hidden');
+  $(e.target.children[0]).hide();
   return;
 
 }
