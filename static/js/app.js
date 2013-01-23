@@ -11,3 +11,10 @@ function showDeleteButton(e) {
   return;
 
 }
+
+function hideDeleteButton(e) {
+
+  $(e.target.children[0]).css('visibility', 'hidden');
+  return;
+
+}

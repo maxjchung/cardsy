@@ -38,8 +38,13 @@
 {% block js %}
   <script type='text/javascript'>
     $(document).ready(function() {
+
       $('.card').draggable();
-      $('.card').mouseover(function(e) { showDeleteButton(e) });
+
+      $('.card').hover(
+        function(e) { showDeleteButton(e) },
+        function(e) { hideDeleteButton(e) }
+      );
 
       $('.delete').click(function(e) { deleteCard(e) });
     });
