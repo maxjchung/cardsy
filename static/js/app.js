@@ -6,15 +6,9 @@ function deleteCard(e) {
 }
 
 function showDeleteButton(e) {
-
-  $(e.target.children[0]).show();
-  return;
-
+  $(e.target).find('.delete').show();
 }
 
 function hideDeleteButton(e) {
-
-  $(e.target.children[0]).hide();
-  return;
-
+  $(e.target).find('.delete').hide();
 }
