@@ -1,6 +1,7 @@
 {% extends "templates/base.html" %}
 
 {% block body %}
+<div id='canvas'>
 
   <div class='card paper-lined'>
     <textarea>One card.</textarea>
@@ -12,11 +13,21 @@
     <div class='delete'>&#10006;</div>
   </div>
 
+</div>
+
 {% endblock %}
 
 {% block js %}
   <script type='text/javascript'>
     $(document).ready(function() {
+
+      $('#canvas').click(
+        function (e) {
+          if (this != e.target) return;
+          
+          alert('clicked on #canvas!')
+        }
+      );
 
       $('.delete').hide();
 
@@ -44,8 +55,8 @@
       });
       $('.card').find('textarea').keyup();
 
-
       $('.delete').click(function(e) { deleteCard(e) });
+
     });
   </script>
 {% endblock %}
