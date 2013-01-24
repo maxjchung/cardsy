@@ -45,7 +45,15 @@ function addCard(e) {
   textArea.focus();
 
   // Enable draggable last, otherwise affects clientX/Y values.
-  newCard.draggable({containment: 'document'});
+  newCard.draggable({
+
+    containment: 'document',
+
+    start: function() {
+      newCard.find('textarea').blur();
+    }
+
+  });
 
 }
 
