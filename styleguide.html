@@ -23,9 +23,11 @@
 
       $('#canvas').click(
         function (e) {
-          if (this != e.target) return;
-          
-          alert('clicked on #canvas!')
+
+          if (this != e.target)
+            return;
+
+          addCard(e);
         }
       );
 
