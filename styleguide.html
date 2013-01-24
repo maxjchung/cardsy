@@ -34,6 +34,15 @@
         function(e) { $(this).removeClass('hover') } 
       );
 
+
+      // Auto adjust text area height.
+      $('.card').on( 'keyup', 'textarea', function (){
+          $(this).height( 0 );
+          $(this).height( this.scrollHeight );
+      });
+      $('.card').find('textarea').keyup();
+
+
       $('.delete').click(function(e) { deleteCard(e) });
     });
   </script>
