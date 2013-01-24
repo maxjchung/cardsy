@@ -51,7 +51,10 @@ function addCard(e) {
 
 function deleteCard(e) {
 
-  $(e.target.parentElement).remove();
+  $(e.target.parentElement).hide('highlight', null, 250, function(e) {
+    this.remove();
+  });
+
   return;
 
 }
