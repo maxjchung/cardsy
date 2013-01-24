@@ -159,11 +159,9 @@ textarea.hover {
 }
 
 textarea {
-  width: 180px;
-
   background: none;
   border: none;
-  resize: none;;
+  resize: none;
 }
 
 .paper-lined {
