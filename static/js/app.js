@@ -1,6 +1,23 @@
 function addCard(e) {
 
-  $('#canvas').append("<div class='card' style='top: " + e.clientY + "px; left: " + e.clientX + "px;'><textarea></textarea><div class='delete'>&#10006;</div></div>");
+  var newCard = $('<div />', {
+    'class' : 'card paper-lined',
+    'style' : 'left: ' + e.clientX + 'px; top: ' + e.clientY + 'px;' 
+  });
+
+  var textArea = $('<textarea />');
+  
+  var deleteButton = $('<div />', {
+    'class' : 'delete',
+    'html' : '&#10006;'
+  });
+
+  newCard.append(textArea).append(deleteButton);
+
+  $('#canvas').append(newCard);
+
+  // Enable draggable last, otherwise affects clientX/Y values.
+  newCard.draggable({containment: 'document'});
 
 }
 

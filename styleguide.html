@@ -1,17 +1,8 @@
 {% extends "templates/base.html" %}
 
 {% block body %}
+
 <div id='canvas'>
-
-  <div class='card paper-lined'>
-    <textarea>One card.</textarea>
-    <div class='delete'>&#10006;</div>
-  </div>
-
-  <div class='card paper-lined'>
-    <textarea>Another card.</textarea>
-    <div class='delete'>&#10006;</div>
-  </div>
 
 </div>
 
@@ -32,8 +23,6 @@
       );
 
       $('.delete').hide();
-
-      $('.card').draggable({ containment: 'document' });
 
       $('.card').hover(
         function(e) { showDeleteButton(e) },
@@ -57,7 +46,7 @@
       });
       $('.card').find('textarea').keyup();
 
-      $('.delete').click(function(e) { deleteCard(e) });
+      $('.delete').live("click", function(e) { deleteCard(e) });
 
     });
   </script>
