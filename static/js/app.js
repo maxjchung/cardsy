@@ -10,6 +10,8 @@ function addCard(e) {
   var deleteButton = $('<div />', {
     'class' : 'delete',
     'html' : '&#10006;'
+  }).click(function (e) {
+    deleteCard(e) 
   });
 
   newCard.append(textArea).append(deleteButton);
