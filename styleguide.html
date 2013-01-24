@@ -3,33 +3,12 @@
 {% block body %}
 
   <div class='card paper-lined'>
-    <div class='text'>A lined card background.</div>
-    <div class='delete'>&#10006;</div>
-  </div>
-
-
-  <div class='card paper-lined'>
-    <div class='text'>A lined card background.</div>
+    <textarea>One card.</textarea>
     <div class='delete'>&#10006;</div>
   </div>
 
   <div class='card paper-lined'>
-    <div class='text'>A lined card background.</div>
-    <div class='delete'>&#10006;</div>
-  </div>
-
-  <div class='card paper-lined'>
-    <div class='text'>A lined card background.</div>
-    <div class='delete'>&#10006;</div>
-  </div>
-
-  <div class='card paper-lined'>
-    <div class='text'>A lined card background.</div>
-    <div class='delete'>&#10006;</div>
-  </div>
-
-  <div class='card paper-lined'>
-    <div class='text'>A lined card background.</div>
+    <textarea>Another card.</textarea>
     <div class='delete'>&#10006;</div>
   </div>
 
@@ -48,9 +27,9 @@
         function(e) { hideDeleteButton(e) }
       );
 
-      $('.text').editable();
+      // $('textarea').editable();
 
-      $('.text').hover(
+      $('textarea').hover(
         function(e) { $(this).addClass('hover') },
         function(e) { $(this).removeClass('hover') } 
       );

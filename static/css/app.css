@@ -132,7 +132,7 @@ body {
   box-shadow: 0 0 2px #888;
 }
 
-.text.hover {
+textarea.hover {
   background-color: #ffeaaa;
 }
 
@@ -158,6 +158,13 @@ body {
   cursor: pointer;
 }
 
+textarea {
+  width: 180px;
+
+  background: none;
+  border: none;
+  resize: none;;
+}
 
 .paper-lined {
   background-image: url(/static/img/lined_paper.png);
