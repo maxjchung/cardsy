@@ -35,6 +35,7 @@ function addCard(e) {
 
   newCard.append(textArea).append(deleteButton);
 
+  deleteButton.hide();
   $('#canvas').append(newCard);
   textArea.focus();
 
