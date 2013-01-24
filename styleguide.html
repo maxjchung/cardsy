@@ -10,11 +10,10 @@
 
 {% block js %}
   <script type='text/javascript'>
+
     $(document).ready(function() {
 
-      $('#canvas').click(
-        function (e) {
-
+      $('#canvas').click(function (e) {
           if (this != e.target)
             return;
 
@@ -22,7 +21,7 @@
         }
       );
 
-
     });
+
   </script>
 {% endblock %}
