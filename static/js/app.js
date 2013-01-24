@@ -5,8 +5,21 @@ function addCard(e) {
     'style' : 'left: ' + e.clientX + 'px; top: ' + e.clientY + 'px;' 
   });
 
+  newCard.hover(
+    function(e) { showDeleteButton(e) },
+    function(e) { hideDeleteButton(e) }
+  );
+
   var textArea = $('<textarea />');
   
+  textArea.hover(
+    function(e) { $(this).addClass('hover') },
+    function(e) { $(this).removeClass('hover') }
+  );
+
+  textArea.attr('maxlength', '110');
+
+
   var deleteButton = $('<div />', {
     'class' : 'delete',
     'html' : '&#10006;'

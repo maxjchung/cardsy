@@ -22,19 +22,6 @@
         }
       );
 
-      $('.card').hover(
-        function(e) { showDeleteButton(e) },
-        function(e) { hideDeleteButton(e) }
-      );
-
-      $('textarea').hover(
-        function(e) { $(this).addClass('hover') },
-        function(e) { $(this).removeClass('hover') } 
-      );
-
-      $('textarea').attr('maxlength', '110');
-
-
       // Auto adjust text area height.
       $('.card').on( 'keyup', 'textarea', function (){
           $(this).height( 0 );
