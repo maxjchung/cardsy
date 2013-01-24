@@ -36,6 +36,7 @@ function addCard(e) {
   newCard.append(textArea).append(deleteButton);
 
   $('#canvas').append(newCard);
+  textArea.focus();
 
   // Enable draggable last, otherwise affects clientX/Y values.
   newCard.draggable({containment: 'document'});
