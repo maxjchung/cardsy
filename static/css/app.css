@@ -137,7 +137,10 @@ body {
   -webkit-box-shadow: 0 0 2px #888;
   box-shadow: 0 0 2px #888;
 
-  cursor: move;
+  cursor: hand;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
 }
 
 textarea.hover {
