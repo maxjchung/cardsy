@@ -19,6 +19,12 @@ function addCard(e) {
 
   textArea.attr('maxlength', '110');
 
+  // Auto adjust text area height.
+  newCard.on( 'keyup', 'textarea', function (){
+      $(this).height( 0 );
+      $(this).height( this.scrollHeight );
+  });
+  newCard.find('textarea').keyup();
 
   var deleteButton = $('<div />', {
     'class' : 'delete',
