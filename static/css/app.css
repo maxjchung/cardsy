@@ -164,6 +164,10 @@ textarea.hover {
   cursor: pointer;
 }
 
+.delete.hover {
+  background-color: #cc0000;
+}
+
 textarea {
   background: none;
   border: none;

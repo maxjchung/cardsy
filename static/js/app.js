@@ -33,6 +33,11 @@ function addCard(e) {
     deleteCard(e) 
   });
 
+  deleteButton.hover(
+    function(e) { $(this).addClass('hover') },
+    function(e) { $(this).removeClass('hover') }
+  );
+
   newCard.append(textArea).append(deleteButton);
 
   deleteButton.hide();
