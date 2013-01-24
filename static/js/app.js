@@ -51,6 +51,15 @@ function addCard(e) {
 
     start: function() {
       newCard.find('textarea').blur();
+      newCard.find('.delete').hide();
+    },
+
+    drag: function() {
+      newCard.find('.delete').hide();
+    },
+
+    stop: function() {
+      newCard.find('.delete').show();
     }
 
   });
