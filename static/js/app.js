@@ -1,3 +1,5 @@
+var ANIMATION_SPEED = 150;
+
 function addCard(e) {
 
   var newCard = $('<div />', {
@@ -43,7 +45,7 @@ function addCard(e) {
   deleteButton.hide();
 
   $('#canvas').append(newCard);
-  newCard.fadeIn(150);
+  newCard.fadeIn(ANIMATION_SPEED);
   textArea.focus();
 
   // Enable draggable last, otherwise affects clientX/Y values.
@@ -70,7 +72,7 @@ function addCard(e) {
 
 function deleteCard(e) {
 
-  $(e.target.parentElement).hide('highlight', null, 250, function(e) {
+  $(e.target.parentElement).hide('highlight', null, ANIMATION_SPEED, function(e) {
     this.remove();
   });
 
