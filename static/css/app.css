@@ -143,8 +143,19 @@ body {
   cursor: -webkit-grab;
 }
 
-textarea.hover {
+textarea.hover, textarea:focus {
   background-color: #ffeaaa;
+}
+
+textarea:focus {
+
+  border: 1px solid #aaa;
+
+  border-radius: 2px;
+  moz-border-radius: 2px;
+  webkit-border-radius: 2px;
+
+  outline-width: 0;
 }
 
 .delete {
