@@ -39,9 +39,11 @@ function addCard(e) {
   );
 
   newCard.append(textArea).append(deleteButton);
-
+  newCard.hide();
   deleteButton.hide();
+
   $('#canvas').append(newCard);
+  newCard.fadeIn(150);
   textArea.focus();
 
   // Enable draggable last, otherwise affects clientX/Y values.
