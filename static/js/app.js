@@ -51,6 +51,7 @@ function addCard(e) {
   // Enable draggable last, otherwise affects clientX/Y values.
   newCard.draggable({
 
+    scroll: false,
     containment: 'document',
 
     start: function() {
