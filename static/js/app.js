@@ -7,7 +7,7 @@ var CardsyApp = {
   addCard: function(e) {
 
     var newCard = $('<div />', {
-      'class' : 'card paper-lined',
+      'class' : 'card',
       'style' : 'left: ' + e.clientX + 'px; top: ' + e.clientY + 'px;' 
     });
 

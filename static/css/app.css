@@ -131,6 +131,7 @@ body {
   height: 120px;
   padding: 10px;
 
+  background-image: url(/static/img/lined_paper.png);
   background-color: #fff;
 
   -moz-box-shadow: 0 0 2px #888;
@@ -188,10 +189,6 @@ textarea {
   background: none;
   border: none;
   resize: none;
-}
-
-.paper-lined {
-  background-image: url(/static/img/lined_paper.png);
 }
 
 .font-georgia {
