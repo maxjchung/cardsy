@@ -32,21 +32,11 @@ var CardsyApp = {
     });
     newCard.find('textarea').keyup();
 
-    var deleteButton = $('<div />', {
-      'class' : 'delete',
-      'html' : '&#10006;'
-    }).click(function (e) {
-      CardsyApp.deleteCard(e) 
-    });
+    delButton = createDeleteButton();
 
-    deleteButton.hover(
-      function(e) { $(this).addClass('hover') },
-      function(e) { $(this).removeClass('hover') }
-    );
-
-    newCard.append(textArea).append(deleteButton);
+    newCard.append(textArea).append(delButton);
     newCard.hide();
-    deleteButton.hide();
+    delButton.hide();
 
     $('#canvas').append(newCard);
     newCard.fadeIn(ANIMATION_SPEED);
@@ -72,6 +62,23 @@ var CardsyApp = {
       }
 
     });
+
+    function createDeleteButton() {
+
+      var deleteButton = $('<div />', {
+        'class' : 'delete',
+        'html' : '&#10006;'
+      }).click(function (e) {
+        CardsyApp.deleteCard(e) 
+      });
+
+      deleteButton.hover(
+        function(e) { $(this).addClass('hover') },
+        function(e) { $(this).removeClass('hover') }
+      );
+
+      return deleteButton;
+    }
 
   },
 
