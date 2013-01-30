@@ -16,14 +16,7 @@ var CardsyApp = {
       function(e) { CardsyApp.hideDeleteButton(e) }
     );
 
-    var textArea = $('<textarea />');
-    
-    textArea.hover(
-      function(e) { $(this).addClass('hover') },
-      function(e) { $(this).removeClass('hover') }
-    );
-
-    textArea.attr('maxlength', '110');
+    textArea = createTextArea();
 
     // Auto adjust text area height.
     newCard.on( 'keyup', 'textarea', function (){
@@ -62,6 +55,19 @@ var CardsyApp = {
       }
 
     });
+
+    function createTextArea() {
+      var textArea = $('<textarea />');
+      
+      textArea.hover(
+        function(e) { $(this).addClass('hover') },
+        function(e) { $(this).removeClass('hover') }
+      );
+
+      textArea.attr('maxlength', '110');
+
+      return textArea;
+    }
 
     function createDeleteButton() {
 
