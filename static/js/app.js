@@ -18,12 +18,6 @@ var CardsyApp = {
 
     textArea = createTextArea();
 
-    // Auto adjust text area height.
-    newCard.on( 'keyup', 'textarea', function (){
-        $(this).height( 0 );
-        $(this).height( this.scrollHeight );
-    });
-    newCard.find('textarea').keyup();
 
     delButton = createDeleteButton();
 
@@ -65,6 +59,12 @@ var CardsyApp = {
       );
 
       textArea.attr('maxlength', '110');
+
+      // Auto adjust text area height.
+      textArea.keyup(function () {
+        $(this).height(0);
+        $(this).height(this.scrollHeight );
+      });
 
       return textArea;
     }
