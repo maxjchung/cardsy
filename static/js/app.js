@@ -1,90 +1,97 @@
 var ANIMATION_SPEED = 150;
 
-function addCard(e) {
 
-  var newCard = $('<div />', {
-    'class' : 'card paper-lined',
-    'style' : 'left: ' + e.clientX + 'px; top: ' + e.clientY + 'px;' 
-  });
+var CardsyApp = {
 
-  newCard.hover(
-    function(e) { showDeleteButton(e) },
-    function(e) { hideDeleteButton(e) }
-  );
 
-  var textArea = $('<textarea />');
-  
-  textArea.hover(
-    function(e) { $(this).addClass('hover') },
-    function(e) { $(this).removeClass('hover') }
-  );
+  addCard: function(e) {
 
-  textArea.attr('maxlength', '110');
+    var newCard = $('<div />', {
+      'class' : 'card paper-lined',
+      'style' : 'left: ' + e.clientX + 'px; top: ' + e.clientY + 'px;' 
+    });
 
-  // Auto adjust text area height.
-  newCard.on( 'keyup', 'textarea', function (){
-      $(this).height( 0 );
-      $(this).height( this.scrollHeight );
-  });
-  newCard.find('textarea').keyup();
+    newCard.hover(
+      function(e) { CardsyApp.showDeleteButton(e) },
+      function(e) { CardsyApp.hideDeleteButton(e) }
+    );
 
-  var deleteButton = $('<div />', {
-    'class' : 'delete',
-    'html' : '&#10006;'
-  }).click(function (e) {
-    deleteCard(e) 
-  });
+    var textArea = $('<textarea />');
+    
+    textArea.hover(
+      function(e) { $(this).addClass('hover') },
+      function(e) { $(this).removeClass('hover') }
+    );
 
-  deleteButton.hover(
-    function(e) { $(this).addClass('hover') },
-    function(e) { $(this).removeClass('hover') }
-  );
+    textArea.attr('maxlength', '110');
 
-  newCard.append(textArea).append(deleteButton);
-  newCard.hide();
-  deleteButton.hide();
+    // Auto adjust text area height.
+    newCard.on( 'keyup', 'textarea', function (){
+        $(this).height( 0 );
+        $(this).height( this.scrollHeight );
+    });
+    newCard.find('textarea').keyup();
 
-  $('#canvas').append(newCard);
-  newCard.fadeIn(ANIMATION_SPEED);
-  textArea.focus();
+    var deleteButton = $('<div />', {
+      'class' : 'delete',
+      'html' : '&#10006;'
+    }).click(function (e) {
+      CardsyApp.deleteCard(e) 
+    });
 
-  // Enable draggable last, otherwise affects clientX/Y values.
-  newCard.draggable({
+    deleteButton.hover(
+      function(e) { $(this).addClass('hover') },
+      function(e) { $(this).removeClass('hover') }
+    );
 
-    scroll: false,
-    containment: 'document',
+    newCard.append(textArea).append(deleteButton);
+    newCard.hide();
+    deleteButton.hide();
 
-    start: function() {
-      newCard.find('textarea').blur();
-      newCard.find('.delete').hide();
-    },
+    $('#canvas').append(newCard);
+    newCard.fadeIn(ANIMATION_SPEED);
+    textArea.focus();
 
-    drag: function() {
-      newCard.find('.delete').hide();
-    },
+    // Enable draggable last, otherwise affects clientX/Y values.
+    newCard.draggable({
 
-    stop: function() {
-      newCard.find('.delete').show();
-    }
+      scroll: false,
+      containment: 'document',
 
-  });
+      start: function() {
+        newCard.find('textarea').blur();
+        newCard.find('.delete').hide();
+      },
 
-}
+      drag: function() {
+        newCard.find('.delete').hide();
+      },
 
-function deleteCard(e) {
+      stop: function() {
+        newCard.find('.delete').show();
+      }
 
-  $(e.target.parentElement).hide('highlight', null, ANIMATION_SPEED, function(e) {
-    this.remove();
-  });
+    });
 
-  return;
+  },
 
-}
 
-function showDeleteButton(e) {
-  $(e.target).find('.delete').show();
-}
+  deleteCard: function (e) {
 
-function hideDeleteButton(e) {
-  $(e.target).find('.delete').hide();
-}
+    $(e.target.parentElement).hide('highlight', null, ANIMATION_SPEED, function(e) {
+      this.remove();
+    });
+
+    return;
+
+  },
+
+  showDeleteButton: function (e) {
+    $(e.target).find('.delete').show();
+  },
+
+  hideDeleteButton: function (e) {
+    $(e.target).find('.delete').hide();
+  }
+
+};
