@@ -8,10 +8,10 @@ var CardsyApp = {
 
   addCard: function(x, y) {
 
-    var newCard = $('<div />', {
-      'class' : 'card',
-      'style' : 'left: ' + x + 'px; top: ' + y + 'px;' 
-    });
+    var newCard = $('<div />')
+      .addClass('card')
+      .css('left', x + 'px')
+      .css('top', y + 'px');
 
     newCard.hover(
       function(e) { CardsyApp.showDeleteButton(e) },
