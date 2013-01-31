@@ -6,11 +6,11 @@ var CardsyApp = {
     'animationSpeed' : 150
   },
 
-  addCard: function(e) {
+  addCard: function(x, y) {
 
     var newCard = $('<div />', {
       'class' : 'card',
-      'style' : 'left: ' + e.clientX + 'px; top: ' + e.clientY + 'px;' 
+      'style' : 'left: ' + x + 'px; top: ' + y + 'px;' 
     });
 
     newCard.hover(
@@ -121,7 +121,7 @@ var CardsyApp = {
       if (this != e.target)
         return;
 
-      CardsyApp.addCard(e);
+      CardsyApp.addCard(e.clientX, e.clientY);
     });
 
   },
