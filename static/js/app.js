@@ -79,12 +79,10 @@ var CardsyApp = {
 
     function createDeleteButton() {
 
-      var deleteButton = $('<div />', {
-        'class' : 'delete',
-        'html' : '&#10006;'
-      }).click(function (e) {
-        CardsyApp.deleteCard(e) 
-      });
+      var deleteButton = $('<div />')
+        .addClass('delete')
+        .html('&#10006;')
+        .click(function (e) { CardsyApp.deleteCard(e) });
 
       deleteButton.hover(
         function(e) { $(this).addClass('hover') },
