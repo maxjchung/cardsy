@@ -29,26 +29,31 @@ var CardsyApp = {
     newCard.fadeIn(ANIMATION_SPEED);
     textArea.focus();
 
-    // Enable draggable last, otherwise affects clientX/Y values.
-    newCard.draggable({
+    makeDraggable(newCard);
 
-      scroll: false,
-      containment: 'document',
+    function makeDraggable(newCard) {
+      newCard.draggable({
 
-      start: function() {
-        newCard.find('textarea').blur();
-        newCard.find('.delete').hide();
-      },
+        scroll: false,
+        containment: 'document',
 
-      drag: function() {
-        newCard.find('.delete').hide();
-      },
+        start: function() {
+          newCard.find('textarea').blur();
+          newCard.find('.delete').hide();
+        },
 
-      stop: function() {
-        newCard.find('.delete').show();
-      }
+        drag: function() {
+          newCard.find('.delete').hide();
+        },
 
-    });
+        stop: function() {
+          newCard.find('.delete').show();
+        }
+
+      });
+    
+      return;
+    }
 
     function createTextArea() {
       var textArea = $('<textarea />');
