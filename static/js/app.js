@@ -8,55 +8,60 @@ var CardsyApp = {
 
   addCard: function(x, y) {
 
-    var newCard = $('<div />')
-      .addClass('card')
-      .css('left', x + 'px')
-      .css('top', y + 'px');
+    var card = createCard();
+    var textArea = createTextArea();
+    var delButton = createDeleteButton();
 
-    newCard.hover(
-      function(e) { CardsyApp.showDeleteButton(e) },
-      function(e) { CardsyApp.hideDeleteButton(e) }
-    );
-
-    textArea = createTextArea();
-
-
-    delButton = createDeleteButton();
-
-    newCard.append(textArea).append(delButton);
-    newCard.hide();
+    card.append(textArea).append(delButton);
+    card.hide();
     delButton.hide();
 
-    $('#canvas').append(newCard);
-    newCard.fadeIn(s.animationSpeed);
+    $('#canvas').append(card);
+    card.fadeIn(s.animationSpeed);
     textArea.focus();
 
-    makeDraggable(newCard);
+    makeDraggable(card);
 
 
-    function makeDraggable(newCard) {
-      newCard.draggable({
+    function makeDraggable(card) {
+      card.draggable({
 
         scroll: false,
         containment: 'document',
 
         start: function() {
-          newCard.find('textarea').blur();
-          newCard.find('.delete').hide();
+          card.find('textarea').blur();
+          card.find('.delete').hide();
         },
 
         drag: function() {
-          newCard.find('.delete').hide();
+          card.find('.delete').hide();
         },
 
         stop: function() {
-          newCard.find('.delete').show();
+          card.find('.delete').show();
         }
 
       });
     
       return;
     }
+
+    function createCard() {
+
+      var newCard = $('<div />')
+        .addClass('card')
+        .css('left', x + 'px')
+        .css('top', y + 'px');
+
+      newCard.hover(
+        function(e) { CardsyApp.showDeleteButton(e) },
+        function(e) { CardsyApp.hideDeleteButton(e) }
+      );
+
+      return newCard;
+    }
+
 
     function createTextArea() {
       var textArea = $('<textarea />');
