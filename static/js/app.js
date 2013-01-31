@@ -1,8 +1,10 @@
-var ANIMATION_SPEED = 150;
-
+var s;
 
 var CardsyApp = {
 
+  settings : {
+    'animationSpeed' : 150
+  },
 
   addCard: function(e) {
 
@@ -26,10 +28,11 @@ var CardsyApp = {
     delButton.hide();
 
     $('#canvas').append(newCard);
-    newCard.fadeIn(ANIMATION_SPEED);
+    newCard.fadeIn(s.animationSpeed);
     textArea.focus();
 
     makeDraggable(newCard);
+
 
     function makeDraggable(newCard) {
       newCard.draggable({
@@ -96,7 +99,7 @@ var CardsyApp = {
 
   deleteCard: function (e) {
 
-    $(e.target.parentElement).hide('highlight', null, ANIMATION_SPEED, function(e) {
+    $(e.target.parentElement).hide('highlight', null, s.animationSpeed, function(e) {
       this.remove();
     });
 
@@ -110,6 +113,24 @@ var CardsyApp = {
 
   hideDeleteButton: function (e) {
     $(e.target).find('.delete').hide();
+  },
+
+  initCanvas: function() {
+
+    $('#canvas').click(function (e) {
+      if (this != e.target)
+        return;
+
+      CardsyApp.addCard(e);
+    });
+
+  },
+
+  init: function() {
+
+    s = this.settings;
+    CardsyApp.initCanvas();
+
   }
 
 };

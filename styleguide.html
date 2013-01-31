@@ -12,15 +12,7 @@
   <script type='text/javascript'>
 
     $(document).ready(function() {
-
-      $('#canvas').click(function (e) {
-          if (this != e.target)
-            return;
-
-          CardsyApp.addCard(e);
-        }
-      );
-
+      CardsyApp.init(); 
     });
 
   </script>
