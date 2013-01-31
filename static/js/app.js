@@ -54,49 +54,51 @@ var CardsyApp = {
       var newCard = $('<div />')
         .addClass('card')
         .css('left', x + 'px')
-        .css('top', y + 'px');
+        .css('top', y + 'px')
+        .hover(
+          function(e) { CardsyApp.showDeleteButton(e) },
+          function(e) { CardsyApp.hideDeleteButton(e) }
+        );
 
-      newCard.hover(
-        function(e) { CardsyApp.showDeleteButton(e) },
-        function(e) { CardsyApp.hideDeleteButton(e) }
+      textArea = createTextArea();
+      deleteButton = createDeleteButton();
+
+      return newCard.append(textArea).append(deleteButton);
+
+    }
+
+    function createTextArea() {
+      var textArea = $('<textarea />');
+      
+      textArea.hover(
+        function(e) { $(this).addClass('hover') },
+        function(e) { $(this).removeClass('hover') }
       );
 
-      return newCard.append(createTextArea()).append(createDeleteButton());
+      textArea.attr('maxlength', '110');
 
-      function createTextArea() {
-        var textArea = $('<textarea />');
-        
-        textArea.hover(
-          function(e) { $(this).addClass('hover') },
-          function(e) { $(this).removeClass('hover') }
-        );
+      // Auto adjust text area height.
+      textArea.keyup(function () {
+        $(this).height(0);
+        $(this).height(this.scrollHeight );
+      });
 
-        textArea.attr('maxlength', '110');
+      return textArea;
+    }
 
-        // Auto adjust text area height.
-        textArea.keyup(function () {
-          $(this).height(0);
-          $(this).height(this.scrollHeight );
-        });
+    function createDeleteButton() {
 
-        return textArea;
-      }
+      var deleteButton = $('<div />')
+        .addClass('delete')
+        .html('&#10006;')
+        .click(function (e) { CardsyApp.deleteCard(e) });
 
-      function createDeleteButton() {
+      deleteButton.hover(
+        function(e) { $(this).addClass('hover') },
+        function(e) { $(this).removeClass('hover') }
+      );
 
-        var deleteButton = $('<div />')
-          .addClass('delete')
-          .html('&#10006;')
-          .click(function (e) { CardsyApp.deleteCard(e) });
-
-        deleteButton.hover(
-          function(e) { $(this).addClass('hover') },
-          function(e) { $(this).removeClass('hover') }
-        );
-
-        return deleteButton;
-      }
-
+      return deleteButton;
     }
 
   },
