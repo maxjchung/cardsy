@@ -2,7 +2,12 @@ var s;
 
 var CardsyApp = {
 
-  settings : { 'animationSpeed' : 150 },
+  settings : {
+
+    'animationSpeed' : 150,
+    'cardCharLimit' : 110
+  
+  },
 
   init: function() {
 
@@ -91,7 +96,7 @@ var CardsyApp = {
         function(e) { $(this).removeClass('hover') }
       );
 
-      textArea.attr('maxlength', '110');
+      textArea.attr('maxlength', s.cardCharLimit);
 
       // Auto adjust text area height.
       textArea.keyup(function () {
