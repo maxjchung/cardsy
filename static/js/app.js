@@ -2,8 +2,24 @@ var s;
 
 var CardsyApp = {
 
-  settings : {
-    'animationSpeed' : 150
+  settings : { 'animationSpeed' : 150 },
+
+  init: function() {
+
+    s = this.settings;
+    CardsyApp.initCanvas();
+
+  },
+
+  initCanvas: function() {
+
+    $('#canvas').click(function (e) {
+      if (this != e.target)
+        return;
+
+      CardsyApp.addCard(e.clientX, e.clientY);
+    });
+
   },
 
   addCard: function(x, y) {
@@ -120,24 +136,6 @@ var CardsyApp = {
 
   hideDeleteButton: function (e) {
     $(e.target).find('.delete').hide();
-  },
-
-  initCanvas: function() {
-
-    $('#canvas').click(function (e) {
-      if (this != e.target)
-        return;
-
-      CardsyApp.addCard(e.clientX, e.clientY);
-    });
-
-  },
-
-  init: function() {
-
-    s = this.settings;
-    CardsyApp.initCanvas();
-
   }
 
 };
