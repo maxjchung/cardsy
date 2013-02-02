@@ -19,10 +19,12 @@ var CardsyApp = {
   initCanvas: function() {
 
     $('#canvas').click(function(e) {
+
       if (this != e.target)
         return;
 
       CardsyApp.addCard(e.clientX, e.clientY);
+
     });
 
   },
@@ -54,8 +56,10 @@ var CardsyApp = {
         containment: 'document',
 
         start: function() {
+
           card.find('textarea').blur();
           card.find('.delete').hide();
+
         },
 
         drag: function() { card.find('.delete').hide(); },
