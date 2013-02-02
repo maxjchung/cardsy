@@ -14,6 +14,8 @@ var CardsyApp = {
     s = this.settings;
     CardsyApp.initCanvas();
 
+    setTimeout(function() { CardsyApp.addCard(50, 50) }, 250);
+
   },
 
   initCanvas: function() {
