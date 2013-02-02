@@ -33,13 +33,15 @@ var CardsyApp = {
 
   showIntro: function() {
 
-    setTimeout(function () { CardsyApp.addCard(50, 50) }, 250);
+    var introText = 'Welcome to Cardsy!';
+
+    setTimeout(function () { CardsyApp.addCard(50, 50, introText) }, 250);
 
   },
 
-  addCard: function(x, y) {
+  addCard: function(x, y, text) {
 
-    var card = createCard();
+    var card = createCard(text);
     addToCanvas(card);
 
     function addToCanvas(card) {
@@ -78,7 +80,7 @@ var CardsyApp = {
     
     }
 
-    function createCard() {
+    function createCard(text) {
 
       var newCard = $('<div />')
         .addClass('card')
@@ -90,6 +92,10 @@ var CardsyApp = {
         );
 
       textArea = createTextArea();
+
+      if (undefined != text)
+        textArea.html(text);
+
       deleteButton = createDeleteButton();
 
       return newCard.append(textArea).append(deleteButton);
