@@ -33,7 +33,7 @@ var CardsyApp = {
 
   showIntro: function() {
 
-    var introText = 'Welcome to Cardsy!';
+    var introText = 'Make new cards by clicking the canvas.';
 
     setTimeout(function () { CardsyApp.addCard(50, 50, introText) }, 250);
 
