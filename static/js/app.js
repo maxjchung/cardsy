@@ -52,7 +52,9 @@ var CardsyApp = {
       $('#canvas').append(card);
 
       card.fadeIn(s.animationSpeed);
-      card.find('textarea').focus();
+
+      if (undefined == text)
+        card.find('textarea').focus();
 
       makeDraggable(card);
 
