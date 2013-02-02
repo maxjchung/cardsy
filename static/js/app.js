@@ -18,7 +18,7 @@ var CardsyApp = {
 
   initCanvas: function() {
 
-    $('#canvas').click(function (e) {
+    $('#canvas').click(function(e) {
       if (this != e.target)
         return;
 
@@ -96,7 +96,7 @@ var CardsyApp = {
       textArea.attr('maxlength', s.cardCharLimit);
 
       // Auto adjust text area height.
-      textArea.keyup(function () {
+      textArea.keyup(function() {
         $(this).height(0);
         $(this).height(this.scrollHeight );
       });
@@ -110,7 +110,7 @@ var CardsyApp = {
       var deleteButton = $('<div />')
         .addClass('delete')
         .html('&#10006;')
-        .click(function (e) { CardsyApp.deleteCard(e) });
+        .click(function(e) { CardsyApp.deleteCard(e) });
 
       deleteButton.hover(
         function(e) { $(this).addClass('hover') },
@@ -124,15 +124,13 @@ var CardsyApp = {
   },
 
 
-  deleteCard: function (e) {
+  deleteCard: function(e) {
 
-    $(e.target.parentElement).hide('highlight', null, s.animationSpeed, function(e) {
-      this.remove();
-    });
+    $(e.target.parentElement).hide('highlight', null, s.animationSpeed, function(e) { this.remove(); });
 
   },
 
-  showDeleteButton: function (e) { $(e.target).find('.delete').show(); },
-  hideDeleteButton: function (e) { $(e.target).find('.delete').hide(); }
+  showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
+  hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); }
 
 };
