@@ -47,6 +47,7 @@ var CardsyApp = {
     }
 
     function makeDraggable(card) {
+
       card.draggable({
 
         scroll: false,
@@ -57,17 +58,12 @@ var CardsyApp = {
           card.find('.delete').hide();
         },
 
-        drag: function() {
-          card.find('.delete').hide();
-        },
+        drag: function() { card.find('.delete').hide(); },
 
-        stop: function() {
-          card.find('.delete').show();
-        }
+        stop: function() { card.find('.delete').show(); }
 
       });
     
-      return;
     }
 
     function createCard() {
@@ -89,6 +85,7 @@ var CardsyApp = {
     }
 
     function createTextArea() {
+
       var textArea = $('<textarea />');
       
       textArea.hover(
@@ -105,6 +102,7 @@ var CardsyApp = {
       });
 
       return textArea;
+
     }
 
     function createDeleteButton() {
@@ -120,6 +118,7 @@ var CardsyApp = {
       );
 
       return deleteButton;
+
     }
 
   },
@@ -131,16 +130,9 @@ var CardsyApp = {
       this.remove();
     });
 
-    return;
-
   },
 
-  showDeleteButton: function (e) {
-    $(e.target).find('.delete').show();
-  },
-
-  hideDeleteButton: function (e) {
-    $(e.target).find('.delete').hide();
-  }
+  showDeleteButton: function (e) { $(e.target).find('.delete').show(); },
+  hideDeleteButton: function (e) { $(e.target).find('.delete').hide(); }
 
 };
