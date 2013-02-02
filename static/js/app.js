@@ -12,9 +12,9 @@ var CardsyApp = {
   init: function() {
 
     s = this.settings;
-    CardsyApp.initCanvas();
 
-    setTimeout(function() { CardsyApp.addCard(50, 50) }, 250);
+    CardsyApp.initCanvas();
+    CardsyApp.showIntro();
 
   },
 
@@ -28,6 +28,12 @@ var CardsyApp = {
       CardsyApp.addCard(e.clientX, e.clientY);
 
     });
+
+  },
+
+  showIntro: function() {
+
+    setTimeout(function () { CardsyApp.addCard(50, 50) }, 250);
 
   },
 
