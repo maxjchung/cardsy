@@ -3,20 +3,17 @@
 
 Cardsy is a free brainstorming tool for writers. Use it to organize ideas for your blog post, marketing copy, or novel. Your notes stay as long as you keep your browser window open.
 
-
-[Try Cardsy Beta](http://cardsybeta.appspot.com)
-
 Future Features
 --------------------------
 
-* __Offline Mode / Save Canvas__
+__Offline Mode / Save Canvas__
 
-    - Your notes will be saved locally when you close the browser.
-    - Use Cardsy without an internet connection.
+  - Your notes will be saved locally when you close the browser.
+  - Use Cardsy without an internet connection.
 
-* __URL shortening__
+__URL shortening__
 
-    - Twitter-style URL shortening when you paste links into a card.
+  - Twitter-style URL shortening when you paste links into a card.
 
 MIT Open Source License
 --------------------------
