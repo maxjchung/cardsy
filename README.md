@@ -1,11 +1,13 @@
-## Welcome to Cardsy. ## 
+ Welcome to Cardsy.
+--------------------------
 
 Cardsy is a free brainstorming tool for writers. Use it to organize ideas for your blog post, marketing copy, or novel. Your notes stay as long as you keep your browser window open.
 
 
 [Try Cardsy Beta](http://cardsybeta.appspot.com)
 
-## Future Features ##
+Future Features
+--------------------------
 
 * __Offline Mode / Save Canvas__
 
@@ -16,7 +18,8 @@ Cardsy is a free brainstorming tool for writers. Use it to organize ideas for yo
 
     - Twitter-style URL shortening when you paste links into a card.
 
-## MIT Open Source License ##
+MIT Open Source License
+--------------------------
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
