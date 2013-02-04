@@ -12,7 +12,9 @@ var CardsyApp = {
   init: function() {
 
     s = this.settings;
+
     CardsyApp.initCanvas();
+    CardsyApp.showIntro();
 
   },
 
@@ -29,9 +31,17 @@ var CardsyApp = {
 
   },
 
-  addCard: function(x, y) {
+  showIntro: function() {
 
-    var card = createCard();
+    var introText = 'Add new cards by clicking the canvas.';
+
+    setTimeout(function () { CardsyApp.addCard(20, 60, introText) }, 710);
+
+  },
+
+  addCard: function(x, y, text) {
+
+    var card = createCard(text);
     addToCanvas(card);
 
     function addToCanvas(card) {
@@ -42,7 +52,9 @@ var CardsyApp = {
       $('#canvas').append(card);
 
       card.fadeIn(s.animationSpeed);
-      card.find('textarea').focus();
+
+      if (undefined == text)
+        card.find('textarea').focus();
 
       makeDraggable(card);
 
@@ -70,7 +82,7 @@ var CardsyApp = {
     
     }
 
-    function createCard() {
+    function createCard(text) {
 
       var newCard = $('<div />')
         .addClass('card')
@@ -82,6 +94,10 @@ var CardsyApp = {
         );
 
       textArea = createTextArea();
+
+      if (undefined != text)
+        textArea.html(text);
+
       deleteButton = createDeleteButton();
 
       return newCard.append(textArea).append(deleteButton);
