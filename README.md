@@ -15,6 +15,11 @@ __URL shortening__
 
   - Twitter-style URL shortening when you paste links into a card.
 
+History
+--------------------------
+
+02/02/13 Beta went live at [cardsybeta.appspot.com](cardsybeta.appspot.com).
+
 MIT Open Source License
 --------------------------
 
