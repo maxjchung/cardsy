@@ -17,7 +17,32 @@ var CardsyApp = {
     s = this.settings;
 
     CardsyApp.initCanvas();
-    CardsyApp.showIntro();
+
+    if (CardsyApp.hasSaveState()) 
+      CardsyApp.loadState();
+
+    else
+      CardsyApp.showIntro();
+
+  },
+
+  hasSaveState: function() {
+
+    if (!Modernizr.localstorage) 
+      return false;
+
+    /* HACK! */ localStorage['hasSaveState'] = true;
+
+    if (localStorage['hasSaveState'] != 'true')
+      return false;
+
+    return true;
+
+  },
+
+  loadState: function() {
+
+    log('called CardsyApp.loadState()');
 
   },
 
