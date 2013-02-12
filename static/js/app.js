@@ -1,4 +1,7 @@
 var s;
+var counter = 1;
+
+var log = function(msg) { console.log(msg) };
 
 var CardsyApp = {
 
@@ -27,6 +30,7 @@ var CardsyApp = {
 
       CardsyApp.addCard(e.clientX, e.clientY);
 
+      
     });
 
   },
@@ -58,6 +62,7 @@ var CardsyApp = {
 
       makeDraggable(card);
 
+      log('added card #' + card.attr('id') + ' at (x,y): (' + x + ', ' + y + ')')
     }
 
     function makeDraggable(card) {
@@ -76,7 +81,12 @@ var CardsyApp = {
 
         drag: function() { card.find('.delete').hide(); },
 
-        stop: function() { card.find('.delete').show(); }
+        stop: function() {
+          card.find('.delete').show();
+    
+          log('moved card #' + card.attr('id') + ' to (x,y): (' + card.css('left') + ', ' + card.css('top') + ')');
+   
+        }
 
       });
     
@@ -85,6 +95,7 @@ var CardsyApp = {
     function createCard(text) {
 
       var newCard = $('<div />')
+        .attr('id', counter++)
         .addClass('card')
         .css('left', x + 'px')
         .css('top', y + 'px')
@@ -146,7 +157,11 @@ var CardsyApp = {
 
   deleteCard: function(e) {
 
-    $(e.target.parentElement).hide('highlight', null, s.animationSpeed, function(e) { this.remove(); });
+    var $card = $(e.target.parentElement);
+
+
+    $card.hide('highlight', null, s.animationSpeed, function(e) { this.remove(); });
+    log('deleted card #' + $card.attr('id'));
 
   },
 
