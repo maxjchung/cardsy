@@ -43,8 +43,8 @@ var Cardsy = {
     };
 
     var card3 = {
-      x: 400,  
-      y: 400,
+      x: 250,  
+      y: 250,
       text: 'card3'
     };
 
@@ -70,7 +70,13 @@ var Cardsy = {
 
   loadState: function() {
 
-    log('called Cardsy.loadState()');
+    var card1 = JSON.parse(localStorage.getItem('1'));
+    var card2 = JSON.parse(localStorage.getItem('2'));
+    var card3 = JSON.parse(localStorage.getItem('3'));
+
+    Cardsy.addCard(card1.x, card1.y, card1.text);
+    Cardsy.addCard(card2.x, card2.y, card2.text);
+    Cardsy.addCard(card3.x, card3.y, card3.text);
 
   },
 
