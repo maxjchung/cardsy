@@ -3,7 +3,7 @@ var counter = 1;
 
 var log = function(msg) { console.log(msg) };
 
-var CardsyApp = {
+var Cardsy = {
 
   settings : {
 
@@ -16,13 +16,13 @@ var CardsyApp = {
 
     s = this.settings;
 
-    CardsyApp.initCanvas();
+    Cardsy.initCanvas();
 
-    if (CardsyApp.hasSaveState()) 
-      CardsyApp.loadState();
+    if (Cardsy.hasSaveState()) 
+      Cardsy.loadState();
 
     else
-      CardsyApp.showIntro();
+      Cardsy.showIntro();
 
   },
 
@@ -30,8 +30,6 @@ var CardsyApp = {
 
     if (!Modernizr.localstorage) 
       return false;
-
-    /* HACK! */ localStorage['hasSaveState'] = true;
 
     if (localStorage['hasSaveState'] != 'true')
       return false;
@@ -42,7 +40,7 @@ var CardsyApp = {
 
   loadState: function() {
 
-    log('called CardsyApp.loadState()');
+    log('called Cardsy.loadState()');
 
   },
 
@@ -53,7 +51,7 @@ var CardsyApp = {
       if (this != e.target)
         return;
 
-      CardsyApp.addCard(e.clientX, e.clientY);
+      Cardsy.addCard(e.clientX, e.clientY);
 
       
     });
@@ -64,7 +62,7 @@ var CardsyApp = {
 
     var introText = 'Add new cards by clicking the canvas.';
 
-    setTimeout(function () { CardsyApp.addCard(20, 60, introText) }, 710);
+    setTimeout(function () { Cardsy.addCard(20, 60, introText) }, 710);
 
   },
 
@@ -125,8 +123,8 @@ var CardsyApp = {
         .css('left', x + 'px')
         .css('top', y + 'px')
         .hover(
-          function(e) { CardsyApp.showDeleteButton(e) },
-          function(e) { CardsyApp.hideDeleteButton(e) }
+          function(e) { Cardsy.showDeleteButton(e) },
+          function(e) { Cardsy.hideDeleteButton(e) }
         );
 
       textArea = createTextArea();
@@ -170,7 +168,7 @@ var CardsyApp = {
       var deleteButton = $('<div />')
         .addClass('delete')
         .html('&#10006;')
-        .click(function(e) { CardsyApp.deleteCard(e) });
+        .click(function(e) { Cardsy.deleteCard(e) });
 
       deleteButton.hover(
         function(e) { $(this).addClass('hover') },
