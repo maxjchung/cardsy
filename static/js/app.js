@@ -48,9 +48,9 @@ var Cardsy = {
       text: 'card3'
     };
 
-    localStorage.setItem('1', JSON.stringify(card1));
-    localStorage.setItem('2', JSON.stringify(card2));
-    localStorage.setItem('3', JSON.stringify(card3));
+    localStorage.setItem('cardsy.main.1', JSON.stringify(card1));
+    localStorage.setItem('cardsy.main.2', JSON.stringify(card2));
+    localStorage.setItem('cardsy.main.3', JSON.stringify(card3));
     
     localStorage.setItem('hasSaveState', 'true');
   
@@ -70,9 +70,9 @@ var Cardsy = {
 
   loadState: function() {
 
-    var card1 = JSON.parse(localStorage.getItem('1'));
-    var card2 = JSON.parse(localStorage.getItem('2'));
-    var card3 = JSON.parse(localStorage.getItem('3'));
+    var card1 = JSON.parse(localStorage.getItem('cardsy.main.1'));
+    var card2 = JSON.parse(localStorage.getItem('cardsy.main.2'));
+    var card3 = JSON.parse(localStorage.getItem('cardsy.main.3'));
 
     Cardsy.addCard(card1.x, card1.y, card1.text);
     Cardsy.addCard(card2.x, card2.y, card2.text);
