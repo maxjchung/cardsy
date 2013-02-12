@@ -18,12 +18,42 @@ var Cardsy = {
 
     Cardsy.initCanvas();
 
+    Cardsy.initDummySaveState();
+
     if (Cardsy.hasSaveState()) 
       Cardsy.loadState();
 
     else
       Cardsy.showIntro();
 
+  },
+
+  initDummySaveState: function() {
+
+    var card1 = {
+      x: 50,  
+      y: 50,
+      text: 'card1'
+    };
+
+    var card2 = {
+      x: 150,  
+      y: 150,
+      text: 'card2'
+    };
+
+    var card3 = {
+      x: 400,  
+      y: 400,
+      text: 'card3'
+    };
+
+    localStorage.setItem('1', JSON.stringify(card1));
+    localStorage.setItem('2', JSON.stringify(card2));
+    localStorage.setItem('3', JSON.stringify(card3));
+    
+    localStorage.setItem('hasSaveState', 'true');
+  
   },
 
   hasSaveState: function() {
