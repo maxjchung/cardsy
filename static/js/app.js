@@ -132,6 +132,10 @@ var CardsyApp = {
         $(this).height(this.scrollHeight );
       });
 
+      textArea.bind('textchange', function() {
+        log('textarea value: ' + $(this).val());
+      });
+
       return textArea;
 
     }
