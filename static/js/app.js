@@ -204,8 +204,10 @@ var Cardsy = {
 
     var $card = $(e.target.parentElement);
 
-
     $card.hide('highlight', null, s.animationSpeed, function(e) { this.remove(); });
+
+    Cardsy.removeCardFromStorage($card);
+
     log('deleted card #' + $card.attr('id'));
 
   },
@@ -215,6 +217,13 @@ var Cardsy = {
     localStorage.setItem('cardsy.1.' + card.id, JSON.stringify(card));
     log('saved card #' + card.id);
 
+  },
+
+  removeCardFromStorage: function($card) {
+
+    var key = 'cardsy.1.' + $card.attr('id');
+
+    localStorage.removeItem(key);
   },
 
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
