@@ -123,6 +123,8 @@ var Cardsy = {
         stop: function() {
           card.find('.delete').show();
     
+          Cardsy.saveCard(Cardsy.jQueryCardToObj(card));
+
           log('moved card #' + card.attr('id') + ' to (x,y): (' + card.css('left') + ', ' + card.css('top') + ')');
    
         }
