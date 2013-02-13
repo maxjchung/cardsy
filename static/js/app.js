@@ -30,31 +30,6 @@ var Cardsy = {
 
   initDummySaveState: function() {
 
-    var card1 = {
-      id: 1,
-      x: 50,  
-      y: 50,
-      text: 'card1'
-    };
-
-    var card2 = {
-      id: 2,
-      x: 150,  
-      y: 150,
-      text: 'card2'
-    };
-
-    var card3 = {
-      id: 3,
-      x: 250,  
-      y: 250,
-      text: 'card3'
-    };
-
-    Cardsy.saveCard(card1);
-    Cardsy.saveCard(card2);
-    Cardsy.saveCard(card3);
-    
     localStorage.setItem('hasSaveState', 'true');
   
   },
