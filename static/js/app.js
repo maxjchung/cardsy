@@ -124,6 +124,13 @@ var Cardsy = {
 
       makeDraggable(card);
 
+      Cardsy.saveCard({
+        id: card.attr('id'),
+        x: x,
+        y: y,
+        text: ''
+      });
+
       log('added card #' + card.attr('id') + ' at (x,y): (' + x + ', ' + y + ')')
 
     }
