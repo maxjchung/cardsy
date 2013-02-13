@@ -73,13 +73,12 @@ var Cardsy = {
 
   loadState: function() {
 
-    var card1 = JSON.parse(localStorage.getItem('cardsy.1.1'));
-    var card2 = JSON.parse(localStorage.getItem('cardsy.1.2'));
-    var card3 = JSON.parse(localStorage.getItem('cardsy.1.3'));
+    var keys = Object.keys(localStorage).filter(function(k) { return k.indexOf('cardsy.1') > -1 });
 
-    Cardsy.addCard(card1.x, card1.y, card1.text);
-    Cardsy.addCard(card2.x, card2.y, card2.text);
-    Cardsy.addCard(card3.x, card3.y, card3.text);
+    for (var i = 0; i < keys.length; i++) {
+      var card = JSON.parse(localStorage.getItem(keys[i]));
+      Cardsy.addCard(card.x, card.y, card.text);
+    }
 
   },
 
