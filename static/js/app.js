@@ -18,20 +18,14 @@ var Cardsy = {
 
     Cardsy.initCanvas();
 
-    Cardsy.initDummySaveState();
-
     if (Cardsy.hasSaveState()) 
       Cardsy.loadState();
 
-    else
+    else {
       Cardsy.showIntro();
+      localStorage.setItem('hasSaveState', 'true');
+    } 
 
-  },
-
-  initDummySaveState: function() {
-
-    localStorage.setItem('hasSaveState', 'true');
-  
   },
 
   hasSaveState: function() {
@@ -52,9 +46,10 @@ var Cardsy = {
 
     for (var i = 0; i < keys.length; i++) {
       var card = JSON.parse(localStorage.getItem(keys[i]));
-      Cardsy.addCard(card.x, card.y, card.text);
+      Cardsy.addCard(card.id, card.x, card.y, card.text);
     }
-
+  
+    counter = parseInt(localStorage.getItem('cardsy.counter')) || 77;
   },
 
   initCanvas: function() {
@@ -64,8 +59,8 @@ var Cardsy = {
       if (this != e.target)
         return;
 
-      Cardsy.addCard(e.clientX, e.clientY);
-
+      Cardsy.addCard(counter, e.clientX, e.clientY);
+      Cardsy.incrementCounter(); 
       
     });
 
@@ -75,13 +70,16 @@ var Cardsy = {
 
     var introText = 'Add new cards by clicking the canvas.';
 
-    setTimeout(function () { Cardsy.addCard(20, 60, introText) }, 710);
+    setTimeout(function () {
+      Cardsy.addCard(counter, 20, 60, introText);
+      Cardsy.incrementCounter();
+    }, 710);
 
   },
 
-  addCard: function(x, y, text) {
+  addCard: function(id, x, y, text) {
 
-    var card = createCard(text);
+    var card = createCard(id, text);
     addToCanvas(card);
 
     function addToCanvas(card) {
@@ -133,10 +131,10 @@ var Cardsy = {
     
     }
 
-    function createCard(text) {
+    function createCard(id, text) {
 
       var newCard = $('<div />')
-        .attr('id', counter++)
+        .attr('id', id)
         .addClass('card')
         .css('left', x + 'px')
         .css('top', y + 'px')
@@ -199,6 +197,10 @@ var Cardsy = {
 
   },
 
+  incrementCounter: function() {
+    counter++;
+    localStorage.setItem('cardsy.counter', counter);
+  },
 
   deleteCard: function(e) {
 
