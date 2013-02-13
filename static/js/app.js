@@ -98,12 +98,7 @@ var Cardsy = {
 
       makeDraggable(card);
 
-      Cardsy.saveCard({
-        id: card.attr('id'),
-        x: x,
-        y: y,
-        text: ''
-      });
+      Cardsy.saveCard(Cardsy.jQueryCardToObj(card));
 
       log('added card #' + card.attr('id') + ' at (x,y): (' + x + ', ' + y + ')')
 
@@ -221,6 +216,21 @@ var Cardsy = {
   },
 
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
-  hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); }
+  hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); },
+
+  jQueryCardToObj: function ($card) {
+
+    return {
+      id: $card.attr('id'),
+      x: getNumberFromPositionString($card.css('left')),
+      y: getNumberFromPositionString($card.css('top')),
+      text: $card.find('textarea').val()
+    };
+
+    function getNumberFromPositionString(position) {
+      return position.slice(0, position.length - 2);
+    }
+
+  }
 
 };
