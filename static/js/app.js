@@ -31,26 +31,29 @@ var Cardsy = {
   initDummySaveState: function() {
 
     var card1 = {
+      id: 1,
       x: 50,  
       y: 50,
       text: 'card1'
     };
 
     var card2 = {
+      id: 2,
       x: 150,  
       y: 150,
       text: 'card2'
     };
 
     var card3 = {
+      id: 3,
       x: 250,  
       y: 250,
       text: 'card3'
     };
 
-    localStorage.setItem('cardsy.main.1', JSON.stringify(card1));
-    localStorage.setItem('cardsy.main.2', JSON.stringify(card2));
-    localStorage.setItem('cardsy.main.3', JSON.stringify(card3));
+    Cardsy.saveCard(card1);
+    Cardsy.saveCard(card2);
+    Cardsy.saveCard(card3);
     
     localStorage.setItem('hasSaveState', 'true');
   
@@ -70,9 +73,9 @@ var Cardsy = {
 
   loadState: function() {
 
-    var card1 = JSON.parse(localStorage.getItem('cardsy.main.1'));
-    var card2 = JSON.parse(localStorage.getItem('cardsy.main.2'));
-    var card3 = JSON.parse(localStorage.getItem('cardsy.main.3'));
+    var card1 = JSON.parse(localStorage.getItem('cardsy.1.1'));
+    var card2 = JSON.parse(localStorage.getItem('cardsy.1.2'));
+    var card3 = JSON.parse(localStorage.getItem('cardsy.1.3'));
 
     Cardsy.addCard(card1.x, card1.y, card1.text);
     Cardsy.addCard(card2.x, card2.y, card2.text);
@@ -122,6 +125,7 @@ var Cardsy = {
       makeDraggable(card);
 
       log('added card #' + card.attr('id') + ' at (x,y): (' + x + ', ' + y + ')')
+
     }
 
     function makeDraggable(card) {
@@ -225,6 +229,13 @@ var Cardsy = {
 
     $card.hide('highlight', null, s.animationSpeed, function(e) { this.remove(); });
     log('deleted card #' + $card.attr('id'));
+
+  },
+
+  saveCard: function(card) {
+
+    localStorage.setItem('cardsy.1.' + card.id, JSON.stringify(card));
+    log('saved card #' + card.id);
 
   },
 
