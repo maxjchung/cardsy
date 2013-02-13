@@ -173,6 +173,7 @@ var Cardsy = {
 
       textArea.bind('textchange', function() {
         log('textarea value: ' + $(this).val());
+        Cardsy.saveCard(Cardsy.jQueryCardToObj($(this.parentElement)))
       });
 
       return textArea;
