@@ -109,7 +109,7 @@ html, body, #canvas {
 }
 
 body {
-  background-image: url(/static/img/applefabric.jpeg);
+  background-color: #333;
   overflow: hidden;
 }
 
