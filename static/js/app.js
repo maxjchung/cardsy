@@ -28,6 +28,7 @@ var Cardsy = {
 
     else {
       Cardsy.addCanvas();
+      Cardsy.updateCanvasIndicator();
       Cardsy.showIntro();
       localStorage.setItem('hasSaveState', 'true');
     } 
@@ -272,6 +273,7 @@ var Cardsy = {
 
     $('#canvas').find('.card').remove();
 
+    Cardsy.updateCanvasIndicator();
   },
 
   loadCanvas: function(id) {
@@ -282,6 +284,8 @@ var Cardsy = {
 
   loadPreviousCanvas: function() {
     log('called loadPreviousCanvas');
+
+    Cardsy.updateCanvasIndicator();
   },
 
   loadNextCanvas: function() {
@@ -299,6 +303,8 @@ var Cardsy = {
 
     log('index: ' +  index);
     log('called loadNextCanvas');
+
+    Cardsy.updateCanvasIndicator();
   },
 
   setCurrentCanvas: function(id) {
@@ -306,6 +312,14 @@ var Cardsy = {
     current_canvas_id = id;
     localStorage.setItem('current_canvas_id', current_canvas_id); 
 
+  },
+
+  updateCanvasIndicator: function() {
+
+    var currentCanvasIndex = $.inArray(current_canvas_id, canvas_ids) + 1;
+    var numCanvases = canvas_ids.length;
+
+    $('#canvas-indicator').html(currentCanvasIndex + ' of ' + numCanvases);
   },
 
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
