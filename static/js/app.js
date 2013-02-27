@@ -107,7 +107,7 @@ var Cardsy = {
       card.draggable({
 
         scroll: false,
-        containment: 'document',
+        containment: 'parent',
 
         start: function() {
 
