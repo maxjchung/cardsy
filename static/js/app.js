@@ -3,6 +3,8 @@ var counter = 1;
 var next_canvas_id = 2;
 var current_canvas_id = 1;
 
+var canvas_ids = [];
+
 var log = function(msg) { console.log(msg) };
 
 var Cardsy = {
@@ -252,11 +254,15 @@ var Cardsy = {
   addCanvas: function() {
 
     log('creating canvas #' + next_canvas_id);
+
     current_canvas_id = next_canvas_id;
 
-    $('#canvas').find('.card').remove();
+    canvas_ids.push(next_canvas_id);
+    localStorage.setItem('canvas_ids', canvas_ids);
 
     Cardsy.incrementCanvasCounter();
+
+    $('#canvas').find('.card').remove();
 
   },
 
