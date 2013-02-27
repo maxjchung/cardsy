@@ -1,5 +1,6 @@
 var s;
 var counter = 1;
+var next_canvas_id = 2;
 
 var log = function(msg) { console.log(msg) };
 
@@ -54,6 +55,10 @@ var Cardsy = {
   },
 
   initChrome: function() {
+
+    $('#new').click(function() {
+      Cardsy.addCanvas();
+    });
 
     $('.button').click(function(e) {
       log('clicked a button');
@@ -212,6 +217,11 @@ var Cardsy = {
     localStorage.setItem('cardsy.counter', counter);
   },
 
+  incrementCanvasCounter: function() {
+    next_canvas_id++;
+    localStorage.setItem('cardsy.next_canvas_id', next_canvas_id);
+  },
+
   deleteCard: function(e) {
 
     var $card = $(e.target.parentElement);
@@ -236,6 +246,13 @@ var Cardsy = {
     var key = 'cardsy.1.' + $card.attr('id');
 
     localStorage.removeItem(key);
+  },
+
+  addCanvas: function() {
+
+    log('creating canvas #' + next_canvas_id);
+    Cardsy.incrementCanvasCounter();
+
   },
 
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
