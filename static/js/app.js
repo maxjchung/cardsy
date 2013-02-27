@@ -16,6 +16,7 @@ var Cardsy = {
 
     s = this.settings;
 
+    Cardsy.initChrome();
     Cardsy.initCanvas();
 
     if (Cardsy.hasSaveState()) 
@@ -50,6 +51,14 @@ var Cardsy = {
     }
   
     counter = parseInt(localStorage.getItem('cardsy.counter')) || 77;
+  },
+
+  initChrome: function() {
+
+    $('.button').click(function(e) {
+      log('clicked a button');
+    });
+
   },
 
   initCanvas: function() {
