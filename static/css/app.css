@@ -119,6 +119,14 @@ body {
   height: 40px;
 }
 
+#buttons {
+
+  color: #fff;
+  float: right;
+
+  margin-right: 40px;
+}
+
 #logo {
   color: #fff;
   font-family: 'Arvo', serif;
