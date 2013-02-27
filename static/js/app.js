@@ -285,6 +285,19 @@ var Cardsy = {
   },
 
   loadNextCanvas: function() {
+
+    var index = $.inArray(current_canvas_id, canvas_ids);
+    var next_canvas_id;
+  
+    if (index == canvas_ids.length - 1)
+      next_canvas_id = canvas_ids[0];
+    else
+      next_canvas_id = canvas_ids[index+1];
+
+    $('#canvas').find('.card').remove();
+    Cardsy.loadCanvas(next_canvas_id);
+
+    log('index: ' +  index);
     log('called loadNextCanvas');
   },
 
