@@ -1,6 +1,7 @@
 var s;
 var counter = 1;
 var next_canvas_id = 2;
+var current_canvas_id = 1;
 
 var log = function(msg) { console.log(msg) };
 
@@ -44,7 +45,7 @@ var Cardsy = {
 
   loadState: function() {
 
-    var keys = Object.keys(localStorage).filter(function(k) { return k.indexOf('cardsy.1') > -1 });
+    var keys = Object.keys(localStorage).filter(function(k) { return k.indexOf('cardsy.' + current_canvas_id) > -1 });
 
     for (var i = 0; i < keys.length; i++) {
       var card = JSON.parse(localStorage.getItem(keys[i]));
@@ -236,14 +237,14 @@ var Cardsy = {
 
   saveCard: function(card) {
 
-    localStorage.setItem('cardsy.1.' + card.id, JSON.stringify(card));
+    localStorage.setItem('cardsy.' + current_canvas_id + '.' + card.id, JSON.stringify(card));
     log('saved card #' + card.id);
 
   },
 
   removeCardFromStorage: function($card) {
 
-    var key = 'cardsy.1.' + $card.attr('id');
+    var key = 'cardsy.' + current_canvas_id + '.' + $card.attr('id');
 
     localStorage.removeItem(key);
   },
