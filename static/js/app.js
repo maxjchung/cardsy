@@ -63,6 +63,14 @@ var Cardsy = {
       Cardsy.addCanvas();
     });
 
+    $('#previous').click(function() {
+      Cardsy.loadPreviousCanvas();
+    });
+
+    $('#next').click(function() {
+      Cardsy.loadNextCanvas();
+    });
+
     $('.button').click(function(e) {
       log('clicked a button');
     });
@@ -271,6 +279,13 @@ var Cardsy = {
 
   },
 
+  loadPreviousCanvas: function() {
+    log('called loadPreviousCanvas');
+  },
+
+  loadNextCanvas: function() {
+    log('called loadNextCanvas');
+  },
 
   setCurrentCanvas: function(id) {
   
