@@ -256,6 +256,12 @@ var Cardsy = {
 
   },
 
+  loadCanvas: function(id) {
+
+    current_canvas_id = id;
+
+  },
+
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
   hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); },
 
