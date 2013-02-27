@@ -255,8 +255,7 @@ var Cardsy = {
 
     log('creating canvas #' + next_canvas_id);
 
-    current_canvas_id = next_canvas_id;
-
+    Cardsy.setCurrentCanvas(next_canvas_id);
     canvas_ids.push(next_canvas_id);
     localStorage.setItem('canvas_ids', canvas_ids);
 
@@ -268,7 +267,15 @@ var Cardsy = {
 
   loadCanvas: function(id) {
 
+    Cardsy.setCurrentCanvas(id);
+
+  },
+
+
+  setCurrentCanvas: function(id) {
+  
     current_canvas_id = id;
+    localStorage.setItem('current_canvas_id', current_canvas_id); 
 
   },
 
