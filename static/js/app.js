@@ -73,10 +73,6 @@ var Cardsy = {
       Cardsy.loadNextCanvas();
     });
 
-    $('.button').click(function(e) {
-      log('clicked a button');
-    });
-
   },
 
   initCanvas: function() {
