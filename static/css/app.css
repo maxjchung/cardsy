@@ -125,9 +125,8 @@ body {
   font-size: 16px; 
 
   position: relative;
-  top: 20px;
-  left: 20px;
-  z-index: -1;
+  top: 10px;
+  left: 40px;
 }
 
 .card {
