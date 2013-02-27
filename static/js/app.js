@@ -113,7 +113,7 @@ var Cardsy = {
 
       Cardsy.saveCard(Cardsy.jQueryCardToObj(card));
 
-      log('added card #' + card.attr('id') + ' at (x,y): (' + x + ', ' + y + ')')
+      log('added card ' + current_canvas_id + '.' + card.attr('id') + ' at (x,y): (' + x + ', ' + y + ')')
 
     }
 
