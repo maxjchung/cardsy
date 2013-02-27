@@ -283,9 +283,20 @@ var Cardsy = {
   },
 
   loadPreviousCanvas: function() {
-    log('called loadPreviousCanvas');
+
+    var index = $.inArray(current_canvas_id, canvas_ids);
+    var previous_canvas_id;
+  
+    if (index == 0)
+      previous_canvas_id = canvas_ids[canvas_ids.length - 1];
+    else
+      previous_canvas_id = canvas_ids[index-1];
+
+    $('#canvas').find('.card').remove();
+    Cardsy.loadCanvas(previous_canvas_id);
 
     Cardsy.updateCanvasIndicator();
+
   },
 
   loadNextCanvas: function() {
@@ -300,9 +311,6 @@ var Cardsy = {
 
     $('#canvas').find('.card').remove();
     Cardsy.loadCanvas(next_canvas_id);
-
-    log('index: ' +  index);
-    log('called loadNextCanvas');
 
     Cardsy.updateCanvasIndicator();
   },
