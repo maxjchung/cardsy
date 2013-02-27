@@ -252,6 +252,10 @@ var Cardsy = {
   addCanvas: function() {
 
     log('creating canvas #' + next_canvas_id);
+    current_canvas_id = next_canvas_id;
+
+    $('#canvas').find('.card').remove();
+
     Cardsy.incrementCanvasCounter();
 
   },
