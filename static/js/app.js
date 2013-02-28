@@ -23,8 +23,15 @@ var Cardsy = {
     Cardsy.initChrome();
     Cardsy.initCanvas();
 
-    if (Cardsy.hasSaveState()) 
-      Cardsy.loadState();
+    if (Cardsy.hasSaveState()) {
+
+      current_canvas_id = parseInt(localStorage.getItem('current_canvas_id'));
+      canvas_ids = $.map(localStorage.getItem('canvas_ids').split(','), function (e) { return parseInt(e); });
+
+      Cardsy.loadCanvas(current_canvas_id);
+      Cardsy.updateCanvasIndicator();
+
+    }
 
     else {
       Cardsy.addCanvas();
@@ -47,9 +54,9 @@ var Cardsy = {
 
   },
 
-  loadState: function() {
+  loadCanvas: function(id) {
 
-    var keys = Object.keys(localStorage).filter(function(k) { return k.indexOf('cardsy.' + current_canvas_id) > -1 });
+    var keys = Object.keys(localStorage).filter(function(k) { return k.indexOf('cardsy.' + id) > -1 });
 
     for (var i = 0; i < keys.length; i++) {
       var card = JSON.parse(localStorage.getItem(keys[i]));
@@ -272,12 +279,6 @@ var Cardsy = {
     Cardsy.updateCanvasIndicator();
   },
 
-  loadCanvas: function(id) {
-
-    Cardsy.setCurrentCanvas(id);
-
-  },
-
   loadPreviousCanvas: function() {
 
     var index = $.inArray(current_canvas_id, canvas_ids);
@@ -289,8 +290,9 @@ var Cardsy = {
       previous_canvas_id = canvas_ids[index-1];
 
     $('#canvas').find('.card').remove();
-    Cardsy.loadCanvas(previous_canvas_id);
 
+    Cardsy.setCurrentCanvas(previous_canvas_id);
+    Cardsy.loadCanvas(previous_canvas_id);
     Cardsy.updateCanvasIndicator();
 
   },
@@ -306,8 +308,9 @@ var Cardsy = {
       next_canvas_id = canvas_ids[index+1];
 
     $('#canvas').find('.card').remove();
-    Cardsy.loadCanvas(next_canvas_id);
 
+    Cardsy.setCurrentCanvas(next_canvas_id);
+    Cardsy.loadCanvas(next_canvas_id);
     Cardsy.updateCanvasIndicator();
   },
 
@@ -320,10 +323,10 @@ var Cardsy = {
 
   updateCanvasIndicator: function() {
 
-    var currentCanvasIndex = $.inArray(current_canvas_id, canvas_ids) + 1;
+    var currentCanvasIndex = $.inArray(current_canvas_id, canvas_ids);
     var numCanvases = canvas_ids.length;
 
-    $('#canvas-indicator').html(currentCanvasIndex + ' of ' + numCanvases);
+    $('#canvas-indicator').html((currentCanvasIndex+1) + ' of ' + numCanvases);
   },
 
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
