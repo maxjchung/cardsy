@@ -96,7 +96,7 @@ html, body, #canvas {
 }
 
 body {
-  background-color: #033;
+  background-color: #062f40;
   overflow: hidden;
 }
 
@@ -107,7 +107,7 @@ body {
 #action-panel {
 
   font-family: 'Arvo', serif;
-  background-color: #002929;
+  background-color: #04202b;
   height: 50px;
 }
 
@@ -120,10 +120,6 @@ body {
 }
 
 .button {
-
-  background-color: #999;
-  color: #000;
-
   float: left;
   margin-top: 10px;
   padding: 5px 10px; 
@@ -145,13 +141,19 @@ body {
 
 #delete {
   margin-left: 60px;
-  background-color: #f33;
+  background-color: #bf3b0b;
   color: #fff;
+}
+
+#next, #previous {
+
+  background-color: #d9b166;
+  color: #000;
 }
 
 #new {
   margin-left: 20px;
-  background-color: #699;
+  background-color: #066873;
   color: #fff;
 }
 
