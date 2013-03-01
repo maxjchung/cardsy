@@ -73,6 +73,10 @@ var Cardsy = {
       Cardsy.addCanvas();
     });
 
+    $('#delete').click(function() {
+      Cardsy.deleteCanvas();
+    });
+
     $('#previous').click(function() {
       Cardsy.loadPreviousCanvas();
     });
@@ -278,6 +282,48 @@ var Cardsy = {
     $('#canvas').find('.card').remove();
 
     Cardsy.updateCanvasIndicator();
+  },
+
+  deleteCanvas: function() {
+
+    var $cards = $('#canvas').find('.card');
+
+    $cards.each(function(index) {
+      var key = 'cardsy.' + current_canvas_id + '.' + $(this).attr('id');
+      localStorage.removeItem(key);
+    });
+
+    $cards.remove();
+
+    if(canvas_ids.length == 1) {
+      canvas_ids = [];
+      Cardsy.addCanvas();
+    }
+
+    else {
+
+      var index = $.inArray(current_canvas_id, canvas_ids);
+      var next_id;
+
+      if(index == canvas_ids.length - 1) {
+
+        next_id = canvas_ids[index - 1];
+
+        canvas_ids.pop();
+      }
+   
+      else {
+        canvas_ids.splice(index, 1);
+        next_id = canvas_ids[index];
+      }
+
+      Cardsy.loadCanvas(next_id);
+      Cardsy.setCurrentCanvas(next_id);
+
+    }
+
+    Cardsy.updateCanvasIndicator();
+
   },
 
   loadPreviousCanvas: function() {
