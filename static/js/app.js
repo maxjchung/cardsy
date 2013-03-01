@@ -317,6 +317,8 @@ var Cardsy = {
         next_id = canvas_ids[index];
       }
 
+      localStorage.setItem('canvas_ids', canvas_ids);
+
       Cardsy.loadCanvas(next_id);
       Cardsy.setCurrentCanvas(next_id);
 
