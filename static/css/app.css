@@ -119,6 +119,7 @@ body {
 
 #chrome {
 
+  font-family: 'Arvo', serif;
   background-color: #000;
   height: 50px;
 }
@@ -161,11 +162,10 @@ body {
 
 #logo {
   color: #fff;
-  font-family: 'Arvo', serif;
   font-size: 16px; 
+  line-height: 50px;
 
   position: relative;
-  top: 10px;
   left: 40px;
 
   float: left;
