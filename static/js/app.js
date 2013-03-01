@@ -319,8 +319,8 @@ var Cardsy = {
 
       localStorage.setItem('canvas_ids', canvas_ids);
 
-      Cardsy.loadCanvas(next_id);
       Cardsy.setCurrentCanvas(next_id);
+      Cardsy.loadCanvas(next_id);
 
     }
 
