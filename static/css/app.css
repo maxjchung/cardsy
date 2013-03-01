@@ -139,7 +139,6 @@ body {
 
   float: left;
   margin-top: 10px;
-  margin-left: 40px;
 
   padding: 5px; 
   border-radius: 2px;
@@ -158,6 +157,14 @@ body {
 
 #next {
   margin-left: 0px;
+}
+
+#delete {
+  margin-left: 60px;
+}
+
+#new {
+  margin-left: 20px;
 }
 
 #logo {
