@@ -1,24 +1,40 @@
- Welcome to Cardsy.
+Welcome to Cardsy.
 --------------------------
 
-Cardsy is a free brainstorming tool for writers. Use it to organize ideas for your blog post, marketing copy, or novel. Your notes stay as long as you keep your browser window open.
+Cardsy is a free brainstorming tool for UX designers, writers and thinkers. Use it to organize your ideas spatially.
+
+Try it out at [http://cardsybeta.appspot.com](http://cardsybeta.appspot.com).
+
+
+Current Release Notes
+--------------------------
+
+Your cards will disappear when you close the browser. The next release will automatically save your cards.
+
+
+Release History
+--------------------------
+
+02.02.13: Deployed first release to Google App Engine.
+
 
 Future Features
 --------------------------
 
-__Offline Mode / Save Canvas__
+__Save Your Notes__
 
-  - Your notes will be saved locally when you close the browser.
+  - Your notes will be automatically saved in your browser.
+
+__Multiple Canvases__
+
+  - Use multiple canvas so you can play with even more ideas.
+
+__Offline Mode__
+
   - Use Cardsy without an internet connection.
 
-__URL shortening__
 
-  - Twitter-style URL shortening when you paste links into a card.
 
-History
---------------------------
-
-02/02/13 Beta went live at [cardsybeta.appspot.com](cardsybeta.appspot.com).
 
 MIT Open Source License
 --------------------------
