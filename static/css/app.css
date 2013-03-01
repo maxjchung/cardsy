@@ -109,7 +109,7 @@ html, body, #canvas {
 }
 
 body {
-  background-color: #333;
+  background-color: #033;
   overflow: hidden;
 }
 
@@ -120,7 +120,7 @@ body {
 #action-panel {
 
   font-family: 'Arvo', serif;
-  background-color: #000;
+  background-color: #002929;
   height: 50px;
 }
 
@@ -134,7 +134,7 @@ body {
 
 .button {
 
-  background-color: #aaa;
+  background-color: #999;
   color: #000;
 
   float: left;
@@ -161,10 +161,14 @@ body {
 
 #delete {
   margin-left: 60px;
+  background-color: #f33;
+  color: #fff;
 }
 
 #new {
   margin-left: 20px;
+  background-color: #699;
+  color: #fff;
 }
 
 #logo {
