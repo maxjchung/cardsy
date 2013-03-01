@@ -155,8 +155,10 @@ body {
   line-height: 50px;
 }
 
-#next {
-  margin-left: 0px;
+#next, #previous {
+
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #delete {
