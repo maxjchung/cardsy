@@ -103,7 +103,7 @@ var Cardsy = {
 
   showIntro: function() {
 
-    var introText = 'Add new cards by clicking the canvas.';
+    var introText = 'Add more cards by clicking the canvas.\n\nTry moving them, too.';
 
     var x = Math.floor($('#canvas').width() / 2) - 100;
     var y = Math.floor($('#canvas').height() / 2) - 60;
