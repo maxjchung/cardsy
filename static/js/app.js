@@ -199,7 +199,7 @@ var Cardsy = {
       );
 
       textArea.attr('maxlength', s.cardCharLimit);
-      textArea.attr('rows', 5);
+      textArea.attr('rows', 4);
 
       textArea.bind('textchange', function() {
         log('textarea value: ' + $(this).val());
