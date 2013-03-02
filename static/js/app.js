@@ -199,12 +199,7 @@ var Cardsy = {
       );
 
       textArea.attr('maxlength', s.cardCharLimit);
-
-      // Auto adjust text area height.
-      textArea.keyup(function() {
-        $(this).height(0);
-        $(this).height(this.scrollHeight );
-      });
+      textArea.attr('rows', 5);
 
       textArea.bind('textchange', function() {
         log('textarea value: ' + $(this).val());

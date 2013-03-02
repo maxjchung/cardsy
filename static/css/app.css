@@ -66,14 +66,6 @@ fieldset {
     padding: 0;
 }
 
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
-}
-
 /* ==========================================================================
    Chrome Frame prompt
    ========================================================================== */
@@ -241,6 +233,8 @@ textarea {
   background: none;
   border: none;
   resize: none;
+
+  overflow: hidden;
 }
 
 /* ==========================================================================
