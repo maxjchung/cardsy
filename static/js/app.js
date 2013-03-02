@@ -105,8 +105,11 @@ var Cardsy = {
 
     var introText = 'Add new cards by clicking the canvas.';
 
+    var x = Math.floor($('#canvas').width() / 2) - 100;
+    var y = Math.floor($('#canvas').height() / 2) - 60;
+
     setTimeout(function () {
-      Cardsy.addCard(counter, 20, 60, introText);
+      Cardsy.addCard(counter, x, y, introText);
       Cardsy.incrementCounter();
     }, 710);
 
