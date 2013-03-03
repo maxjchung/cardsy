@@ -158,21 +158,17 @@ var Cardsy = {
         containment: 'parent',
 
         start: function() {
-
           card.find('textarea').blur();
           card.find('.delete').hide();
-
         },
 
-        drag: function() { card.find('.delete').hide(); },
+        drag: function() {
+          card.find('.delete').hide();
+        },
 
         stop: function() {
           card.find('.delete').show();
-    
           Cardsy.saveCard(Cardsy.jQueryCardToObj(card));
-
-          log('moved card #' + card.attr('id') + ' to (x,y): (' + card.css('left') + ', ' + card.css('top') + ')');
-   
         }
 
       });
