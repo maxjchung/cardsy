@@ -57,7 +57,7 @@ var Cardsy = {
 
   loadCanvas: function(id) {
 
-    var keys = Object.keys(localStorage).filter(function(k) { return k.indexOf('cardsy.' + id) > -1 });
+    var keys = Object.keys(localStorage).filter(function(k) { return k.indexOf('card.' + id) > -1 });
 
     for (var i = 0; i < keys.length; i++) {
       var card = JSON.parse(localStorage.getItem(keys[i]));
@@ -255,14 +255,14 @@ var Cardsy = {
 
   saveCard: function(card) {
 
-    localStorage.setItem('cardsy.' + current_canvas_id + '.' + card.id, JSON.stringify(card));
+    localStorage.setItem('card.' + current_canvas_id + '.' + card.id, JSON.stringify(card));
     log('saved card #' + card.id);
 
   },
 
   removeCardFromStorage: function($card) {
 
-    var key = 'cardsy.' + current_canvas_id + '.' + $card.attr('id');
+    var key = 'card.' + current_canvas_id + '.' + $card.attr('id');
 
     localStorage.removeItem(key);
   },
@@ -287,7 +287,7 @@ var Cardsy = {
     var $cards = $('#canvas').find('.card');
 
     $cards.each(function(index) {
-      var key = 'cardsy.' + current_canvas_id + '.' + $(this).attr('id');
+      var key = 'card.' + current_canvas_id + '.' + $(this).attr('id');
       localStorage.removeItem(key);
     });
 
