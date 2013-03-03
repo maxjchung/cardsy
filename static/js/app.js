@@ -52,14 +52,12 @@ var Cardsy = {
     canvas_ids = $.map(localStorage.getItem('canvas_ids').split(','), function (e) { return parseInt(e); });
 
     Cardsy.loadCanvas(current_canvas_id);
-    Cardsy.updateCanvasIndicator();
 
   },
 
   loadFirstRun: function() {
 
     Cardsy.addCanvas();
-    Cardsy.updateCanvasIndicator();
     Cardsy.showIntro();
 
   },
@@ -73,6 +71,8 @@ var Cardsy = {
       Cardsy.addCard(card.id, card.x, card.y, card.text);
     }
   
+    Cardsy.updateCanvasIndicator();
+
   },
 
   initChrome: function() {
@@ -330,8 +330,6 @@ var Cardsy = {
 
     }
 
-    Cardsy.updateCanvasIndicator();
-
   },
 
   loadPreviousCanvas: function() {
@@ -348,7 +346,6 @@ var Cardsy = {
 
     Cardsy.setCurrentCanvas(previous_canvas_id);
     Cardsy.loadCanvas(previous_canvas_id);
-    Cardsy.updateCanvasIndicator();
 
   },
 
@@ -366,7 +363,7 @@ var Cardsy = {
 
     Cardsy.setCurrentCanvas(next_canvas_id);
     Cardsy.loadCanvas(next_canvas_id);
-    Cardsy.updateCanvasIndicator();
+
   },
 
   setCurrentCanvas: function(id) {
