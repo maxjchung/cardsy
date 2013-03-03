@@ -146,8 +146,6 @@ var Cardsy = {
 
       Cardsy.saveCard(Cardsy.jQueryCardToObj(card));
 
-      log('added card ' + current_canvas_id + '.' + card.attr('id') + ' at (x,y): (' + x + ', ' + y + ')')
-
     }
 
     function makeDraggable(card) {
@@ -211,7 +209,6 @@ var Cardsy = {
       textArea.attr('rows', 4);
 
       textArea.bind('textchange', function() {
-        log('textarea value: ' + $(this).val());
         Cardsy.saveCard(Cardsy.jQueryCardToObj($(this.parentElement)))
       });
 
@@ -259,7 +256,6 @@ var Cardsy = {
   saveCard: function(card) {
 
     localStorage.setItem('card.' + current_canvas_id + '.' + card.id, JSON.stringify(card));
-    log('saved card #' + card.id);
 
   },
 
@@ -271,8 +267,6 @@ var Cardsy = {
   },
 
   addCanvas: function() {
-
-    log('creating canvas #' + next_canvas_id);
 
     Cardsy.setCurrentCanvas(next_canvas_id);
     canvas_ids.push(next_canvas_id);
