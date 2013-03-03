@@ -103,7 +103,6 @@ var Cardsy = {
         return;
 
       Cardsy.addCard(next_card_id, e.clientX, e.clientY);
-      Cardsy.incrementCounter(); 
       
     });
 
@@ -118,7 +117,6 @@ var Cardsy = {
 
     setTimeout(function () {
       Cardsy.addCard(next_card_id, x, y, introText);
-      Cardsy.incrementCounter();
     }, 710);
 
   },
@@ -126,7 +124,9 @@ var Cardsy = {
   addCard: function(id, x, y, text) {
 
     var card = createCard(id, text);
+
     addToCanvas(card);
+    Cardsy.incrementCounter();
 
     function addToCanvas(card) {
 
