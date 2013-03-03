@@ -27,9 +27,7 @@ var Cardsy = {
       Cardsy.loadSavedState();
 
     else {
-      Cardsy.addCanvas();
-      Cardsy.updateCanvasIndicator();
-      Cardsy.showIntro();
+      Cardsy.loadFirstRun();
       localStorage.setItem('hasSaveState', 'true');
     } 
 
@@ -55,6 +53,14 @@ var Cardsy = {
 
     Cardsy.loadCanvas(current_canvas_id);
     Cardsy.updateCanvasIndicator();
+
+  },
+
+  loadFirstRun: function() {
+
+    Cardsy.addCanvas();
+    Cardsy.updateCanvasIndicator();
+    Cardsy.showIntro();
 
   },
 
