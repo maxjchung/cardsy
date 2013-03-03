@@ -259,6 +259,10 @@ var Cardsy = {
 
   },
 
+  saveCanvasIds: function() {
+    localStorage.setItem('canvas_ids', canvas_ids);
+  },
+
   removeCardFromStorage: function($card) {
 
     var key = 'card.' + current_canvas_id + '.' + $card.attr('id');
@@ -270,7 +274,7 @@ var Cardsy = {
 
     Cardsy.setCurrentCanvas(next_canvas_id);
     canvas_ids.push(next_canvas_id);
-    localStorage.setItem('canvas_ids', canvas_ids);
+    Cardsy.saveCanvasIds();
 
     Cardsy.incrementCanvasCounter();
 
@@ -312,8 +316,7 @@ var Cardsy = {
         next_id = canvas_ids[index];
       }
 
-      localStorage.setItem('canvas_ids', canvas_ids);
-
+      Cardsy.saveCanvasIds();
       Cardsy.loadCanvas(next_id);
 
     }
