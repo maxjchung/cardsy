@@ -73,7 +73,6 @@ var Cardsy = {
       Cardsy.addCard(card.id, card.x, card.y, card.text);
     }
   
-    next_card_id = parseInt(localStorage.getItem('next_card_id')) || 77;
   },
 
   initChrome: function() {
