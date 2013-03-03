@@ -1,5 +1,5 @@
 var s;
-var counter = 1;
+var next_card_id = 1;
 var next_canvas_id = 1;
 var current_canvas_id = 1;
 
@@ -64,7 +64,7 @@ var Cardsy = {
       Cardsy.addCard(card.id, card.x, card.y, card.text);
     }
   
-    counter = parseInt(localStorage.getItem('cardsy.counter')) || 77;
+    next_card_id = parseInt(localStorage.getItem('cardsy.next_card_id')) || 77;
   },
 
   initChrome: function() {
@@ -94,7 +94,7 @@ var Cardsy = {
       if (this != e.target)
         return;
 
-      Cardsy.addCard(counter, e.clientX, e.clientY);
+      Cardsy.addCard(next_card_id, e.clientX, e.clientY);
       Cardsy.incrementCounter(); 
       
     });
@@ -109,7 +109,7 @@ var Cardsy = {
     var y = Math.floor($('#canvas').height() / 2) - 60;
 
     setTimeout(function () {
-      Cardsy.addCard(counter, x, y, introText);
+      Cardsy.addCard(next_card_id, x, y, introText);
       Cardsy.incrementCounter();
     }, 710);
 
@@ -232,8 +232,8 @@ var Cardsy = {
   },
 
   incrementCounter: function() {
-    counter++;
-    localStorage.setItem('cardsy.counter', counter);
+    next_card_id++;
+    localStorage.setItem('cardsy.next_card_id', next_card_id);
   },
 
   incrementCanvasCounter: function() {
