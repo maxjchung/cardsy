@@ -64,6 +64,8 @@ var Cardsy = {
 
   loadCanvas: function(id) {
 
+    Cardsy.setCurrentCanvas(id);
+
     var keys = Object.keys(localStorage).filter(function(k) { return k.indexOf('card.' + id) > -1 });
 
     for (var i = 0; i < keys.length; i++) {
@@ -325,7 +327,6 @@ var Cardsy = {
 
       localStorage.setItem('canvas_ids', canvas_ids);
 
-      Cardsy.setCurrentCanvas(next_id);
       Cardsy.loadCanvas(next_id);
 
     }
@@ -344,7 +345,6 @@ var Cardsy = {
 
     $('#canvas').find('.card').remove();
 
-    Cardsy.setCurrentCanvas(previous_canvas_id);
     Cardsy.loadCanvas(previous_canvas_id);
 
   },
@@ -361,7 +361,6 @@ var Cardsy = {
 
     $('#canvas').find('.card').remove();
 
-    Cardsy.setCurrentCanvas(next_canvas_id);
     Cardsy.loadCanvas(next_canvas_id);
 
   },
