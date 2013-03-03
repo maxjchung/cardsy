@@ -252,10 +252,7 @@ var Cardsy = {
     var $card = $(e.target.parentElement);
 
     $card.hide('highlight', null, s.animationSpeed, function(e) { this.remove(); });
-
     Cardsy.removeCardFromStorage($card);
-
-    log('deleted card #' + $card.attr('id'));
 
   },
 
