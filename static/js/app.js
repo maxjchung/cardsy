@@ -26,7 +26,7 @@ var Cardsy = {
     if (Cardsy.hasSaveState()) {
 
       current_canvas_id = parseInt(localStorage.getItem('current_canvas_id'));
-      next_canvas_id = parseInt(localStorage.getItem('cardsy.next_canvas_id'));
+      next_canvas_id = parseInt(localStorage.getItem('next_canvas_id'));
       canvas_ids = $.map(localStorage.getItem('canvas_ids').split(','), function (e) { return parseInt(e); });
 
       Cardsy.loadCanvas(current_canvas_id);
@@ -64,7 +64,7 @@ var Cardsy = {
       Cardsy.addCard(card.id, card.x, card.y, card.text);
     }
   
-    next_card_id = parseInt(localStorage.getItem('cardsy.next_card_id')) || 77;
+    next_card_id = parseInt(localStorage.getItem('next_card_id')) || 77;
   },
 
   initChrome: function() {
@@ -233,12 +233,12 @@ var Cardsy = {
 
   incrementCounter: function() {
     next_card_id++;
-    localStorage.setItem('cardsy.next_card_id', next_card_id);
+    localStorage.setItem('next_card_id', next_card_id);
   },
 
   incrementCanvasCounter: function() {
     next_canvas_id++;
-    localStorage.setItem('cardsy.next_canvas_id', next_canvas_id);
+    localStorage.setItem('next_canvas_id', next_canvas_id);
   },
 
   deleteCard: function(e) {
