@@ -28,7 +28,7 @@ var Cardsy = {
 
     else {
       Cardsy.loadFirstRun();
-      localStorage.setItem('hasSaveState', 'true');
+      localStorage.setItem('has_save_state', 'true');
     } 
 
   },
@@ -38,7 +38,7 @@ var Cardsy = {
     if (!Modernizr.localstorage) 
       return false;
 
-    if (localStorage['hasSaveState'] != 'true')
+    if (localStorage['has_save_state'] != 'true')
       return false;
 
     return true;
