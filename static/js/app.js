@@ -305,9 +305,7 @@ var Cardsy = {
       var next_id;
 
       if(index == canvas_ids.length - 1) {
-
         next_id = canvas_ids[index - 1];
-
         canvas_ids.pop();
       }
    
@@ -368,6 +366,7 @@ var Cardsy = {
     var numCanvases = canvas_ids.length;
 
     $('#canvas-indicator').html((currentCanvasIndex+1) + ' of ' + numCanvases);
+
   },
 
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
