@@ -50,6 +50,7 @@ var Cardsy = {
 
     current_canvas_id = Cardsy.loadCurrentCanvasId(); 
     next_canvas_id = Cardsy.loadNextCanvasId(); 
+    next_card_id = Cardsy.loadNextCardId();
     canvas_ids = Cardsy.loadCanvasIds();
 
     Cardsy.loadCanvas(current_canvas_id);
@@ -108,6 +109,12 @@ var Cardsy = {
   loadNextCanvasId: function() {
 
     return parseInt(localStorage.getItem('next_canvas_id'));
+
+  },
+
+  loadNextCardId: function() {
+
+    return parseInt(localStorage.getItem('next_card_id'));
 
   },
 
