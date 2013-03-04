@@ -66,14 +66,21 @@ var Cardsy = {
 
     Cardsy.setCurrentCanvas(id);
 
-    var keys = Object.keys(localStorage).filter(function(k) { return k.indexOf('card.' + id) > -1 });
+    var keys = getCardKeysByCanvasId(id); 
+    var length = keys.length;
 
-    for (var i = 0; i < keys.length; i++) {
+    for (var i = 0; i < length; i++) {
       var card = JSON.parse(localStorage.getItem(keys[i]));
       Cardsy.addCard(card.id, card.x, card.y, card.text);
     }
   
     Cardsy.updateCanvasIndicator();
+
+    function getCardKeysByCanvasId(id) {
+
+      return Object.keys(localStorage).filter(function(k) { return k.indexOf('card.' + id) > -1 });
+
+    }
 
   },
 
