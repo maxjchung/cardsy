@@ -17,6 +17,14 @@ var Cardsy = {
   
   },
 
+
+
+
+
+  /*************************/
+  /*    Initializations    */
+  /*************************/
+
   init: function() {
 
     s = this.settings;
@@ -31,59 +39,6 @@ var Cardsy = {
       Cardsy.loadFirstRun();
       Cardsy.markSavedStateFlag();
     } 
-
-  },
-
-  hasSaveState: function() {
-
-    if (!Modernizr.localstorage) 
-      return false;
-
-    if (!Cardsy.hasSavedStateFlag())
-      return false;
-
-    return true;
-
-  },
-
-  loadSavedState: function() {
-
-    current_canvas_id = Cardsy.loadCurrentCanvasId(); 
-    next_canvas_id = Cardsy.loadNextCanvasId(); 
-    next_card_id = Cardsy.loadNextCardId();
-    canvas_ids = Cardsy.loadCanvasIds();
-
-    Cardsy.loadCanvas(current_canvas_id);
-
-  },
-
-  loadFirstRun: function() {
-
-    Cardsy.addCanvas();
-    Cardsy.showIntro();
-
-  },
-
-  loadCanvas: function(id) {
-
-    Cardsy.clearCurrentCanvas();
-    Cardsy.setCurrentCanvas(id);
-
-    var keys = getCardKeysByCanvasId(id); 
-    var length = keys.length;
-
-    for (var i = 0; i < length; i++) {
-      var card = JSON.parse(localStorage.getItem(keys[i]));
-      Cardsy.addCard(card.id, card.x, card.y, card.text);
-    }
-
-    Cardsy.updateCanvasIndicator();
-
-    function getCardKeysByCanvasId(id) {
-
-      return Object.keys(localStorage).filter(function(k) { return k.indexOf('card.' + id) > -1 });
-
-    }
 
   },
 
@@ -120,6 +75,36 @@ var Cardsy = {
 
   },
 
+  hasSaveState: function() {
+
+    if (!Modernizr.localstorage) 
+      return false;
+
+    if (!Cardsy.hasSavedStateFlag())
+      return false;
+
+    return true;
+
+  },
+
+  loadSavedState: function() {
+
+    current_canvas_id = Cardsy.loadCurrentCanvasId(); 
+    next_canvas_id = Cardsy.loadNextCanvasId(); 
+    next_card_id = Cardsy.loadNextCardId();
+    canvas_ids = Cardsy.loadCanvasIds();
+
+    Cardsy.loadCanvas(current_canvas_id);
+
+  },
+
+  loadFirstRun: function() {
+
+    Cardsy.addCanvas();
+    Cardsy.showIntro();
+
+  },
+
   showIntro: function() {
 
     var x = Math.floor($('#canvas').width() / 2) - 100;
@@ -130,6 +115,14 @@ var Cardsy = {
     }, 710);
 
   },
+
+
+
+
+
+  /*************************/
+  /*    Card Operations    */
+  /*************************/
 
   addCardWithIncrement: function(id, x, y, text) {
 
@@ -264,26 +257,13 @@ var Cardsy = {
 
   },
 
-  incrementNextCardId: function() {
-    next_card_id++;
-    localStorage.setItem('next_card_id', next_card_id);
-  },
 
-  incrementNextCanvasId: function() {
-    next_canvas_id++;
-    localStorage.setItem('next_canvas_id', next_canvas_id);
-  },
 
-  saveCanvasIds: function() {
-    localStorage.setItem('canvas_ids', canvas_ids);
-  },
 
-  removeCardFromStorage: function($card) {
 
-    var key = Cardsy.createCardKey(current_canvas_id, $($card).attr('id'));
-    localStorage.removeItem(key);
-
-  },
+  /***************************/
+  /*    Canvas Operations    */
+  /***************************/
 
   addCanvas: function() {
 
@@ -363,6 +343,29 @@ var Cardsy = {
 
   },
 
+  loadCanvas: function(id) {
+
+    Cardsy.clearCurrentCanvas();
+    Cardsy.setCurrentCanvas(id);
+
+    var keys = getCardKeysByCanvasId(id); 
+    var length = keys.length;
+
+    for (var i = 0; i < length; i++) {
+      var card = JSON.parse(localStorage.getItem(keys[i]));
+      Cardsy.addCard(card.id, card.x, card.y, card.text);
+    }
+
+    Cardsy.updateCanvasIndicator();
+
+    function getCardKeysByCanvasId(id) {
+
+      return Object.keys(localStorage).filter(function(k) { return k.indexOf('card.' + id) > -1 });
+
+    }
+
+  },
+
   setCurrentCanvas: function(id) {
   
     current_canvas_id = id;
@@ -382,6 +385,14 @@ var Cardsy = {
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
   hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); },
 
+
+
+
+
+  /*********************************/
+  /*    State Management Helpers   */
+  /*********************************/
+
   markSavedStateFlag: function() {
 
     localStorage.setItem('has_save_state', 'true'); 
@@ -394,15 +405,31 @@ var Cardsy = {
 
   },
 
-  loadCurrentCanvasId: function() {
-
-    return parseInt(localStorage.getItem('current_canvas_id'));
-
+  incrementNextCanvasId: function() {
+    next_canvas_id++;
+    localStorage.setItem('next_canvas_id', next_canvas_id);
   },
 
   loadNextCanvasId: function() {
 
     return parseInt(localStorage.getItem('next_canvas_id'));
+
+  },
+
+  saveCanvasIds: function() {
+    localStorage.setItem('canvas_ids', canvas_ids);
+  },
+
+  loadCanvasIds: function() {
+
+    var canvas_ids_as_strings = localStorage.getItem('canvas_ids').split(',');
+    return $.map(canvas_ids_as_strings, function (e) { return parseInt(e); });
+
+  },
+
+  loadCurrentCanvasId: function() {
+
+    return parseInt(localStorage.getItem('current_canvas_id'));
 
   },
 
@@ -412,12 +439,25 @@ var Cardsy = {
 
   },
 
-  loadCanvasIds: function() {
+  incrementNextCardId: function() {
+    next_card_id++;
+    localStorage.setItem('next_card_id', next_card_id);
+  },
 
-    var canvas_ids_as_strings = localStorage.getItem('canvas_ids').split(',');
-    return $.map(canvas_ids_as_strings, function (e) { return parseInt(e); });
+  removeCardFromStorage: function($card) {
+
+    var key = Cardsy.createCardKey(current_canvas_id, $($card).attr('id'));
+    localStorage.removeItem(key);
 
   },
+
+
+
+
+
+  /*************************/
+  /*    Utility Methods    */
+  /*************************/
 
   clearCurrentCanvas: function() {
 
