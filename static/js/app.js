@@ -401,7 +401,7 @@ var Cardsy = {
 
   loadNextCanvasId: function() {
 
-    return parseInt(Storage.get('next_canvas_id'));
+    return Storage.getInt('next_canvas_id');
 
   },
 
@@ -418,13 +418,13 @@ var Cardsy = {
 
   loadCurrentCanvasId: function() {
 
-    return parseInt(Storage.get('current_canvas_id'));
+    return Storage.getInt('current_canvas_id');
 
   },
 
   loadNextCardId: function() {
 
-    return parseInt(Storage.get('next_card_id'));
+    return Storage.getInt('next_card_id');
 
   },
 
@@ -486,6 +486,10 @@ var Storage = {
 
   set: function(key, value) {
     localStorage.setItem(key, value);
+  },
+
+  getInt: function(key) {
+    return parseInt(localStorage.getItem(key));
   },
 
   getCardKeysByCanvasId: function(id) {
