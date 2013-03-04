@@ -88,7 +88,7 @@ var Cardsy = {
       var card = JSON.parse(localStorage.getItem(keys[i]));
       Cardsy.addCard(card.id, card.x, card.y, card.text);
     }
-  
+
     Cardsy.updateCanvasIndicator();
 
     function getCardKeysByCanvasId(id) {
@@ -147,7 +147,8 @@ var Cardsy = {
         return;
 
       Cardsy.addCard(next_card_id, e.clientX, e.clientY);
-      
+      Cardsy.incrementNextCardId();
+    
     });
 
   },
@@ -168,7 +169,6 @@ var Cardsy = {
     var card = createCard(id, text);
 
     addToCanvas(card);
-    Cardsy.incrementNextCardId();
 
     function addToCanvas(card) {
 
