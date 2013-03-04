@@ -153,8 +153,7 @@ var Cardsy = {
       if (this != e.target)
         return;
 
-      Cardsy.addCard(next_card_id, e.clientX, e.clientY);
-      Cardsy.incrementNextCardId();
+      Cardsy.addCardWithIncrement(next_card_id, e.clientX, e.clientY);
     
     });
 
@@ -166,10 +165,16 @@ var Cardsy = {
     var y = Math.floor($('#canvas').height() / 2) - 60;
 
     setTimeout(function () {
-      Cardsy.addCard(next_card_id, x, y, s.introText);
-      Cardsy.incrementNextCardId();
+      Cardsy.addCardWithIncrement(next_card_id, x, y, s.introText);
     }, 710);
 
+  },
+
+  addCardWithIncrement: function(id, x, y, text) {
+
+    Cardsy.addCard(id, x, y, text);
+    Cardsy.incrementNextCardId();
+    
   },
 
   addCard: function(id, x, y, text) {
