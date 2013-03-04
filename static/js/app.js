@@ -248,7 +248,7 @@ var Cardsy = {
   saveCard: function(card) {
 
     var key = Cardsy.createCardKey(current_canvas_id, card.id);
-    Storage.set(key, JSON.stringify(card));
+    Storage.setCard(key, card);
 
   },
 
@@ -347,7 +347,7 @@ var Cardsy = {
     var length = keys.length;
 
     for (var i = 0; i < length; i++) {
-      var card = JSON.parse(Storage.get(keys[i]));
+      var card = Storage.getCard(keys[i]);
       Cardsy.addCard(card.id, card.x, card.y, card.text);
     }
 
@@ -490,6 +490,14 @@ var Storage = {
 
   getInt: function(key) {
     return parseInt(localStorage.getItem(key));
+  },
+
+  getCard: function(key) {
+    return JSON.parse(localStorage.getItem(key));
+  },
+
+  setCard: function(key, cardObj) {
+    localStorage.setItem(key, JSON.stringify(cardObj));
   },
 
   getCardKeysByCanvasId: function(id) {
