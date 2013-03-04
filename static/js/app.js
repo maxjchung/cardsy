@@ -12,7 +12,8 @@ var Cardsy = {
   settings : {
 
     'animationSpeed' : 150,
-    'cardCharLimit' : 110
+    'cardCharLimit' : 110,
+    'introText' : 'Add more cards by clicking the canvas.\n\nTry moving them, too.'
   
   },
 
@@ -139,13 +140,11 @@ var Cardsy = {
 
   showIntro: function() {
 
-    var introText = 'Add more cards by clicking the canvas.\n\nTry moving them, too.';
-
     var x = Math.floor($('#canvas').width() / 2) - 100;
     var y = Math.floor($('#canvas').height() / 2) - 60;
 
     setTimeout(function () {
-      Cardsy.addCard(next_card_id, x, y, introText);
+      Cardsy.addCard(next_card_id, x, y, s.introText);
     }, 710);
 
   },
