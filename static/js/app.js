@@ -49,7 +49,7 @@ var Cardsy = {
 
     current_canvas_id = Cardsy.loadCurrentCanvasId(); 
     next_canvas_id = Cardsy.loadNextCanvasId(); 
-    canvas_ids = $.map(localStorage.getItem('canvas_ids').split(','), function (e) { return parseInt(e); });
+    canvas_ids = Cardsy.loadCanvasIds();
 
     Cardsy.loadCanvas(current_canvas_id);
 
@@ -86,6 +86,14 @@ var Cardsy = {
   loadNextCanvasId: function() {
 
     return parseInt(localStorage.getItem('next_canvas_id'));
+
+  },
+
+  loadCanvasIds: function() {
+
+    var canvas_ids_as_strings = localStorage.getItem('canvas_ids').split(',');
+
+    return $.map(canvas_ids_as_strings, function (e) { return parseInt(e); });
 
   },
 
