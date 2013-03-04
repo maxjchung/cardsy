@@ -252,7 +252,7 @@ var Cardsy = {
   saveCard: function(card) {
 
     var key = Cardsy.createCardKey(current_canvas_id, card.id);
-    localStorage.setItem(key, JSON.stringify(card));
+    Storage.set(key, JSON.stringify(card));
 
   },
 
@@ -368,7 +368,7 @@ var Cardsy = {
   setCurrentCanvas: function(id) {
   
     current_canvas_id = id;
-    localStorage.setItem('current_canvas_id', current_canvas_id); 
+    Storage.set('current_canvas_id', current_canvas_id); 
 
   },
 
@@ -394,7 +394,7 @@ var Cardsy = {
 
   markSavedStateFlag: function() {
 
-    localStorage.setItem('has_save_state', 'true'); 
+    Storage.set('has_save_state', 'true'); 
 
   },
 
@@ -406,7 +406,7 @@ var Cardsy = {
 
   incrementNextCanvasId: function() {
     next_canvas_id++;
-    localStorage.setItem('next_canvas_id', next_canvas_id);
+    Storage.set('next_canvas_id', next_canvas_id);
   },
 
   loadNextCanvasId: function() {
@@ -416,7 +416,7 @@ var Cardsy = {
   },
 
   saveCanvasIds: function() {
-    localStorage.setItem('canvas_ids', canvas_ids);
+    Storage.set('canvas_ids', canvas_ids);
   },
 
   loadCanvasIds: function() {
@@ -440,7 +440,7 @@ var Cardsy = {
 
   incrementNextCardId: function() {
     next_card_id++;
-    localStorage.setItem('next_card_id', next_card_id);
+    Storage.set('next_card_id', next_card_id);
   },
 
   removeCardFromStorage: function($card) {
@@ -495,8 +495,8 @@ var Storage = {
   },
 
   set: function(key, value) {
-
-  },
+    localStorage.setItem(key, value);
+  }
 
 };
 
