@@ -247,7 +247,7 @@ var Cardsy = {
 
   saveCard: function(card) {
 
-    var key = Cardsy.createCardKey(current_canvas_id, card.id);
+    var key = Storage.createCardKey(current_canvas_id, card.id);
     Storage.setCard(key, card);
 
   },
@@ -277,7 +277,7 @@ var Cardsy = {
     var $cards = $('#canvas').find('.card');
 
     $cards.each(function(index) {
-      var key = Cardsy.createCardKey(current_canvas_id, $(this).attr('id'));
+      var key = Storage.createCardKey(current_canvas_id, $(this).attr('id'));
       localStorage.removeItem(key);
     });
 
@@ -435,7 +435,7 @@ var Cardsy = {
 
   removeCardFromStorage: function($card) {
 
-    var key = Cardsy.createCardKey(current_canvas_id, $($card).attr('id'));
+    var key = Storage.createCardKey(current_canvas_id, $($card).attr('id'));
     localStorage.removeItem(key);
 
   },
@@ -451,13 +451,6 @@ var Cardsy = {
   clearCurrentCanvas: function() {
 
     $('#canvas').find('.card').remove();
-
-  },
-
-  createCardKey: function(canvas_id, card_id) {
-
-    var key = 'card.' + canvas_id + '.' + card_id;
-    return key;
 
   },
 
@@ -498,6 +491,10 @@ var Storage = {
 
   setCard: function(key, cardObj) {
     Storage.set(key, JSON.stringify(cardObj));
+  },
+
+  createCardKey: function(canvas_id, card_id) {
+    return 'card.' + canvas_id + '.' + card_id;
   },
 
   getCardKeysByCanvasId: function(id) {
