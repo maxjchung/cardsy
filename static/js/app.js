@@ -128,47 +128,47 @@ var Cardsy = {
 
   addCard: function(id, x, y, text) {
 
-    var card = createCard(id, text);
+    var $card = createCard(id, text);
 
-    addToCanvas(card);
+    addToCanvas($card);
 
-    function addToCanvas(card) {
+    function addToCanvas($card) {
 
-      card.hide();
-      card.find('.delete').hide();
+      $card.hide();
+      $card.find('.delete').hide();
 
-      $('#canvas').append(card);
+      $('#canvas').append($card);
 
-      card.fadeIn(s.animationSpeed);
+      $card.fadeIn(s.animationSpeed);
 
       if (undefined == text)
-        card.find('textarea').focus();
+        $card.find('textarea').focus();
 
-      bindDragEvents(card);
+      bindDragEvents($card);
 
-      Cardsy.saveCard(Cardsy.jQueryCardToObj(card));
+      Cardsy.saveCard(Cardsy.jQueryCardToObj($card));
 
     }
 
-    function bindDragEvents(card) {
+    function bindDragEvents($card) {
 
-      card.draggable({
+      $card.draggable({
 
         scroll: false,
         containment: 'parent',
 
         start: function() {
-          card.find('textarea').blur();
-          card.find('.delete').hide();
+          $card.find('textarea').blur();
+          $card.find('.delete').hide();
         },
 
         drag: function() {
-          card.find('.delete').hide();
+          $card.find('.delete').hide();
         },
 
         stop: function() {
-          card.find('.delete').show();
-          Cardsy.saveCard(Cardsy.jQueryCardToObj(card));
+          $card.find('.delete').show();
+          Cardsy.saveCard(Cardsy.jQueryCardToObj($card));
         }
 
       });
@@ -177,7 +177,7 @@ var Cardsy = {
 
     function createCard(id, text) {
 
-      var newCard = $('<div />')
+      var $newCard = $('<div />')
         .attr('id', id)
         .addClass('card')
         .css('left', x + 'px')
@@ -187,50 +187,50 @@ var Cardsy = {
           function(e) { Cardsy.hideDeleteButton(e) }
         );
 
-      textArea = createTextArea();
+      var $textArea = createTextArea();
 
       if (undefined != text)
-        textArea.html(text);
+        $textArea.html(text);
 
-      deleteButton = createDeleteButton();
+      $deleteButton = createDeleteButton();
 
-      return newCard.append(textArea).append(deleteButton);
+      return $newCard.append($textArea).append($deleteButton);
 
     }
 
     function createTextArea() {
 
-      var textArea = $('<textarea />');
+      var $textArea = $('<textarea />');
       
-      textArea.hover(
+      $textArea.hover(
         function(e) { $(this).addClass('hover') },
         function(e) { $(this).removeClass('hover') }
       );
 
-      textArea.attr('maxlength', s.cardCharLimit);
-      textArea.attr('rows', 4);
+      $textArea.attr('maxlength', s.cardCharLimit);
+      $textArea.attr('rows', 4);
 
-      textArea.bind('textchange', function() {
+      $textArea.bind('textchange', function() {
         Cardsy.saveCard(Cardsy.jQueryCardToObj($(this.parentElement)))
       });
 
-      return textArea;
+      return $textArea;
 
     }
 
     function createDeleteButton() {
 
-      var deleteButton = $('<div />')
+      var $deleteButton = $('<div />')
         .addClass('delete')
         .html('&#10006;')
         .click(function(e) { Cardsy.deleteCard(e) });
 
-      deleteButton.hover(
+      $deleteButton.hover(
         function(e) { $(this).addClass('hover') },
         function(e) { $(this).removeClass('hover') }
       );
 
-      return deleteButton;
+      return $deleteButton;
 
     }
 
