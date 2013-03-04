@@ -16,6 +16,7 @@ var Cardsy = {
 
     'animationSpeed' : 150,
     'cardCharLimit' : 110,
+    'textAreaRows' : 4,
     'introText' : 'Add more cards by clicking the canvas.\n\nTry moving them, too.'
   
   },
@@ -208,7 +209,7 @@ var Cardsy = {
       );
 
       $textArea.attr('maxlength', s.cardCharLimit);
-      $textArea.attr('rows', 4);
+      $textArea.attr('rows', s.textAreaRows);
 
       $textArea.bind('textchange', function() {
         Cardsy.saveCard(Cardsy.jQueryCardToObj($(this.parentElement)))
