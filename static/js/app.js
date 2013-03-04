@@ -347,7 +347,7 @@ var Cardsy = {
     Cardsy.clearCurrentCanvas();
     Cardsy.setCurrentCanvas(id);
 
-    var keys = getCardKeysByCanvasId(id); 
+    var keys = Storage.getCardKeysByCanvasId(id); 
     var length = keys.length;
 
     for (var i = 0; i < length; i++) {
@@ -356,12 +356,6 @@ var Cardsy = {
     }
 
     Cardsy.updateCanvasIndicator();
-
-    function getCardKeysByCanvasId(id) {
-
-      return Object.keys(localStorage).filter(function(k) { return k.indexOf('card.' + id) > -1 });
-
-    }
 
   },
 
@@ -496,6 +490,12 @@ var Storage = {
 
   set: function(key, value) {
     localStorage.setItem(key, value);
+  },
+
+  getCardKeysByCanvasId: function(id) {
+
+    return Object.keys(localStorage).filter(function(k) { return k.indexOf('card.' + id) > -1 });
+
   }
 
 };
