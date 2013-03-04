@@ -3,37 +3,34 @@ Welcome to Cardsy.
 
 Cardsy is a free brainstorming tool for UX designers, writers and thinkers. Use it to organize your ideas spatially.
 
-Try it out at [http://cardsybeta.appspot.com](http://cardsybeta.appspot.com).
+Try Cardsy at [http://cardsybeta.appspot.com](http://cardsybeta.appspot.com).
 
 
 Current Release Notes
 --------------------------
 
-Your cards will disappear when you close the browser. The next release will automatically save your cards.
+Your cards are saved automatically in your browser. Clearing your cache will delete your cards.
 
 
 Release History
 --------------------------
 
-02.02.13: Deployed first release to Google App Engine.
+March 3, 2013
+
+  * Added multiple canvas and automatically save cards.
+  * Visual design refresh.
+
+February 2, 2013
+
+  * Deployed first release to Google App Engine.
 
 
 Future Features
 --------------------------
 
-__Save Your Notes__
-
-  - Your notes will be automatically saved in your browser.
-
-__Multiple Canvases__
-
-  - Use multiple canvas so you can play with even more ideas.
-
 __Offline Mode__
 
   - Use Cardsy without an internet connection.
-
-
 
 
 MIT Open Source License
