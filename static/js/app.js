@@ -29,7 +29,7 @@ var Cardsy = {
 
     else {
       Cardsy.loadFirstRun();
-      localStorage.setItem('has_save_state', 'true');
+      Cardsy.markSavedStateFlag();
     } 
 
   },
@@ -39,7 +39,7 @@ var Cardsy = {
     if (!Modernizr.localstorage) 
       return false;
 
-    if (localStorage.getItem('has_save_state') != 'true')
+    if (!Cardsy.hasSavedStateFlag())
       return false;
 
     return true;
@@ -60,6 +60,19 @@ var Cardsy = {
 
     Cardsy.addCanvas();
     Cardsy.showIntro();
+
+  },
+
+
+  markSavedStateFlag: function() {
+
+    localStorage.setItem('has_save_state', 'true'); 
+
+  },
+
+  hasSavedStateFlag: function() {
+
+    return 'true' == localStorage.getItem('has_save_state');
 
   },
 
