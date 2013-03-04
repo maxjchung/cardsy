@@ -168,13 +168,13 @@ var Cardsy = {
       if (undefined == text)
         card.find('textarea').focus();
 
-      makeDraggable(card);
+      bindDragEvents(card);
 
       Cardsy.saveCard(Cardsy.jQueryCardToObj(card));
 
     }
 
-    function makeDraggable(card) {
+    function bindDragEvents(card) {
 
       card.draggable({
 
