@@ -351,7 +351,7 @@ var Cardsy = {
     var length = keys.length;
 
     for (var i = 0; i < length; i++) {
-      var card = JSON.parse(localStorage.getItem(keys[i]));
+      var card = JSON.parse(Storage.get(keys[i]));
       Cardsy.addCard(card.id, card.x, card.y, card.text);
     }
 
@@ -400,7 +400,7 @@ var Cardsy = {
 
   hasSavedStateFlag: function() {
 
-    return 'true' == localStorage.getItem('has_save_state');
+    return 'true' == Storage.get('has_save_state');
 
   },
 
@@ -411,7 +411,7 @@ var Cardsy = {
 
   loadNextCanvasId: function() {
 
-    return parseInt(localStorage.getItem('next_canvas_id'));
+    return parseInt(Storage.get('next_canvas_id'));
 
   },
 
@@ -421,20 +421,20 @@ var Cardsy = {
 
   loadCanvasIds: function() {
 
-    var canvas_ids_as_strings = localStorage.getItem('canvas_ids').split(',');
+    var canvas_ids_as_strings = Storage.get('canvas_ids').split(',');
     return $.map(canvas_ids_as_strings, function (e) { return parseInt(e); });
 
   },
 
   loadCurrentCanvasId: function() {
 
-    return parseInt(localStorage.getItem('current_canvas_id'));
+    return parseInt(Storage.get('current_canvas_id'));
 
   },
 
   loadNextCardId: function() {
 
-    return parseInt(localStorage.getItem('next_card_id'));
+    return parseInt(Storage.get('next_card_id'));
 
   },
 
@@ -491,7 +491,7 @@ var Cardsy = {
 var Storage = {
 
   get: function(key) {
-
+    return localStorage.getItem(key);
   },
 
   set: function(key, value) {
