@@ -38,7 +38,7 @@ var Cardsy = {
     if (!Modernizr.localstorage) 
       return false;
 
-    if (localStorage['has_save_state'] != 'true')
+    if (localStorage.getItem('has_save_state') != 'true')
       return false;
 
     return true;
