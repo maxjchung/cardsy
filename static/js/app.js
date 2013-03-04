@@ -455,22 +455,6 @@ var Cardsy = {
 
 
 
-  /*****************************/
-  /*    Storage abstraction    */
-  /*****************************/
-
-  setToStorage: function(key, value) {
-
-  },
-
-  getFromStorage: function(key) {
-
-  },
-
-
-
-
-
   /*************************/
   /*    Utility Methods    */
   /*************************/
@@ -504,3 +488,18 @@ var Cardsy = {
   }
 
 };
+
+var Storage = {
+
+  get: function(key) {
+
+  },
+
+  set: function(key, value) {
+
+  },
+
+};
+
+
+
