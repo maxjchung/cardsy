@@ -167,7 +167,7 @@ var Cardsy = {
     var card = createCard(id, text);
 
     addToCanvas(card);
-    Cardsy.incrementCounter();
+    Cardsy.incrementNextCardId();
 
     function addToCanvas(card) {
 
@@ -273,12 +273,12 @@ var Cardsy = {
 
   },
 
-  incrementCounter: function() {
+  incrementNextCardId: function() {
     next_card_id++;
     localStorage.setItem('next_card_id', next_card_id);
   },
 
-  incrementCanvasCounter: function() {
+  incrementNextCanvasId: function() {
     next_canvas_id++;
     localStorage.setItem('next_canvas_id', next_canvas_id);
   },
@@ -316,7 +316,7 @@ var Cardsy = {
     canvas_ids.push(next_canvas_id);
     Cardsy.saveCanvasIds();
 
-    Cardsy.incrementCanvasCounter();
+    Cardsy.incrementNextCanvasId();
 
     $('#canvas').find('.card').remove();
 
