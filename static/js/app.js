@@ -21,7 +21,7 @@ var Cardsy = {
 
     s = this.settings;
 
-    Cardsy.initChrome();
+    Cardsy.initActionPanel();
     Cardsy.initCanvas();
 
     if (Cardsy.hasSaveState()) 
@@ -118,7 +118,7 @@ var Cardsy = {
 
   },
 
-  initChrome: function() {
+  initActionPanel: function() {
 
     $('#new').click(function() {
       Cardsy.addCanvas();
