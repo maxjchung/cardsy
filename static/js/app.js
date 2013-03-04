@@ -64,19 +64,6 @@ var Cardsy = {
 
   },
 
-
-  markSavedStateFlag: function() {
-
-    localStorage.setItem('has_save_state', 'true'); 
-
-  },
-
-  hasSavedStateFlag: function() {
-
-    return 'true' == localStorage.getItem('has_save_state');
-
-  },
-
   loadCanvas: function(id) {
 
     Cardsy.clearCurrentCanvas();
@@ -97,32 +84,6 @@ var Cardsy = {
       return Object.keys(localStorage).filter(function(k) { return k.indexOf('card.' + id) > -1 });
 
     }
-
-  },
-
-  loadCurrentCanvasId: function() {
-
-    return parseInt(localStorage.getItem('current_canvas_id'));
-
-  },
-
-  loadNextCanvasId: function() {
-
-    return parseInt(localStorage.getItem('next_canvas_id'));
-
-  },
-
-  loadNextCardId: function() {
-
-    return parseInt(localStorage.getItem('next_card_id'));
-
-  },
-
-  loadCanvasIds: function() {
-
-    var canvas_ids_as_strings = localStorage.getItem('canvas_ids').split(',');
-
-    return $.map(canvas_ids_as_strings, function (e) { return parseInt(e); });
 
   },
 
@@ -287,16 +248,6 @@ var Cardsy = {
 
   },
 
-  incrementNextCardId: function() {
-    next_card_id++;
-    localStorage.setItem('next_card_id', next_card_id);
-  },
-
-  incrementNextCanvasId: function() {
-    next_canvas_id++;
-    localStorage.setItem('next_canvas_id', next_canvas_id);
-  },
-
   deleteCard: function(e) {
 
     var $card = $(e.target.parentElement);
@@ -311,6 +262,16 @@ var Cardsy = {
     var key = Cardsy.createCardKey(current_canvas_id, card.id);
     localStorage.setItem(key, JSON.stringify(card));
 
+  },
+
+  incrementNextCardId: function() {
+    next_card_id++;
+    localStorage.setItem('next_card_id', next_card_id);
+  },
+
+  incrementNextCanvasId: function() {
+    next_canvas_id++;
+    localStorage.setItem('next_canvas_id', next_canvas_id);
   },
 
   saveCanvasIds: function() {
@@ -420,6 +381,43 @@ var Cardsy = {
 
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
   hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); },
+
+  markSavedStateFlag: function() {
+
+    localStorage.setItem('has_save_state', 'true'); 
+
+  },
+
+  hasSavedStateFlag: function() {
+
+    return 'true' == localStorage.getItem('has_save_state');
+
+  },
+
+  loadCurrentCanvasId: function() {
+
+    return parseInt(localStorage.getItem('current_canvas_id'));
+
+  },
+
+  loadNextCanvasId: function() {
+
+    return parseInt(localStorage.getItem('next_canvas_id'));
+
+  },
+
+  loadNextCardId: function() {
+
+    return parseInt(localStorage.getItem('next_card_id'));
+
+  },
+
+  loadCanvasIds: function() {
+
+    var canvas_ids_as_strings = localStorage.getItem('canvas_ids').split(',');
+    return $.map(canvas_ids_as_strings, function (e) { return parseInt(e); });
+
+  },
 
   clearCurrentCanvas: function() {
 
