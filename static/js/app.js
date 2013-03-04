@@ -275,7 +275,8 @@ var Cardsy = {
 
   saveCard: function(card) {
 
-    localStorage.setItem('card.' + current_canvas_id + '.' + card.id, JSON.stringify(card));
+    var key = Cardsy.createLocalStorageKeyForCard(current_canvas_id, card.id);
+    localStorage.setItem(key, JSON.stringify(card));
 
   },
 
@@ -285,9 +286,9 @@ var Cardsy = {
 
   removeCardFromStorage: function($card) {
 
-    var key = 'card.' + current_canvas_id + '.' + $card.attr('id');
-
+    var key = Cardsy.createLocalStorageKeyForCard(current_canvas_id, $(card).attr('id'));
     localStorage.removeItem(key);
+
   },
 
   addCanvas: function() {
@@ -308,7 +309,7 @@ var Cardsy = {
     var $cards = $('#canvas').find('.card');
 
     $cards.each(function(index) {
-      var key = 'card.' + current_canvas_id + '.' + $(this).attr('id');
+      var key = Cardsy.createLocalStorageKeyForCard(current_canvas_id, $(this).attr('id'));
       localStorage.removeItem(key);
     });
 
@@ -391,6 +392,13 @@ var Cardsy = {
 
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
   hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); },
+
+  createLocalStorageKeyForCard: function(canvas_id, card_id) {
+
+    var key = 'card.' + canvas_id + '.' + card_id;
+    return key;
+
+  },
 
   jQueryCardToObj: function ($card) {
 
