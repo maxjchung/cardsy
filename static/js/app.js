@@ -9,7 +9,7 @@ var log = function(msg) { console.log(msg) };
 
 var Cardsy = {
 
-  settings : {
+  settings: {
 
     'animationSpeed' : 150,
     'cardCharLimit' : 110,
