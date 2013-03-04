@@ -489,15 +489,15 @@ var Storage = {
   },
 
   getInt: function(key) {
-    return parseInt(localStorage.getItem(key));
+    return parseInt(Storage.get(key));
   },
 
   getCard: function(key) {
-    return JSON.parse(localStorage.getItem(key));
+    return JSON.parse(Storage.get(key));
   },
 
   setCard: function(key, cardObj) {
-    localStorage.setItem(key, JSON.stringify(cardObj));
+    Storage.set(key, JSON.stringify(cardObj));
   },
 
   getCardKeysByCanvasId: function(id) {
