@@ -47,7 +47,7 @@ var Cardsy = {
 
   loadSavedState: function() {
 
-    current_canvas_id = parseInt(localStorage.getItem('current_canvas_id'));
+    current_canvas_id = Cardsy.loadCurrentCanvasId(); 
     next_canvas_id = parseInt(localStorage.getItem('next_canvas_id'));
     canvas_ids = $.map(localStorage.getItem('canvas_ids').split(','), function (e) { return parseInt(e); });
 
@@ -74,6 +74,12 @@ var Cardsy = {
     }
   
     Cardsy.updateCanvasIndicator();
+
+  },
+
+  loadCurrentCanvasId: function() {
+
+    return parseInt(localStorage.getItem('current_canvas_id'));
 
   },
 
