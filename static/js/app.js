@@ -78,6 +78,7 @@ var Cardsy = {
 
   loadCanvas: function(id) {
 
+    Cardsy.clearCurrentCanvas();
     Cardsy.setCurrentCanvas(id);
 
     var keys = getCardKeysByCanvasId(id); 
@@ -318,8 +319,7 @@ var Cardsy = {
 
     Cardsy.incrementNextCanvasId();
 
-    $('#canvas').find('.card').remove();
-
+    Cardsy.clearCurrentCanvas();
     Cardsy.updateCanvasIndicator();
   },
 
@@ -371,8 +371,6 @@ var Cardsy = {
     else
       previous_canvas_id = canvas_ids[index-1];
 
-    $('#canvas').find('.card').remove();
-
     Cardsy.loadCanvas(previous_canvas_id);
 
   },
@@ -386,8 +384,6 @@ var Cardsy = {
       next_canvas_id = canvas_ids[0];
     else
       next_canvas_id = canvas_ids[index+1];
-
-    $('#canvas').find('.card').remove();
 
     Cardsy.loadCanvas(next_canvas_id);
 
@@ -411,6 +407,12 @@ var Cardsy = {
 
   showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
   hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); },
+
+  clearCurrentCanvas: function() {
+
+    $('#canvas').find('.card').remove();
+
+  },
 
   createLocalStorageKeyForCard: function(canvas_id, card_id) {
 
