@@ -160,6 +160,7 @@ var Cardsy = {
 
     setTimeout(function () {
       Cardsy.addCard(next_card_id, x, y, s.introText);
+      Cardsy.incrementNextCardId();
     }, 710);
 
   },
@@ -306,7 +307,7 @@ var Cardsy = {
 
   removeCardFromStorage: function($card) {
 
-    var key = Cardsy.createCardKey(current_canvas_id, $(card).attr('id'));
+    var key = Cardsy.createCardKey(current_canvas_id, $($card).attr('id'));
     localStorage.removeItem(key);
 
   },
