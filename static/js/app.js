@@ -8,6 +8,10 @@ var canvas_ids = [];
 
 var Cardsy = {
 
+  /*************************/
+  /*    Initializations    */
+  /*************************/
+
   settings: {
 
     'animationSpeed' : 150,
@@ -15,14 +19,6 @@ var Cardsy = {
     'introText' : 'Add more cards by clicking the canvas.\n\nTry moving them, too.'
   
   },
-
-
-
-
-
-  /*************************/
-  /*    Initializations    */
-  /*************************/
 
   init: function() {
 
