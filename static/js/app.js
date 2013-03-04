@@ -1,11 +1,10 @@
 var s;
+
 var next_card_id = 1;
+
 var next_canvas_id = 1;
 var current_canvas_id = 1;
-
 var canvas_ids = [];
-
-var log = function(msg) { console.log(msg) };
 
 var Cardsy = {
 
