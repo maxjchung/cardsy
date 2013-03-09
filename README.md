@@ -9,7 +9,7 @@ Try Cardsy at [http://cardsybeta.appspot.com](http://cardsybeta.appspot.com).
 Current Release Notes
 --------------------------
 
-Your cards are saved automatically in your browser. Clearing your cache will delete your cards.
+Your cards are now saved automatically in your browser. Clearing your cache will delete your cards.
 
 
 Release History
@@ -27,6 +27,10 @@ February 2, 2013
 
 Future Features
 --------------------------
+
+__Select multiple cards__
+
+  - Enough said.
 
 __Offline Mode__
 
