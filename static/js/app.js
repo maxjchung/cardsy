@@ -130,7 +130,6 @@ var Cardsy = {
   addCard: function(id, x, y, text) {
 
     var $card = createCard(id, text);
-
     addToCanvas($card);
 
     function addToCanvas($card) {
