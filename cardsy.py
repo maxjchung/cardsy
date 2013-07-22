@@ -17,5 +17,7 @@ def handle_404(request, response, exception):
 
 # Run, app, run!
 
+# test
+
 app = webapp2.WSGIApplication([('/', Index)], debug=True)
 app.error_handlers[404] = handle_404
