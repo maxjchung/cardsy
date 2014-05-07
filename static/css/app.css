@@ -88,7 +88,7 @@ html, body, #canvas {
 }
 
 body {
-  background-color: #062f40;
+  /* background-color: #062f40; */
   overflow: hidden;
 }
 
@@ -229,13 +229,28 @@ textarea:focus {
 }
 
 textarea {
-  background: none;
-  border: none;
-  resize: none;
 
-  overflow: hidden;
+  width: 300px;
+  background: none;
+  /* border: none; */
+  resize: none;
+  
+  overflow: hidden !important;  /* override expanding.js's inline style */
 }
 
+/* ==========================================================================
+   Expanding.js overrides
+   ========================================================================== */
+
+.expanding-wrapper {
+  background-color: gray;
+  width: 250px;
+  min-height: 150px;
+}
+
+.expanding {
+  padding: 10px;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
