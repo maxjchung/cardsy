@@ -78,8 +78,6 @@ var Cardsy = {
     var newChar = String.fromCharCode(keyCode);
     var selectedText = window.getSelection().toString();
 
-debugger;
-
     if(theText.charCodeAt(theText.length-1) == 10)
       theText = theText.substring(0, theText.length-1);
 
