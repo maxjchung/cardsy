@@ -187,8 +187,8 @@ body {
   cursor: -webkit-grab;
 }
 
-textarea {
-  width: 100px;
+.sticky {
+  width: 75px;
   height: 50px;
 }
 

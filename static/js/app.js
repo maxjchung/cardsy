@@ -23,18 +23,6 @@ var Cardsy = {
 
   init: function() {
 
-    s = this.settings;
-
-    Cardsy.initActionPanel();
-    Cardsy.initCanvas();
-
-    if (Cardsy.hasSaveState()) 
-      Cardsy.loadSavedState();
-
-    else {
-      Cardsy.loadFirstRun();
-      Cardsy.markSavedStateFlag();
-    }
 
   },
 
