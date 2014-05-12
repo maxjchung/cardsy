@@ -168,6 +168,12 @@ body {
    Cards
    ========================================================================== */
 
+#practice {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
 .card {
   position: absolute;
 
@@ -188,7 +194,7 @@ body {
 }
 
 .sticky {
-  width: 75px;
+  width: 125px;
   height: 50px;
 }
 

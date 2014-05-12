@@ -1,12 +1,95 @@
-var s;
 
-var next_card_id = 1;
-
-var next_canvas_id = 1;
-var current_canvas_id = 1;
-var canvas_ids = [];
+var $currentTextArea;
+var $practiceTextArea;
 
 var Cardsy = {
+
+  /*************************/
+  /*    Private Methods    */
+  /*************************/
+
+  initSpaceConstrainedStickies : function() {
+
+
+
+    $('.sticky')
+      .bind('keydown', Cardsy.handleTyping)
+      .bind('keyup', function(e) {
+        console.log('keyup!');
+      });
+
+
+
+
+  },
+
+
+  handleTyping: function(event) {
+
+
+    $currentTextArea = $(event.target);
+
+    if(event.keyCode == 9) //prevent tab key
+    {
+      consumeEvent(event);
+      return;
+    }
+    else if((event.keyCode >= 37 && event.keyCode <= 40) || event.metaKey)
+      return; //an arrow key or meta key. Note, we leave the event alone
+    
+    var temp = Cardsy.getWouldBeText(event);
+    temp = textToHTML(temp); 
+
+    //If the text ends with a <br>, the pdiv will not expand by a line
+    //as it should. It requires a character afterwards to do so. 
+    if(temp && temp.substring(temp.length-4) == "<br>")
+      temp +=".";
+
+    pdiv.innerHTML = temp;
+    
+    resizeIfNeedBe();
+
+    if (saveTimer != null)
+      clearTimeout (saveTimer);
+    saveTimer = setTimeout(saveSticky, 2000);
+
+    return true;
+  },
+
+  // TODO: need to make references to 'pdiv' and 'mydiv'
+  handleKeyUp: function() {
+    $practiceTextArea.html($currentTextArea.html());
+  },
+
+
+  getWouldBeText: function(event) {
+
+    var theText = $currentTextArea.html();
+    var charCode = event.charCode;
+    var newChar = String.fromCharCode(charCode);
+    var selectedText = window.getSelection().toString();
+
+    if(theText.charCodeAt(theText.length-1) == 10)
+      theText = theText.substring(0, theText.length-1);
+
+    if(selectedText) //if text is selected
+    {   
+      if(charCode == 8) //delete key, replace w/nothing
+        newChar = ""; 
+      
+      theText = theText.replace(selectedText, newChar);
+    }
+    else if(charCode == 8) //delete key
+      theText = theText.substring(0, theText.length-1);
+    else
+      theText = theText + newChar;
+      
+
+    console.log('getWouldBeText -- theText: ' + theText);
+    return theText;
+
+  },
+
 
   /*************************/
   /*    Initializations    */
@@ -23,7 +106,7 @@ var Cardsy = {
 
   init: function() {
 
-
+    Cardsy.initSpaceConstrainedStickies();
   },
 
   initActionPanel: function() {
