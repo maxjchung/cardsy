@@ -18,9 +18,7 @@ var Cardsy = {
 
     $('.sticky')
       .bind('keydown', Cardsy.handleTyping)
-      .bind('keyup', function(e) {
-        console.log('keyup!');
-      });
+      .bind('keyup', Cardsy.handleKeyUp);
 
 
 
@@ -49,7 +47,7 @@ var Cardsy = {
     if(temp && temp.substring(temp.length-4) == "<br>")
       temp +=".";
 
-    $practiceTextArea.html(temp);
+    $practiceTextArea.val(temp);
     
     // machung: No resizing for Cardsy.
     //resizeIfNeedBe();
@@ -63,9 +61,8 @@ var Cardsy = {
     return true;
   },
 
-  // TODO: need to make references to 'pdiv' and 'mydiv'
   handleKeyUp: function() {
-    $practiceTextArea.html($currentTextArea.html());
+    $practiceTextArea.val($currentTextArea.val());
   },
 
 
@@ -73,7 +70,7 @@ var Cardsy = {
 
     var kbEvent = e.originalEvent;
     
-    var theText = $currentTextArea.html();
+    var theText = $currentTextArea.val();
     var keyCode = kbEvent.keyCode;
     var newChar = String.fromCharCode(keyCode);
     var selectedText = window.getSelection().toString();
