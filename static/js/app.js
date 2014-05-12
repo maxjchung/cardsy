@@ -69,24 +69,28 @@ var Cardsy = {
   },
 
 
-  getWouldBeText: function(event) {
+  getWouldBeText: function(e) {
 
+    var kbEvent = e.originalEvent;
+    
     var theText = $currentTextArea.html();
-    var charCode = event.charCode;
-    var newChar = String.fromCharCode(charCode);
+    var keyCode = kbEvent.keyCode;
+    var newChar = String.fromCharCode(keyCode);
     var selectedText = window.getSelection().toString();
+
+debugger;
 
     if(theText.charCodeAt(theText.length-1) == 10)
       theText = theText.substring(0, theText.length-1);
 
     if(selectedText) //if text is selected
     {   
-      if(charCode == 8) //delete key, replace w/nothing
+      if(keyCode == 8) //delete key, replace w/nothing
         newChar = ""; 
       
       theText = theText.replace(selectedText, newChar);
     }
-    else if(charCode == 8) //delete key
+    else if(keyCode == 8) //delete key
       theText = theText.substring(0, theText.length-1);
     else
       theText = theText + newChar;
