@@ -1,6 +1,11 @@
 
 var $currentTextArea;
-var $practiceTextArea;
+var $practiceTextArea = $('#practice');
+
+
+function htmlEncode(value){
+  return $('<div/>').text(value).html();
+}
 
 var Cardsy = {
 
@@ -9,7 +14,6 @@ var Cardsy = {
   /*************************/
 
   initSpaceConstrainedStickies : function() {
-
 
 
     $('.sticky')
@@ -38,20 +42,23 @@ var Cardsy = {
       return; //an arrow key or meta key. Note, we leave the event alone
     
     var temp = Cardsy.getWouldBeText(event);
-    temp = textToHTML(temp); 
+    temp = htmlEncode(temp); 
 
     //If the text ends with a <br>, the pdiv will not expand by a line
     //as it should. It requires a character afterwards to do so. 
     if(temp && temp.substring(temp.length-4) == "<br>")
       temp +=".";
 
-    pdiv.innerHTML = temp;
+    $practiceTextArea.html(temp);
     
-    resizeIfNeedBe();
+    // machung: No resizing for Cardsy.
+    //resizeIfNeedBe();
 
-    if (saveTimer != null)
-      clearTimeout (saveTimer);
-    saveTimer = setTimeout(saveSticky, 2000);
+
+    // machung: Consider this later
+    // if (saveTimer != null)
+    //   clearTimeout (saveTimer);
+    // saveTimer = setTimeout(saveSticky, 2000);
 
     return true;
   },
