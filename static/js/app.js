@@ -207,14 +207,10 @@ var Cardsy = {
         function(e) { $(this).removeClass('hover') }
       );
 
-      // $textArea.attr('maxlength', s.cardCharLimit);
-      // $textArea.attr('rows', s.textAreaRows);
-
       $textArea.bind('textchange', function() {
         Cardsy.saveCard(Cardsy.jQueryCardToObj($(this.parentElement)))
       });
 
-      $textArea.addClass('expanding');
       return $textArea;
 
     }

@@ -187,6 +187,11 @@ body {
   cursor: -webkit-grab;
 }
 
+textarea {
+  width: 100px;
+  height: 50px;
+}
+
 textarea.hover, textarea:focus {
   background-color: #ffeaaa;
 }
