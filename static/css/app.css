@@ -168,10 +168,20 @@ body {
    Cards
    ========================================================================== */
 
-#practice {
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
+.practice-card {
+  position: relative;
+  left: 200px;
+  top: 20px;
+  padding: 1em;
+  background-color: #eee;
+  width: 150px;
+  height: 100px;
+}
+
+.practice-card pre {
+  height: 100%;
+  width: 100%;
+  color: #aaa;
 }
 
 .card {

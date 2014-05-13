@@ -1,6 +1,6 @@
 
 var $currentTextArea;
-var $practiceTextArea = $('#practice');
+var $practicePreArea = $('#practice');
 
 
 function htmlEncode(value){
@@ -47,7 +47,7 @@ var Cardsy = {
     if(temp && temp.substring(temp.length-4) == "<br>")
       temp +=".";
 
-    $practiceTextArea.val(temp);
+    $practicePreArea.html(temp);
     
     // machung: No resizing for Cardsy.
     //resizeIfNeedBe();
@@ -62,7 +62,7 @@ var Cardsy = {
   },
 
   handleKeyUp: function() {
-    $practiceTextArea.val($currentTextArea.val());
+    $practicePreArea.html($currentTextArea.val());
   },
 
 
@@ -90,8 +90,6 @@ var Cardsy = {
     else
       theText = theText + newChar;
       
-
-    console.log('getWouldBeText -- theText: ' + theText);
     return theText;
 
   },
