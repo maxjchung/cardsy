@@ -87,9 +87,9 @@ html, body, #canvas {
   height: 100%;
 }
 
-body {
-  /* background-color: #062f40; */
+body {  
   overflow: hidden;
+  padding: 6em;
 }
 
 /* ==========================================================================
@@ -179,9 +179,9 @@ body {
 }
 
 .practice-card pre {
-  height: 100%;
   width: 100%;
   color: #aaa;
+  border: 1px solid #999;
 }
 
 .card {
