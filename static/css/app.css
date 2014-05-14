@@ -195,6 +195,7 @@ body {
 
 .sticky {
   height: 50px;
+  background-color: #eee;
 }
 
 #practice {
@@ -210,7 +211,6 @@ body {
   font-family: sans-serif;
   background-color: #eee;
   color: #aaa;
-  border: 1px solid #999;
   
 }
 
@@ -226,14 +226,15 @@ body {
 
 
 
-
+textarea {
+  padding: 0;
+  border: 0px solid;
+}
 textarea.hover, textarea:focus {
   background-color: #ffeaaa;
 }
 
 textarea:focus {
-
-  border: 1px solid #aaa;
 
   border-radius: 2px;
   moz-border-radius: 2px;
