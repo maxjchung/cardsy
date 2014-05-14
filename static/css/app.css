@@ -24,7 +24,6 @@ select,
 textarea {
     color: #222;
     font-size:14px;
-
 }
 
 body {
@@ -168,21 +167,7 @@ body {
    Cards
    ========================================================================== */
 
-.practice-card {
-  position: relative;
-  left: 200px;
-  top: 20px;
-  padding: 1em;
-  background-color: #eee;
-  width: 150px;
-  height: 100px;
-}
 
-.practice-card pre {
-  width: 100%;
-  color: #aaa;
-  border: 1px solid #999;
-}
 
 .card {
   position: absolute;
@@ -203,10 +188,44 @@ body {
   cursor: -webkit-grab;
 }
 
-.sticky {
+/* Fixed size -- need to match pre element to this */
+.sticky, #practice {
   width: 125px;
+}
+
+.sticky {
   height: 50px;
 }
+
+#practice {
+  min-height: 50px;  /* matches .sticky's height */
+}
+
+#practice {
+
+  position: relative;
+  left: 200px;
+  top: 20px;
+  width: 125px;
+  font-family: sans-serif;
+  background-color: #eee;
+  color: #aaa;
+  border: 1px solid #999;
+  
+}
+
+
+.practice-card {
+  position: relative;
+
+  padding: 1em;
+  
+  width: 150px;
+  height: 100px;
+}
+
+
+
 
 textarea.hover, textarea:focus {
   background-color: #ffeaaa;
