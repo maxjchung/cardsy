@@ -191,6 +191,7 @@ body {
 /* Fixed size -- need to match pre element to this */
 .sticky, #practice {
   width: 125px;
+  line-height:1em;
 }
 
 .sticky {
