@@ -3,6 +3,10 @@ var $currentTextArea;
 var $practicePreArea = $('#practice');
 
 
+function log(s) {
+  console.log(s);
+}
+
 function htmlEncode(value){
   return $('<div/>').text(value).html();
 }
@@ -25,9 +29,7 @@ var Cardsy = {
 
   },
 
-
   handleTyping: function(event) {
-
 
     $currentTextArea = $(event.target);
 
@@ -49,14 +51,10 @@ var Cardsy = {
 
     $practicePreArea.html(temp);
     
-    // machung: No resizing for Cardsy.
-    //resizeIfNeedBe();
-
-
-    // machung: Consider this later
-    // if (saveTimer != null)
-    //   clearTimeout (saveTimer);
-    // saveTimer = setTimeout(saveSticky, 2000);
+    // Prevent input if it'd grow the practice element's height
+    if($practicePreArea.outerHeight() > $currentTextArea.outerHeight()) {
+      return false;
+    }
 
     return true;
   },
