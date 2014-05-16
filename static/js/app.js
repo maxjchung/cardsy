@@ -22,10 +22,8 @@ var Cardsy = {
 
     $('.sticky')
       .bind('keydown', Cardsy.handleTyping)
-      .bind('keyup', Cardsy.handleKeyUp);
-
-
-
+      .bind('keyup', Cardsy.handleKeyUp)
+      .bind('paste', Cardsy.handlePaste);
 
   },
 
@@ -63,6 +61,9 @@ var Cardsy = {
     $practicePreArea.html($currentTextArea.val());
   },
 
+  handlePaste: function() {
+    return false;
+  },
 
   getWouldBeText: function(e) {
 
