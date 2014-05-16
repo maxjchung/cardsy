@@ -190,17 +190,17 @@ body {
 
 /* Fixed size -- need to match pre element to this */
 .sticky, #practice {
-  width: 125px;
+  width: 150px;
   line-height:1em;
 }
 
 .sticky {
-  height: 50px;
+  height: 75px;
   background-color: #eee;
 }
 
 #practice {
-  min-height: 50px;  /* matches .sticky's height */
+  min-height: 75px;  /* matches .sticky's height */
 }
 
 #practice {
@@ -208,8 +208,8 @@ body {
   position: relative;
   left: 200px;
   top: 20px;
-  width: 125px;
   font-family: sans-serif;
+
   background-color: #eee;
   color: #aaa;
   
