@@ -11,6 +11,12 @@ function htmlEncode(value){
   return $('<div/>').text(value).html();
 }
 
+function consumeEvent(event)
+{
+  event.stopPropagation();
+  event.preventDefault();
+}
+
 var Cardsy = {
 
   /*************************/
@@ -36,6 +42,12 @@ var Cardsy = {
       consumeEvent(event);
       return;
     }
+
+    else if (event.keyCode == 13) {
+      consumeEvent(event);
+      return;
+    }
+
     else if((event.keyCode >= 37 && event.keyCode <= 40) || event.metaKey)
       return; //an arrow key or meta key. Note, we leave the event alone
     
