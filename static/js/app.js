@@ -54,8 +54,8 @@ var Cardsy = {
     var temp = Cardsy.getWouldBeText(event);
     temp = htmlEncode(temp); 
 
-    //If the text ends with a <br>, the pdiv will not expand by a line
-    //as it should. It requires a character afterwards to do so. 
+    //If the text ends with a <br>, the pdiv will not expand by a line 
+    //as it should. It requires a character afterwards to do so.
     if(temp && temp.substring(temp.length-4) == "<br>")
       temp +=".";
 
@@ -120,7 +120,7 @@ var Cardsy = {
   },
 
   init: function() {
-
+    Cardsy.bindMouseEventHandlers();
     Cardsy.initSpaceConstrainedStickies();
   },
 
@@ -153,6 +153,25 @@ var Cardsy = {
 
       Cardsy.addCardWithIncrement(next_card_id, e.clientX, e.clientY);
     
+    });
+
+  },
+
+
+  bindMouseEventHandlers: function() {
+
+    $('body').on('mousedown', function() {
+
+
+      log('mousedown!');
+    });
+
+    $('body').on('mousemove', function() {
+      log('mousemove!')
+    });
+
+    $('body').on('mouseup', function() {
+      log('mouseup!')      
     });
 
   },
