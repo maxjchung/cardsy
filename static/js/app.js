@@ -170,7 +170,6 @@ var Cardsy = {
 
     // TODO distinguish drag targets (card vs canvas)
     $('body').on('mousedown', function(e) {
-      isMouseDown = true;
       $(this).trigger('clickStart');
     });
 
@@ -181,13 +180,13 @@ var Cardsy = {
     });
 
     $('body').on('mouseup', function(e) {
-      isMouseDown = false;
       $(this).trigger('clickEnd');
     });
 
   },
 
   onClickStart: function(e) {
+    isMouseDown = true;
     log('onClickStart');
   },
 
@@ -196,6 +195,7 @@ var Cardsy = {
   },
 
   onClickEnd: function(e) {
+    isMouseDown = false;
     log('onClickEnd');
   },
 
