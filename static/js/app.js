@@ -164,34 +164,41 @@ var Cardsy = {
 
   bindMouseEventHandlers: function() {
 
-    // TODO: continue here!
-    // * distinguish a drag from bare mousemove
-    // * distinguish drag targets (card vs canvas)
-    // * ...?
+    $('body').bind('clickStart', Cardsy.onClickStart);
+    $('body').bind('clickDrag', Cardsy.onClickDrag);
+    $('body').bind('clickEnd', Cardsy.onClickEnd);
 
-    $('body').on('mousedown', function() {
-
+    // TODO distinguish drag targets (card vs canvas)
+    $('body').on('mousedown', function(e) {
       isMouseDown = true;
-      log('mousedown!');
+      $(this).trigger('clickStart');
     });
 
-    $('body').on('mousemove', function() {
-
+    $('body').on('mousemove', function(e) {
       if(isMouseDown) {
-        log('dragging!');
-      }
-      else {
-        log('just moving the mouse...')
+        $(this).trigger('clickDrag');
       }
     });
 
-    $('body').on('mouseup', function() {
-
+    $('body').on('mouseup', function(e) {
       isMouseDown = false;
-      log('mouseup!')      
+      $(this).trigger('clickEnd');
     });
 
   },
+
+  onClickStart: function(e) {
+    log('onClickStart');
+  },
+
+  onClickDrag: function(e) {
+    log('onClickDrag');
+  },
+
+  onClickEnd: function(e) {
+    log('onClickEnd');
+  },
+
 
   hasSaveState: function() {
 
