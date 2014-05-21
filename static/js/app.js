@@ -1,4 +1,8 @@
+// Input state
+var isMouseDown = false;
 
+
+// Convenient references
 var $currentTextArea;
 var $practicePreArea = $('#practice');
 
@@ -100,7 +104,7 @@ var Cardsy = {
       theText = theText.substring(0, theText.length-1);
     else
       theText = theText + newChar;
-      
+
     return theText;
 
   },
@@ -160,17 +164,30 @@ var Cardsy = {
 
   bindMouseEventHandlers: function() {
 
+    // TODO: continue here!
+    // * distinguish a drag from bare mousemove
+    // * distinguish drag targets (card vs canvas)
+    // * ...?
+
     $('body').on('mousedown', function() {
 
-
+      isMouseDown = true;
       log('mousedown!');
     });
 
     $('body').on('mousemove', function() {
-      log('mousemove!')
+
+      if(isMouseDown) {
+        log('dragging!');
+      }
+      else {
+        log('just moving the mouse...')
+      }
     });
 
     $('body').on('mouseup', function() {
+
+      isMouseDown = false;
       log('mouseup!')      
     });
 
