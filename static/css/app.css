@@ -190,7 +190,7 @@ body {
 
 .sticky, #practice {
   width: 200px;
-  line-height:1em;
+  line-height:1.2em;
   border: solid 2px #ddd;
   padding: 10px;
 }
