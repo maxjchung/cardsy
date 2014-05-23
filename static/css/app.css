@@ -188,19 +188,20 @@ body {
   cursor: -webkit-grab;
 }
 
-/* Fixed size -- need to match pre element to this */
 .sticky, #practice {
-  width: 150px;
+  width: 200px;
   line-height:1em;
+  border: solid 2px #ddd;
+  padding: 10px;
 }
 
 .sticky {
-  height: 75px;
+  height: 125px;
   background-color: #eee;
 }
 
 #practice {
-  min-height: 75px;  /* matches .sticky's height */
+  min-height: 125px;  /* matches .sticky's height */
 }
 
 #practice {
@@ -225,14 +226,8 @@ body {
   height: 100px;
 }
 
-
-
-textarea {
-  padding: 0;
-  border: 0px solid;
-}
 textarea.hover, textarea:focus {
-  background-color: #ffeaaa;
+  /* background-color: #ffeaaa; */
 }
 
 textarea:focus {
