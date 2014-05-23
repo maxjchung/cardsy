@@ -1,0 +1,35 @@
+
+
+
+mousedown
+mousemove
+mouseup
+
+dragstart
+drag
+dragend
+
+	user (attempts) to drop cards into new place after drag
+
+
+selectionstart
+selection
+selectionend
+
+	user releases mouse to finish drawing selection square
+	
+cardcreate
+cardedit
+carddelete
+
+	
+
+cardselect
+carddeselect
+
+	ctrl-click toggled selection
+	also toggled as selection square includes/excludes cards
+
+canvaschange
+canvasdelete
+
