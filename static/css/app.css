@@ -220,8 +220,8 @@ body {
 #practice {
 
   position: absolute;
-  right: 200px;
-  bottom: 150px;
+  left: -9999px;
+  top: -9999px;
   font-family: sans-serif;
 
   background-color: #eee;
