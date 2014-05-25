@@ -235,9 +235,12 @@ var Cardsy = {
     clickEndX = event.x;
     clickEndY = event.y;
 
-
-    log('click started at (' + clickStartX + ',' + clickStartY + ')');
-    log('click ended at (' + clickEndX + ',' + clickEndY + ')');
+    if(mouseDownStartedOnCard) {
+      log('TODO: handle drag end');
+    }
+    else if(mouseDownStartedOnCanvas) {
+      log('TODO: clear selection square');      
+    }
   },
 
 
