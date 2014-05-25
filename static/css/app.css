@@ -273,7 +273,7 @@ textarea {
 
   width: 300px;
   background: none;
-  /* border: none; */
+  outline: none;
   resize: none;
   
   overflow: hidden !important;  /* override expanding.js's inline style */
