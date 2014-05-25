@@ -1,6 +1,7 @@
 // Input state
 var isMouseDown = false;
-
+var mouseDownStartedOnCard;
+var mouseDownStartedOnCanvas;
 
 // Convenient references
 var $currentTextArea;
@@ -19,6 +20,21 @@ function consumeEvent(event)
 {
   event.stopPropagation();
   event.preventDefault();
+}
+
+function setTarget(e) {
+
+  console.log('class of mousedown: ' + $(e.target).attr('class'));
+
+  if ($(e.target).hasClass("sticky")) {
+      mouseDownStartedOnCard = true;
+      mouseDownStartedOnCanvas = false;
+  }
+  else {
+      mouseDownStartedOnCard = false;
+      mouseDownStartedOnCanvas = true;
+  }
+
 }
 
 var Cardsy = {
@@ -170,6 +186,9 @@ var Cardsy = {
 
     // TODO distinguish drag targets (card vs canvas)
     $('body').on('mousedown', function(e) {
+
+
+      setTarget(e);
       $(this).trigger('clickStart');
     });
 
@@ -191,7 +210,14 @@ var Cardsy = {
   },
 
   onClickDrag: function(e) {
-    log('onClickDrag');
+
+    if(mouseDownStartedOnCard) {
+      log('TODO: drag card');
+    }
+    else if(mouseDownStartedOnCanvas) {
+      log('TODO: draw selection square');      
+    }
+
   },
 
   onClickEnd: function(e) {
