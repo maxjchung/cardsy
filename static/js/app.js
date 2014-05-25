@@ -9,6 +9,8 @@ var clickStartY;
 var clickEndX;
 var clickEndY;
 
+var $selectionSquare = $('.ghost-select');
+
 // Convenient references
 var $currentTextArea;
 var $practicePreArea = $('#practice');
@@ -225,7 +227,9 @@ var Cardsy = {
       log('TODO: drag card');
     }
     else if(mouseDownStartedOnCanvas) {
-      log('TODO: draw selection square');      
+
+      $selectionSquare.addClass('selecting');
+      Cardsy.drawSelectionSquare(e);      
     }
 
   },
@@ -239,10 +243,34 @@ var Cardsy = {
       log('TODO: handle drag end');
     }
     else if(mouseDownStartedOnCanvas) {
-      log('TODO: clear selection square');      
+      $selectionSquare.removeClass('selecting');
     }
   },
 
+  drawSelectionSquare: function(e) {
+
+    var w = Math.abs(clickStartX - event.pageX);
+    var h = Math.abs(clickStartY - event.pageY);
+
+    $selectionSquare.css({
+        'width': w,
+        'height': h
+    });
+    if (event.pageX <= clickStartX && event.pageY >= clickStartY) {
+        $selectionSquare.css({
+            'left': event.pageX
+        });
+    } else if (event.pageY <= clickStartY && event.pageX >= clickStartX) {
+        $selectionSquare.css({
+            'top': event.pageY
+        });
+    } else if (event.pageY < clickStartY && event.pageY < clickStartX) {
+        $selectionSquare.css({
+            'left': event.pageX,
+            "top": event.pageY
+        });
+    }
+  },
 
   hasSaveState: function() {
 
