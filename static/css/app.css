@@ -191,13 +191,24 @@ body {
 .sticky, #practice {
   width: 200px;
   line-height:1.2em;
-  border: solid 2px #ddd;
+  border: solid 2px #ccc;
   padding: 10px;
 }
 
 .sticky {
   height: 125px;
   background-color: #eee;
+  color: #888;
+}
+
+.sticky.focused {
+  border: 2px solid #aaa;
+  background-color: #ccc;
+  color: #333;
+}
+
+.sticky.selected {
+  border: 2px solid #38BDF2;
 }
 
 #practice {
