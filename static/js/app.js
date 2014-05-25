@@ -3,6 +3,12 @@ var isMouseDown = false;
 var mouseDownStartedOnCard;
 var mouseDownStartedOnCanvas;
 
+var clickStartX;
+var clickStartY;
+
+var clickEndX;
+var clickEndY;
+
 // Convenient references
 var $currentTextArea;
 var $practicePreArea = $('#practice');
@@ -206,6 +212,10 @@ var Cardsy = {
 
   onClickStart: function(e) {
     isMouseDown = true;
+
+    clickStartX = event.x;
+    clickStartY = event.y;
+
     log('onClickStart');
   },
 
@@ -222,7 +232,12 @@ var Cardsy = {
 
   onClickEnd: function(e) {
     isMouseDown = false;
-    log('onClickEnd');
+    clickEndX = event.x;
+    clickEndY = event.y;
+
+
+    log('click started at (' + clickStartX + ',' + clickStartY + ')');
+    log('click ended at (' + clickEndX + ',' + clickEndY + ')');
   },
 
 
