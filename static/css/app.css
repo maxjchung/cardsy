@@ -208,7 +208,9 @@ body {
 }
 
 .sticky.selected {
-  border: 2px solid #6AADC7;
+  border: 2px solid #333;
+  background-color: #ccc;
+  color: #333;
 }
 
 #practice {
