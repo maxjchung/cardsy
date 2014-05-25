@@ -241,15 +241,6 @@ textarea.hover, textarea:focus {
   /* background-color: #ffeaaa; */
 }
 
-textarea:focus {
-
-  border-radius: 2px;
-  moz-border-radius: 2px;
-  webkit-border-radius: 2px;
-
-  outline-width: 0;
-}
-
 .delete {
   position: absolute;
   top: -10px;
