@@ -9,8 +9,6 @@ var clickStartY;
 var clickEndX;
 var clickEndY;
 
-var $selectionSquare = $('.ghost-select');
-
 // Convenient references
 var $currentTextArea;
 var $practicePreArea = $('#practice');
@@ -31,8 +29,6 @@ function consumeEvent(event)
 }
 
 function setTarget(e) {
-
-  console.log('class of mousedown: ' + $(e.target).attr('class'));
 
   if ($(e.target).hasClass("sticky")) {
       mouseDownStartedOnCard = true;
@@ -188,86 +184,95 @@ var Cardsy = {
 
   bindMouseEventHandlers: function() {
 
-    $('body').bind('clickStart', Cardsy.onClickStart);
-    $('body').bind('clickDrag', Cardsy.onClickDrag);
-    $('body').bind('clickEnd', Cardsy.onClickEnd);
+    $('#canvas').bind('clickStart', Cardsy.onClickStart);
+    $('#canvas').bind('clickDrag', Cardsy.onClickDrag);
+    $('#canvas').bind('clickEnd', Cardsy.onClickEnd);
 
     // TODO distinguish drag targets (card vs canvas)
-    $('body').on('mousedown', function(e) {
+    $('#canvas').on('mousedown', function(e) {
 
 
       setTarget(e);
-      $(this).trigger('clickStart');
+      $(this).trigger('clickStart', { originalEvent: e});
     });
 
-    $('body').on('mousemove', function(e) {
+    $('#canvas').on('mousemove', function(e) {
       if(isMouseDown) {
-        $(this).trigger('clickDrag');
+        $(this).trigger('clickDrag', { originalEvent: e});
       }
     });
 
-    $('body').on('mouseup', function(e) {
-      $(this).trigger('clickEnd');
+    $('#canvas').on('mouseup', function(e) {
+      $(this).trigger('clickEnd', { originalEvent: e});
     });
 
   },
 
-  onClickStart: function(e) {
+  onClickStart: function(e, data) {
     isMouseDown = true;
 
-    clickStartX = event.x;
-    clickStartY = event.y;
 
-    log('onClickStart');
+    var originalEvent = data.originalEvent;
+
+    clickStartX = originalEvent.clientX;
+    clickStartY = originalEvent.clientY;
+
+    log('click started at (' + clickStartX + ',' + clickStartY + ')');
   },
 
-  onClickDrag: function(e) {
+  onClickDrag: function(e, data) {
 
     if(mouseDownStartedOnCard) {
       log('TODO: drag card');
     }
     else if(mouseDownStartedOnCanvas) {
 
-      $selectionSquare.addClass('selecting');
-      Cardsy.drawSelectionSquare(e);      
+      $('.ghost-select').addClass('selecting');
+      Cardsy.drawSelectionSquare(e, data);      
     }
 
   },
 
-  onClickEnd: function(e) {
+  onClickEnd: function(e, data) {
     isMouseDown = false;
-    clickEndX = event.x;
-    clickEndY = event.y;
+
+    clickEndX = data.originalEvent.clientX;
+    clickEndY = data.originalEvent.clientY;
 
     if(mouseDownStartedOnCard) {
       log('TODO: handle drag end');
     }
     else if(mouseDownStartedOnCanvas) {
-      $selectionSquare.removeClass('selecting');
+      $('.ghost-select').removeClass('selecting');
+      $('.ghost-select').width(0).height(0);
     }
   },
 
-  drawSelectionSquare: function(e) {
+  drawSelectionSquare: function(e, data) {
 
-    var w = Math.abs(clickStartX - event.pageX);
-    var h = Math.abs(clickStartY - event.pageY);
+    var mouseX = data.originalEvent.clientX;
+    var mouseY = data.originalEvent.clientY;
 
-    $selectionSquare.css({
+    var w = Math.abs(clickStartX - mouseX);
+    var h = Math.abs(clickStartY - mouseY);
+
+
+    $('.ghost-select').css({
         'width': w,
         'height': h
     });
-    if (event.pageX <= clickStartX && event.pageY >= clickStartY) {
-        $selectionSquare.css({
-            'left': event.pageX
+    if (mouseX <= clickStartX && mouseY >= clickStartY) {
+        $('.ghost-select').css({
+            'left': mouseX
         });
-    } else if (event.pageY <= clickStartY && event.pageX >= clickStartX) {
-        $selectionSquare.css({
-            'top': event.pageY
+    } else if (mouseY <= clickStartY && mouseX >= clickStartX) {
+        $('.ghost-select').css({
+            'top': mouseY
         });
-    } else if (event.pageY < clickStartY && event.pageY < clickStartX) {
-        $selectionSquare.css({
-            'left': event.pageX,
-            "top": event.pageY
+    } else if (mouseY < clickStartY && mouseY < clickStartX) {
+        $('.ghost-select').css({
+            'left': mouseX,
+            "top": mouseY
         });
     }
   },
