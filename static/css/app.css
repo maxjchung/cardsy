@@ -81,9 +81,9 @@ fieldset {
    ========================================================================== */
 
 .ghost-select {
+  position: absolute;
   display: none;
   z-index: 9000;
-  position: absolute;
   cursor: default;
 }
 
@@ -109,9 +109,17 @@ html, body, #canvas {
   height: 100%;
 }
 
+#canvas {
+  background-color: #abc;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 body {  
   overflow: hidden;
-  padding: 6em;
 }
 
 /* ==========================================================================
