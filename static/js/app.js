@@ -188,7 +188,6 @@ var Cardsy = {
     $('#canvas').bind('clickDrag', Cardsy.onClickDrag);
     $('#canvas').bind('clickEnd', Cardsy.onClickEnd);
 
-    // TODO distinguish drag targets (card vs canvas)
     $('#canvas').on('mousedown', function(e) {
 
 
