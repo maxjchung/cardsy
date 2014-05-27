@@ -217,6 +217,12 @@ var Cardsy = {
     clickStartX = originalEvent.clientX;
     clickStartY = originalEvent.clientY;
 
+    $(".ghost-select").addClass("ghost-active");
+    $(".ghost-select").css({
+        'left': clickStartX,
+        'top': clickStartY
+    });
+
     log('click started at (' + clickStartX + ',' + clickStartY + ')');
   },
 
