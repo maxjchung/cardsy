@@ -185,24 +185,29 @@ var Cardsy = {
   bindMouseEventHandlers: function() {
 
     $('#canvas').bind('clickStart', Cardsy.onClickStart);
-    $('#canvas').bind('clickDrag', Cardsy.onClickDrag);
-    $('#canvas').bind('clickEnd', Cardsy.onClickEnd);
+  
 
     $('#canvas').on('mousedown', function(e) {
 
 
       setTarget(e);
       $(this).trigger('clickStart', { originalEvent: e});
+
+        $(document).bind('clickDrag', Cardsy.onClickDrag);
+        $(document).bind('clickEnd', Cardsy.onClickEnd);
     });
 
-    $('#canvas').on('mousemove', function(e) {
+    $(document).on('mousemove', function(e) {
       if(isMouseDown) {
         $(this).trigger('clickDrag', { originalEvent: e});
       }
     });
 
-    $('#canvas').on('mouseup', function(e) {
+    $(document).on('mouseup', function(e) {
       $(this).trigger('clickEnd', { originalEvent: e});
+
+      $(document).unbind('clickDrag');
+      $(document).unbind('clickEnd');
     });
 
   },
