@@ -10,3 +10,7 @@ static/img/.DS_Store
 *.pyc
 
 .DS_Store
+
+*.scssc
+
+static/css/app.css
