@@ -41,6 +41,39 @@ function setTarget(e) {
 
 }
 
+function updateSelectionSet(e) {
+
+    $('.sticky').each(function () {
+        var $aElem = $(".ghost-select");
+        var $bElem = $(this);
+        var result = doObjectsCollide($aElem, $bElem);
+
+        if (result == true) {
+          $bElem.addClass('selected');
+        }
+        else {
+          $bElem.removeClass('selected');
+        }
+
+    });
+
+}
+
+function doObjectsCollide($a, $b) {
+    var aTop = $a.offset().top;
+    var aLeft = $a.offset().left;
+    var bTop = $b.offset().top;
+    var bLeft = $b.offset().left;
+
+    return !(
+        ((aTop + $a.height()) < (bTop)) ||
+        (aTop > (bTop + $b.height())) ||
+        ((aLeft + $a.width()) < bLeft) ||
+        (aLeft > (bLeft + $b.width()))
+    );
+}  
+
+
 var Cardsy = {
 
   /*************************/
@@ -254,7 +287,7 @@ var Cardsy = {
     }
     else if(mouseDownStartedOnCanvas) {
       $('.ghost-select').removeClass('selecting');
-      $('.ghost-select').width(0).height(0);
+      $('.ghost-select').width(0).height(0);      
     }
   },
 
@@ -285,6 +318,8 @@ var Cardsy = {
             "top": mouseY
         });
     }
+
+    updateSelectionSet(e);
   },
 
   hasSaveState: function() {
