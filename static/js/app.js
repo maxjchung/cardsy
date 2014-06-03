@@ -59,7 +59,6 @@ function updateSelectionSet(e) {
 
 }
 
-
 function doObjectsCollide($square, $card) {
     var squareTop = $square.offset().top;
     var squareLeft = $square.offset().left;
@@ -67,11 +66,13 @@ function doObjectsCollide($square, $card) {
     var cardLeft = $card.offset().left;
 
     return !(
-        ((squareTop + $square.height()) < (cardTop)) ||
-        (squareTop > (cardTop + $card.height())) ||
-        
-        ((squareLeft + $square.width()) < cardLeft) ||
-        (squareLeft > (cardLeft + $card.width()))
+
+        ((squareTop + parseFloat($square.css("height"))) < (cardTop)) ||
+        (squareTop > (cardTop + parseFloat($card.css("height")))) ||
+
+        ((squareLeft + parseFloat($square.css("width"))) < cardLeft) ||
+        (squareLeft > (cardLeft + parseFloat($card.css("width"))))
+
     );
 }  
 
