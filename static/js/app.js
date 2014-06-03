@@ -59,17 +59,19 @@ function updateSelectionSet(e) {
 
 }
 
-function doObjectsCollide($a, $b) {
-    var aTop = $a.offset().top;
-    var aLeft = $a.offset().left;
-    var bTop = $b.offset().top;
-    var bLeft = $b.offset().left;
+
+function doObjectsCollide($square, $card) {
+    var squareTop = $square.offset().top;
+    var squareLeft = $square.offset().left;
+    var cardTop = $card.offset().top;
+    var cardLeft = $card.offset().left;
 
     return !(
-        ((aTop + $a.height()) < (bTop)) ||
-        (aTop > (bTop + $b.height())) ||
-        ((aLeft + $a.width()) < bLeft) ||
-        (aLeft > (bLeft + $b.width()))
+        ((squareTop + $square.height()) < (cardTop)) ||
+        (squareTop > (cardTop + $card.height())) ||
+        
+        ((squareLeft + $square.width()) < cardLeft) ||
+        (squareLeft > (cardLeft + $card.width()))
     );
 }  
 
