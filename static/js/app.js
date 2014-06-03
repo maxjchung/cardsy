@@ -312,7 +312,7 @@ var Cardsy = {
         $('.ghost-select').css({
             'top': mouseY
         });
-    } else if (mouseY < clickStartY && mouseY < clickStartX) {
+    } else if (mouseY < clickStartY && mouseX < clickStartX) {
         $('.ghost-select').css({
             'left': mouseX,
             "top": mouseY
