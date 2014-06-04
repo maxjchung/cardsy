@@ -293,9 +293,16 @@ var Cardsy = {
       $('.ghost-select').width(0).height(0);      
 
       if(clickStartX == clickEndX && clickStartY == clickEndY) {
-        log('make a card, dammit');
+        Cardsy.addSticky(clickStartX, clickStartY);
       }
     }
+  },
+
+  addSticky: function(x, y) {
+    $("<textarea class='sticky'></textarea>")
+      .css('left', x + 'px')
+      .css('top', y + 'px')
+      .appendTo('#canvas');
   },
 
   drawSelectionSquare: function(e, data) {

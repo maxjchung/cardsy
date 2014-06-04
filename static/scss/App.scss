@@ -243,6 +243,7 @@ body {
 }
 
 .sticky {
+  position: absolute;
   height: 125px;
   background-color: $color-sticky-fill;
   color: #888;
