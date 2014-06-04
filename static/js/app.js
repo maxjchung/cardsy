@@ -251,7 +251,6 @@ var Cardsy = {
   onClickStart: function(e, data) {
     isMouseDown = true;
 
-
     var originalEvent = data.originalEvent;
 
     clickStartX = originalEvent.clientX;
@@ -262,8 +261,6 @@ var Cardsy = {
         'left': clickStartX,
         'top': clickStartY
     });
-
-    log('click started at (' + clickStartX + ',' + clickStartY + ')');
   },
 
   onClickDrag: function(e, data) {
