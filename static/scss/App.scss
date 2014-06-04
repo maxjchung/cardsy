@@ -248,7 +248,7 @@ body {
   color: #888;
 }
 
-.sticky.focused {
+.sticky:focus {
   border: 2px solid $color-sticky-focused-border;
   background-color: $color-sticky-focused-fill;
   color: #333;
@@ -284,10 +284,6 @@ body {
   
   width: 150px;
   height: 100px;
-}
-
-textarea.hover, textarea:focus {
-  /* background-color: #ffeaaa; */
 }
 
 .delete {
