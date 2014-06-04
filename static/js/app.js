@@ -256,6 +256,8 @@ var Cardsy = {
     clickStartX = originalEvent.clientX;
     clickStartY = originalEvent.clientY;
 
+    // TODO: deselect any selections if target is canvas.
+
     $(".ghost-select").addClass("ghost-active");
     $(".ghost-select").css({
         'left': clickStartX,
@@ -286,8 +288,13 @@ var Cardsy = {
       log('TODO: handle drag end');
     }
     else if(mouseDownStartedOnCanvas) {
+
       $('.ghost-select').removeClass('selecting');
       $('.ghost-select').width(0).height(0);      
+
+      if(clickStartX == clickEndX && clickStartY == clickEndY) {
+        log('make a card, dammit');
+      }
     }
   },
 
