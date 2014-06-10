@@ -289,7 +289,9 @@ var Cardsy = {
     clickStartX = originalEvent.clientX;
     clickStartY = originalEvent.clientY;
 
-    // TODO: deselect any selections if target is canvas.
+    if(mouseDownStartedOnCanvas) {
+      Cardsy.clearSelections();
+    }
 
     $(".ghost-select").addClass("ghost-active");
     $(".ghost-select").css({
@@ -367,6 +369,12 @@ var Cardsy = {
     }
 
     updateSelectionSet(e);
+  },
+
+  clearSelections: function() {
+    $('.selected').each(function() {
+      $(this).removeClass('selected');
+    });
   },
 
   hasSaveState: function() {
