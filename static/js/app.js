@@ -217,11 +217,44 @@ var Cardsy = {
 
   },
 
-
   bindMouseEventHandlers: function() {
+    Cardsy.bindCardEvents();
+    Cardsy.bindCanvasEvents();
+  },
+  
+  bindCardEvents: function() {
+
+    $('#canvas').on('mousedown', '.sticky', function(e) {
+
+      var $drag = $(e.target);
+      $drag.addClass('draggable');
+
+      var z_idx = $drag.css('z-index'),
+      drg_h = $drag.outerHeight(),
+      drg_w = $drag.outerWidth(),
+      pos_y = $drag.offset().top + drg_h - e.clientY,
+      pos_x = $drag.offset().left + drg_w - e.clientX;
+
+      $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
+        $('.draggable').offset({
+          top:e.clientY + pos_y - drg_h,
+          left:e.clientX + pos_x - drg_w
+        }).on("mouseup", function() {
+          $(this).removeClass('draggable').css('z-index', z_idx);
+        });
+      });
+
+    });
+
+    $('#canvas').on('mouseup', '.sticky', function(e) {
+        $(this).removeClass('draggable');
+    });
+
+  },
+
+  bindCanvasEvents: function() {
 
     $('#canvas').bind('clickStart', Cardsy.onClickStart);
-  
 
     $('#canvas').on('mousedown', function(e) {
 
