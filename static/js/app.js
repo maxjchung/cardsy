@@ -13,6 +13,7 @@ var clickEndY;
 var $currentTextArea;
 var $practicePreArea = $('#practice');
 
+var CLASS_DRAGGABLE = 'draggable';
 
 function log(s) {
   console.log(s);
@@ -221,13 +222,13 @@ var Cardsy = {
     Cardsy.bindCardEvents();
     Cardsy.bindCanvasEvents();
   },
-  
+
   bindCardEvents: function() {
 
     $('#canvas').on('mousedown', '.sticky', function(e) {
 
       var $drag = $(e.target);
-      $drag.addClass('draggable');
+      $drag.addClass(CLASS_DRAGGABLE);
 
       var z_idx = $drag.css('z-index'),
       drg_h = $drag.outerHeight(),
@@ -236,11 +237,11 @@ var Cardsy = {
       pos_x = $drag.offset().left + drg_w - e.clientX;
 
       $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
-        $('.draggable').offset({
+        $('.' + CLASS_DRAGGABLE).offset({
           top:e.clientY + pos_y - drg_h,
           left:e.clientX + pos_x - drg_w
         }).on("mouseup", function() {
-          $(this).removeClass('draggable').css('z-index', z_idx);
+          $(this).removeClass(CLASS_DRAGGABLE).css('z-index', z_idx);
         });
       });
 
