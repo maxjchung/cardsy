@@ -13,8 +13,6 @@ var clickEndY;
 var $currentTextArea;
 var $practicePreArea = $('#practice');
 
-var CLASS_DRAGGABLE = 'draggable';
-
 function log(s) {
   console.log(s);
 }
@@ -86,11 +84,9 @@ var Cardsy = {
 
   initSpaceConstrainedStickies : function() {
 
-
-    $('.sticky')
-      .bind('keydown', Cardsy.handleTyping)
-      .bind('keyup', Cardsy.handleKeyUp)
-      .bind('paste', Cardsy.handlePaste);
+    $('#canvas').on('keydown', '.sticky', Cardsy.handleTyping);
+    $('#canvas').on('keyup', '.sticky', Cardsy.handleKeyUp);
+    $('#canvas').on('paste', '.sticky', Cardsy.handlePaste);
 
   },
 
@@ -227,28 +223,31 @@ var Cardsy = {
 
     $('#canvas').on('mousedown', '.sticky', function(e) {
 
-      var $drag = $(e.target);
-      $drag.addClass(CLASS_DRAGGABLE);
+      var $cards = $('.selected');
 
-      var z_idx = $drag.css('z-index'),
-      drg_h = $drag.outerHeight(),
-      drg_w = $drag.outerWidth(),
-      pos_y = $drag.offset().top + drg_h - e.clientY,
-      pos_x = $drag.offset().left + drg_w - e.clientX;
+      $cards.each(function(e) {
 
-      $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
-        $('.' + CLASS_DRAGGABLE).offset({
-          top:e.clientY + pos_y - drg_h,
-          left:e.clientX + pos_x - drg_w
-        }).on("mouseup", function() {
-          $(this).removeClass(CLASS_DRAGGABLE).css('z-index', z_idx);
+        var $card = $(this);
+
+        var z_idx = $card.css('z-index'),
+        drg_h = $card.outerHeight(),
+        drg_w = $card.outerWidth(),
+        pos_y = $card.offset().top + drg_h - event.clientY,
+        pos_x = $card.offset().left + drg_w - event.clientX;
+
+        $card.css('z-index', 1000).parents().on("mousemove", function(e) {
+          $card.offset({
+            top:event.clientY + pos_y - drg_h,
+            left:event.clientX + pos_x - drg_w
+          }).on("mouseup", function() {
+            $(this).css('z-index', z_idx);
+            $(this).parents().unbind('mousemove');
+            $(this).unbind('mouseup');
+          });
         });
+
+
       });
-
-    });
-
-    $('#canvas').on('mouseup', '.sticky', function(e) {
-        $(this).removeClass('draggable');
     });
 
   },
