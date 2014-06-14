@@ -223,6 +223,9 @@ var Cardsy = {
 
     $('#canvas').on('mousedown', '.sticky', function(e) {
 
+      var mouseDownX = e.originalEvent.clientX;
+      var mouseDownY = e.originalEvent.clientY;
+
       if($(this).hasClass('selected')) {
         // intentionally empty
       }
@@ -240,14 +243,14 @@ var Cardsy = {
         var z_idx = $card.css('z-index'),
         drg_h = $card.outerHeight(),
         drg_w = $card.outerWidth(),
-        pos_y = $card.offset().top + drg_h - event.clientY,
-        pos_x = $card.offset().left + drg_w - event.clientX;
+        pos_y = $card.offset().top + drg_h - mouseDownY,
+        pos_x = $card.offset().left + drg_w - mouseDownX;
 
         $card.css('z-index', 1000).parents().on("mousemove", function(e) {
 
           $card.offset({
-            top:event.clientY + pos_y - drg_h,
-            left:event.clientX + pos_x - drg_w
+            top: e.originalEvent.clientY + pos_y - drg_h,
+            left: e.originalEvent.clientX + pos_x - drg_w
           });
 
         });
