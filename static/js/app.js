@@ -236,14 +236,18 @@ var Cardsy = {
         pos_x = $card.offset().left + drg_w - event.clientX;
 
         $card.css('z-index', 1000).parents().on("mousemove", function(e) {
+
           $card.offset({
             top:event.clientY + pos_y - drg_h,
             left:event.clientX + pos_x - drg_w
-          }).on("mouseup", function() {
-            $(this).css('z-index', z_idx);
-            $(this).parents().unbind('mousemove');
-            $(this).unbind('mouseup');
           });
+
+        });
+
+        $card.on("mouseup", function() {
+          $(this).css('z-index', z_idx);
+          $(this).parents().unbind('mousemove');
+          $(this).unbind('mouseup');
         });
 
 
