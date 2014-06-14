@@ -14,9 +14,6 @@ $color-selection-square-border: #b20e8c;
 $color-sticky-border: #ccc;
 $color-sticky-fill: #eee;
 
-$color-sticky-focused-border: #aaa;
-$color-sticky-focused-fill: #ccc;
-
 $color-sticky-selected-border: #333;
 $color-sticky-selected-fill: #ccc;
 
@@ -247,12 +244,6 @@ body {
   height: 125px;
   background-color: $color-sticky-fill;
   color: #888;
-}
-
-.sticky:focus {
-  border: 2px solid $color-sticky-focused-border;
-  background-color: $color-sticky-focused-fill;
-  color: #333;
 }
 
 .sticky.selected {
