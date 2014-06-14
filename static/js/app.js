@@ -223,6 +223,14 @@ var Cardsy = {
 
     $('#canvas').on('mousedown', '.sticky', function(e) {
 
+      if($(this).hasClass('selected')) {
+        // intentionally empty
+      }
+      else {
+        Cardsy.clearSelections();
+        $(this).addClass('selected');
+      }
+
       var $cards = $('.selected');
 
       $cards.each(function(e) {
