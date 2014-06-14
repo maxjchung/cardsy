@@ -346,10 +346,14 @@ var Cardsy = {
   },
 
   addSticky: function(x, y) {
-    $("<textarea class='sticky'></textarea>")
+
+    var $newSticky = $("<textarea class='sticky'></textarea>")
+      .addClass('selected')
       .css('left', x + 'px')
       .css('top', y + 'px')
       .appendTo('#canvas');
+
+    $newSticky.focus();
   },
 
   drawSelectionSquare: function(e, data) {
