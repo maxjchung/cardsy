@@ -227,7 +227,7 @@ var Cardsy = {
       var mouseDownY = e.originalEvent.clientY;
 
       if($(this).hasClass('selected')) {
-        // intentionally empty
+        e.preventDefault();  // prevent textarea focus in case user attempts to drag card(s)
       }
       else {
         Cardsy.clearSelections();
@@ -255,10 +255,23 @@ var Cardsy = {
 
         });
 
-        $card.on("mouseup", function() {
+        $card.on("mouseup", function(e) {
+
+
           $(this).css('z-index', z_idx);
           $(this).parents().unbind('mousemove');
           $(this).unbind('mouseup');
+
+          if(mouseDownX == e.originalEvent.clientX && mouseDownY == e.originalEvent.clientY) {
+
+            if($(this).hasClass('selected')) {
+              Cardsy.clearSelections();
+              $(this).addClass('selected');
+              $(this).focus();
+            }
+          }
+
+
         });
 
 
