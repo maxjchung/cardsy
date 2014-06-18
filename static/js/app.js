@@ -221,6 +221,12 @@ var Cardsy = {
 
   bindCardEvents: function() {
 
+    // TODO: calculate these inside mousedown to account for viewport resizes.
+    var minLeft = 0,
+        minTop = 0,
+        maxLeft = $('#canvas').outerWidth() - 200,
+        maxTop = $('#canvas').outerHeight() - 125;
+
     $('#canvas').on('mousedown', '.sticky', function(e) {
 
       var mouseDownX = e.originalEvent.clientX;
@@ -239,6 +245,7 @@ var Cardsy = {
       $cards.each(function(e) {
 
         var $card = $(this);
+        $card.addClass('notransition');
 
         var z_idx = $card.css('z-index'),
         drg_h = $card.outerHeight(),
@@ -246,14 +253,58 @@ var Cardsy = {
         pos_y = $card.offset().top + drg_h - mouseDownY,
         pos_x = $card.offset().left + drg_w - mouseDownX;
 
+
+
         $card.css('z-index', 1000).parents().on("mousemove", function(e) {
 
-          $card.offset({
-            top: e.originalEvent.clientY + pos_y - drg_h,
-            left: e.originalEvent.clientX + pos_x - drg_w
-          });
+          var mouseX = e.originalEvent.clientX;
+          var mouseY = e.originalEvent.clientY;
 
+          var deltaX = mouseX - mouseDownX;
+          var deltaY = mouseY - mouseDownY;
+
+          var translateString = 'translate3d(' 
+            + deltaX + 'px,'
+            + deltaY + 'px,'
+            + '0)';
+
+          $card.css('-webkit-transform', translateString);
+
+          // TODO!!!  Bind this once on mousedown -- this is bound on *every mousemove.
+          $card.on('mouseup', function(e) {
+            
+            var $selected = $('.selected');
+            $selected.removeClass('notransition');
+
+
+
+            $selected.each(function(e) {
+
+              var $this = $(this);
+
+              var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
+              var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
+
+              var newLeft = parseFloat($this.css('left')) + translateX;
+              var newTop = parseFloat($this.css('top')) + translateY;
+
+              // Cancel drag just for this card if any edge exceeds #canvas.
+              if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
+                $this.css('-webkit-transform', 'initial');
+              }
+              else {
+                $this.css('left', newLeft);
+                $this.css('top', newTop);
+                $this.css('-webkit-transform', 'initial');
+              }
+            });
+
+            
+
+          });
         });
+
+
 
         $card.on("mouseup", function(e) {
 

@@ -244,6 +244,12 @@ body {
   height: 125px;
   background-color: $color-sticky-fill;
   color: #888;
+
+  transition: all 300ms;
+}
+
+.notransition {
+  transition: 0 !important;
 }
 
 .sticky.selected {
