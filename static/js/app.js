@@ -274,9 +274,6 @@ var Cardsy = {
           $card.on('mouseup', function(e) {
             
             var $selected = $('.selected');
-            $selected.removeClass('notransition');
-
-
 
             $selected.each(function(e) {
 
@@ -290,16 +287,18 @@ var Cardsy = {
 
               // Cancel drag just for this card if any edge exceeds #canvas.
               if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
+                $this.removeClass('notransition');
                 $this.css('-webkit-transform', 'initial');
               }
               else {
                 $this.css('left', newLeft);
                 $this.css('top', newTop);
-                $this.css('-webkit-transform', 'initial');
+                $this.css('-webkit-transform', 'translate3d(0,0,0)');
+
+                // TODO: when to remove '.notransition' from these cards,
+                // so they get proper color change transition when selecting another card?
               }
             });
-
-            
 
           });
         });
