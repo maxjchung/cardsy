@@ -13,9 +13,31 @@ $color-selection-square-border: #b20e8c;
 
 $color-sticky-border: #ccc;
 $color-sticky-fill: #eee;
+$color-sticky-font: #888;
 
 $color-sticky-selected-border: #333;
-$color-sticky-selected-fill: #ccc;
+$color-sticky-selected-fill: #333;
+$color-sticky-selected-font: #ccc;
+
+@mixin palette_ivory {
+
+  $color-canvas: #F0EBD2 !global;
+
+  $color-selection-square-fill: rgba(255, 255, 255, 0.3) !global;
+  $color-selection-square-border: #fff !global;
+
+  $color-sticky-border: #aaa !global;
+  $color-sticky-fill: #eee !global;
+  $color-sticky-font: #888 !global;
+
+  $color-sticky-selected-border: #fff !global;
+  $color-sticky-selected-fill: #fff !global;
+  $color-sticky-selected-font: #ccc !global;
+
+
+}
+
+@include palette_ivory();
 
 /* ==========================================================================
    Base styles: opinionated defaults
@@ -136,6 +158,26 @@ body {
 }
 
 /* ==========================================================================
+   New Action Panel
+   ========================================================================== */
+
+#controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  padding: 20px;
+}
+
+.control {
+
+  color: #aaa;
+  text-decoration: none;
+  margin-left: 10px;
+
+}
+
+/* ==========================================================================
    Action Panel
    ========================================================================== */
 
@@ -243,7 +285,7 @@ body {
   position: absolute;
   height: 125px;
   background-color: $color-sticky-fill;
-  color: #888;
+  color: $color-sticky-font;  
 
   transition: all 300ms;
 }
@@ -255,7 +297,7 @@ body {
 .sticky.selected {
   border: 2px solid $color-sticky-selected-border;
   background-color: $color-sticky-selected-fill;
-  color: #333;
+  background-color: $color-sticky-selected-font;
 }
 
 #practice {
