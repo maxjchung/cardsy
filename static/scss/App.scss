@@ -23,20 +23,25 @@ $color-control: #333;
 
 @mixin palette_ivory {
 
-  $color-canvas: #F0EBD2 !global;
+  $palette-accent: #BDB9A5;
+  $palette-canvas: #F0EBD2;
+  $palette-accent-dark: #706E62;
+  $palette-card-fill: darken($palette-canvas, 5%);
+
+  $color-canvas: $palette-canvas !global;
 
   $color-selection-square-fill: rgba(255, 255, 255, 0.3) !global;
   $color-selection-square-border: #fff !global;
 
-  $color-sticky-border: #aaa !global;
-  $color-sticky-fill: #eee !global;
-  $color-sticky-font: #888 !global;
+  $color-sticky-border: $palette-accent !global;
+  $color-sticky-fill: $palette-card-fill !global;
+  $color-sticky-font: $palette-accent-dark !global;
 
-  $color-sticky-selected-border: #fff !global;
-  $color-sticky-selected-fill: #eee !global;
-  $color-sticky-selected-font: #888 !global;
+  $color-sticky-selected-border: $palette-accent-dark !global;
+  $color-sticky-selected-fill: $palette-card-fill !global;
+  $color-sticky-selected-font: $palette-accent-dark !global;
 
-  $color-control: #333 !global;
+  $color-control: $palette-accent-dark !global;
 }
 
 @include palette_ivory();
