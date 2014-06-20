@@ -298,7 +298,7 @@ body {
 .sticky.selected {
   border: 2px solid $color-sticky-selected-border;
   background-color: $color-sticky-selected-fill;
-  background-color: $color-sticky-selected-font;
+  color: $color-sticky-selected-font;
 }
 
 #practice {
