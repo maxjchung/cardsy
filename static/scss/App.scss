@@ -19,6 +19,8 @@ $color-sticky-selected-border: #333;
 $color-sticky-selected-fill: #333;
 $color-sticky-selected-font: #ccc;
 
+$color-control: #333;
+
 @mixin palette_ivory {
 
   $color-canvas: #F0EBD2 !global;
@@ -31,10 +33,10 @@ $color-sticky-selected-font: #ccc;
   $color-sticky-font: #888 !global;
 
   $color-sticky-selected-border: #fff !global;
-  $color-sticky-selected-fill: #fff !global;
-  $color-sticky-selected-font: #ccc !global;
+  $color-sticky-selected-fill: #eee !global;
+  $color-sticky-selected-font: #888 !global;
 
-
+  $color-control: #333 !global;
 }
 
 @include palette_ivory();
@@ -171,7 +173,7 @@ body {
 
 .control {
 
-  color: #aaa;
+  color: $color-control;
   text-decoration: none;
   margin-left: 10px;
 
