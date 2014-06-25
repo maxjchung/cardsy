@@ -240,6 +240,10 @@ var Cardsy = {
         $(this).addClass('selected');
       }
 
+      $('body').bind('mousemove', function(e) {
+        log('dragging cards...');
+      });
+
       var $cards = $('.selected');
 
       $cards.each(function(e) {
@@ -326,7 +330,7 @@ var Cardsy = {
 
 
       });
-    });
+    });  // $('#canvas').on('mousedown', '.sticky', function(e) {
 
   },
 
@@ -338,6 +342,13 @@ var Cardsy = {
 
 
       setTarget(e);
+
+      if(mouseDownStartedOnCard) {
+        cardDragTimeout = setTimeout(function(e) {
+          $('.trash').addClass('reveal');
+        }, 500);
+      }
+
       $(this).trigger('clickStart', { originalEvent: e});
 
         $(document).bind('clickDrag', Cardsy.onClickDrag);
@@ -398,7 +409,8 @@ var Cardsy = {
     clickEndY = data.originalEvent.clientY;
 
     if(mouseDownStartedOnCard) {
-      log('TODO: handle drag end');
+      clearTimeout(cardDragTimeout);
+      $('.trash').removeClass('reveal');
     }
     else if(mouseDownStartedOnCanvas) {
 
