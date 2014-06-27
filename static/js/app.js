@@ -244,10 +244,6 @@ var Cardsy = {
         $(this).addClass('selected');
       }
 
-      $('body').bind('mousemove', function(e) {
-        log('dragging cards...');
-      });
-
       var $cards = $('.selected');
 
       $cards.each(function(e) {
@@ -284,7 +280,15 @@ var Cardsy = {
             var $selected = $('.selected');
 
             if (wasMouseUpInTrashRegion(e)) {
-              $selected.remove();
+              $selected.each(function() {
+                $(this).removeClass('notransition');
+
+                $(this).bind('transitionend webkitTransitionEnd', function() { 
+                  $(this).remove();
+                })
+
+                $(this).addClass('trashed');
+              })
             }
             else {
               $selected.each(function(e) {
@@ -400,11 +404,7 @@ var Cardsy = {
 
   onClickDrag: function(e, data) {
 
-    if(mouseDownStartedOnCard) {
-      log('TODO: drag card');
-    }
-    else if(mouseDownStartedOnCanvas) {
-
+    if(mouseDownStartedOnCanvas) {
       $('.ghost-select').addClass('selecting');
       Cardsy.drawSelectionSquare(e, data);      
     }
