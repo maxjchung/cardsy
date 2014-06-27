@@ -251,44 +251,53 @@ var Cardsy = {
 
         var $selected = $('.selected');
 
-        if (wasMouseUpInTrashRegion(e)) {
-          $selected.each(function() {
-            $(this).removeClass('notransition');
+        if(mouseDownX == e.originalEvent.clientX && mouseDownY == e.originalEvent.clientY) {
 
-            $(this).bind('transitionend webkitTransitionEnd', function() { 
-              $(this).remove();
-            })
-
-            $(this).addClass('trashed');
-          })
+          if($(this).hasClass('selected')) {
+            Cardsy.clearSelections();
+            $(this).addClass('selected');
+            $(this).focus();
+          }
         }
         else {
-          $selected.each(function(e) {
+          if (wasMouseUpInTrashRegion(e)) {
+            $selected.each(function() {
+              $(this).removeClass('notransition');
 
-            var $this = $(this);
+              $(this).bind('transitionend webkitTransitionEnd', function() { 
+                $(this).remove();
+              })
 
-            var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
-            var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
+              $(this).addClass('trashed');
+            })
+          }
+          else {
+            $selected.each(function(e) {
 
-            var newLeft = parseFloat($this.css('left')) + translateX;
-            var newTop = parseFloat($this.css('top')) + translateY;
+              var $this = $(this);
 
-            // Cancel drag just for this card if any edge exceeds #canvas.
-            if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
-              $this.removeClass('notransition');
-              $this.css('-webkit-transform', 'initial');
-            }
-            else {
-              $this.css('left', newLeft);
-              $this.css('top', newTop);
-              $this.css('-webkit-transform', 'translate3d(0,0,0)');
+              var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
+              var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
 
-              // TODO: when to remove '.notransition' from these cards,
-              // so they get proper color change transition when selecting another card?
-            }
-          });
+              var newLeft = parseFloat($this.css('left')) + translateX;
+              var newTop = parseFloat($this.css('top')) + translateY;
+
+              // Cancel drag just for this card if any edge exceeds #canvas.
+              if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
+                $this.removeClass('notransition');
+                $this.css('-webkit-transform', 'initial');
+              }
+              else {
+                $this.css('left', newLeft);
+                $this.css('top', newTop);
+                $this.css('-webkit-transform', 'translate3d(0,0,0)');
+
+                // TODO: when to remove '.notransition' from these cards,
+                // so they get proper color change transition when selecting another card?
+              }
+            });
+          }
         }
-
       });
 
 
@@ -324,22 +333,11 @@ var Cardsy = {
 
         $card.on("mouseup", function(e) {
 
-
           $(this).css('z-index', z_idx);
           $(this).parents().unbind('mousemove');
           $(this).unbind('mouseup');
 
-          if(mouseDownX == e.originalEvent.clientX && mouseDownY == e.originalEvent.clientY) {
-
-            if($(this).hasClass('selected')) {
-              Cardsy.clearSelections();
-              $(this).addClass('selected');
-              $(this).focus();
-            }
-          }
-
-
-        });  // $cards.each(function(e) { ...} 
+        });
 
 
       });
