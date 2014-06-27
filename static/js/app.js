@@ -247,6 +247,51 @@ var Cardsy = {
 
       var $cards = $('.selected');
 
+      $targetCard.on('mouseup', function(e) {
+
+        var $selected = $('.selected');
+
+        if (wasMouseUpInTrashRegion(e)) {
+          $selected.each(function() {
+            $(this).removeClass('notransition');
+
+            $(this).bind('transitionend webkitTransitionEnd', function() { 
+              $(this).remove();
+            })
+
+            $(this).addClass('trashed');
+          })
+        }
+        else {
+          $selected.each(function(e) {
+
+            var $this = $(this);
+
+            var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
+            var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
+
+            var newLeft = parseFloat($this.css('left')) + translateX;
+            var newTop = parseFloat($this.css('top')) + translateY;
+
+            // Cancel drag just for this card if any edge exceeds #canvas.
+            if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
+              $this.removeClass('notransition');
+              $this.css('-webkit-transform', 'initial');
+            }
+            else {
+              $this.css('left', newLeft);
+              $this.css('top', newTop);
+              $this.css('-webkit-transform', 'translate3d(0,0,0)');
+
+              // TODO: when to remove '.notransition' from these cards,
+              // so they get proper color change transition when selecting another card?
+            }
+          });
+        }
+
+      });
+
+
       $cards.each(function(e) {
 
         var $card = $(this);
@@ -276,50 +321,6 @@ var Cardsy = {
           $card.css('-webkit-transform', translateString);
 
         });  // $cards.each(function(e) { ... }
-
-        $targetCard.on('mouseup', function(e) {
-
-          var $selected = $('.selected');
-
-          if (wasMouseUpInTrashRegion(e)) {
-            $selected.each(function() {
-              $(this).removeClass('notransition');
-
-              $(this).bind('transitionend webkitTransitionEnd', function() { 
-                $(this).remove();
-              })
-
-              $(this).addClass('trashed');
-            })
-          }
-          else {
-            $selected.each(function(e) {
-
-              var $this = $(this);
-
-              var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
-              var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
-
-              var newLeft = parseFloat($this.css('left')) + translateX;
-              var newTop = parseFloat($this.css('top')) + translateY;
-
-              // Cancel drag just for this card if any edge exceeds #canvas.
-              if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
-                $this.removeClass('notransition');
-                $this.css('-webkit-transform', 'initial');
-              }
-              else {
-                $this.css('left', newLeft);
-                $this.css('top', newTop);
-                $this.css('-webkit-transform', 'translate3d(0,0,0)');
-
-                // TODO: when to remove '.notransition' from these cards,
-                // so they get proper color change transition when selecting another card?
-              }
-            });
-          }
-
-        });
 
         $card.on("mouseup", function(e) {
 
