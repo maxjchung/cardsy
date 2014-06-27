@@ -235,6 +235,7 @@ var Cardsy = {
 
       var mouseDownX = e.originalEvent.clientX;
       var mouseDownY = e.originalEvent.clientY;
+      var $targetCard = $(e.originalEvent.target);
 
       if($(this).hasClass('selected')) {
         e.preventDefault();  // prevent textarea focus in case user attempts to drag card(s)
@@ -274,53 +275,51 @@ var Cardsy = {
 
           $card.css('-webkit-transform', translateString);
 
-          // TODO!!!  Bind this once on mousedown -- this is bound on *every mousemove.
-          $card.on('mouseup', function(e) {
-            
-            var $selected = $('.selected');
+        });  // $cards.each(function(e) { ... }
 
-            if (wasMouseUpInTrashRegion(e)) {
-              $selected.each(function() {
-                $(this).removeClass('notransition');
+        $targetCard.on('mouseup', function(e) {
 
-                $(this).bind('transitionend webkitTransitionEnd', function() { 
-                  $(this).remove();
-                })
+          var $selected = $('.selected');
 
-                $(this).addClass('trashed');
+          if (wasMouseUpInTrashRegion(e)) {
+            $selected.each(function() {
+              $(this).removeClass('notransition');
+
+              $(this).bind('transitionend webkitTransitionEnd', function() { 
+                $(this).remove();
               })
-            }
-            else {
-              $selected.each(function(e) {
 
-                var $this = $(this);
+              $(this).addClass('trashed');
+            })
+          }
+          else {
+            $selected.each(function(e) {
 
-                var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
-                var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
+              var $this = $(this);
 
-                var newLeft = parseFloat($this.css('left')) + translateX;
-                var newTop = parseFloat($this.css('top')) + translateY;
+              var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
+              var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
 
-                // Cancel drag just for this card if any edge exceeds #canvas.
-                if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
-                  $this.removeClass('notransition');
-                  $this.css('-webkit-transform', 'initial');
-                }
-                else {
-                  $this.css('left', newLeft);
-                  $this.css('top', newTop);
-                  $this.css('-webkit-transform', 'translate3d(0,0,0)');
+              var newLeft = parseFloat($this.css('left')) + translateX;
+              var newTop = parseFloat($this.css('top')) + translateY;
 
-                  // TODO: when to remove '.notransition' from these cards,
-                  // so they get proper color change transition when selecting another card?
-                }
-              });
-            }
+              // Cancel drag just for this card if any edge exceeds #canvas.
+              if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
+                $this.removeClass('notransition');
+                $this.css('-webkit-transform', 'initial');
+              }
+              else {
+                $this.css('left', newLeft);
+                $this.css('top', newTop);
+                $this.css('-webkit-transform', 'translate3d(0,0,0)');
 
-          });
+                // TODO: when to remove '.notransition' from these cards,
+                // so they get proper color change transition when selecting another card?
+              }
+            });
+          }
+
         });
-
-
 
         $card.on("mouseup", function(e) {
 
