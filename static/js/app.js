@@ -339,7 +339,7 @@ var Cardsy = {
           }
 
 
-        });
+        });  // $cards.each(function(e) { ...} 
 
 
       });
