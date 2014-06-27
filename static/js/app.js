@@ -75,6 +75,10 @@ function doObjectsCollide($square, $card) {
     );
 }  
 
+function wasMouseUpInTrashRegion(e) {
+  var topTrashRegion = $('#canvas').outerHeight() - 50;
+  return (e.originalEvent.clientY > topTrashRegion);
+}
 
 var Cardsy = {
 
@@ -279,30 +283,35 @@ var Cardsy = {
             
             var $selected = $('.selected');
 
-            $selected.each(function(e) {
+            if (wasMouseUpInTrashRegion(e)) {
+              $selected.remove();
+            }
+            else {
+              $selected.each(function(e) {
 
-              var $this = $(this);
+                var $this = $(this);
 
-              var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
-              var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
+                var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
+                var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
 
-              var newLeft = parseFloat($this.css('left')) + translateX;
-              var newTop = parseFloat($this.css('top')) + translateY;
+                var newLeft = parseFloat($this.css('left')) + translateX;
+                var newTop = parseFloat($this.css('top')) + translateY;
 
-              // Cancel drag just for this card if any edge exceeds #canvas.
-              if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
-                $this.removeClass('notransition');
-                $this.css('-webkit-transform', 'initial');
-              }
-              else {
-                $this.css('left', newLeft);
-                $this.css('top', newTop);
-                $this.css('-webkit-transform', 'translate3d(0,0,0)');
+                // Cancel drag just for this card if any edge exceeds #canvas.
+                if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
+                  $this.removeClass('notransition');
+                  $this.css('-webkit-transform', 'initial');
+                }
+                else {
+                  $this.css('left', newLeft);
+                  $this.css('top', newTop);
+                  $this.css('-webkit-transform', 'translate3d(0,0,0)');
 
-                // TODO: when to remove '.notransition' from these cards,
-                // so they get proper color change transition when selecting another card?
-              }
-            });
+                  // TODO: when to remove '.notransition' from these cards,
+                  // so they get proper color change transition when selecting another card?
+                }
+              });
+            }
 
           });
         });
