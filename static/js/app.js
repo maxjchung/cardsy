@@ -433,10 +433,16 @@ var Cardsy = {
   addSticky: function(x, y) {
 
     var $newSticky = $("<textarea class='sticky'></textarea>")
+      .addClass('shrunk')
       .addClass('selected')
       .css('left', x + 'px')
       .css('top', y + 'px')
       .appendTo('#canvas');
+
+    setTimeout(function() { 
+      $newSticky.removeClass('shrunk');
+      $newSticky.focus();
+    }, 30);
 
     $newSticky.focus();
   },

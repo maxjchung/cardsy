@@ -248,6 +248,15 @@ body {
   transition: all 300ms;
 }
 
+.sticky.shrunk {
+  height: 0;
+  width: 0;
+  padding: 0;
+  border: 0px;
+
+  transition: all 300ms;
+}
+
 .notransition {
   transition: 0 !important;
 }
