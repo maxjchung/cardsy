@@ -268,7 +268,7 @@ var Cardsy = {
                 $(this).remove();
               })
 
-              $(this).addClass('trashed');
+              $(this).addClass('trashed').addClass('shrunk');
             })
           }
           else {
