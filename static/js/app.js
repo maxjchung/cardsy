@@ -474,6 +474,7 @@ var Cardsy = {
 
   clearSelections: function() {
     $('.selected').each(function() {
+      $(this).removeClass('notransition');
       $(this).removeClass('selected');
     });
   },
