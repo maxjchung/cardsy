@@ -245,6 +245,9 @@ body {
   background-color: $color-sticky-fill;
   color: #888;
 
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
   transition: all 300ms ease-out;
 }
 
@@ -256,6 +259,9 @@ body {
 }
 
 .notransition {
+  -webkit-transition: 0 !important;
+  -moz-transition: 0 !important;
+  -o-transition: 0 !important;
   transition: 0 !important;
 }
 
