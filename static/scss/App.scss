@@ -259,10 +259,10 @@ body {
 }
 
 .notransition {
-  -webkit-transition: 0 !important;
-  -moz-transition: 0 !important;
-  -o-transition: 0 !important;
-  transition: 0 !important;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
 }
 
 .sticky.selected {
