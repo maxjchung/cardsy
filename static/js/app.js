@@ -290,7 +290,13 @@ var Cardsy = {
               else {
                 $this.css('left', newLeft);
                 $this.css('top', newTop);
+
                 $this.css('-webkit-transform', 'translate3d(0,0,0)');
+                $this.css('-moz-transform', 'translate3d(0,0,0)');
+                $this.css('-o-transform', 'translate3d(0,0,0)');
+                $this.css('transform', 'translate3d(0,0,0)');
+                
+                
 
                 // TODO: when to remove '.notransition' from these cards,
                 // so they get proper color change transition when selecting another card?
@@ -328,6 +334,9 @@ var Cardsy = {
             + '0)';
 
           $card.css('-webkit-transform', translateString);
+          $card.css('-moz-transform', translateString);
+          $card.css('-o-transform', translateString);
+          $card.css('transform', translateString);
 
         });  // $cards.each(function(e) { ... }
 
