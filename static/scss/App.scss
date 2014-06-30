@@ -6,6 +6,9 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
+$transition-time: 200ms;
+$transition-timing-function: ease-out;
+
 $color-canvas: #fff;
 
 $color-selection-square-fill: rgba(239, 28, 190, 0.6);
@@ -245,10 +248,10 @@ body {
   background-color: $color-sticky-fill;
   color: #888;
 
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
+  -webkit-transition: all $transition-time $transition-timing-function;
+  -moz-transition: all $transition-time $transition-timing-function;
+  -o-transition: all $transition-time $transition-timing-function;
+  transition: all $transition-time $transition-timing-function;
 }
 
 .sticky.shrunk {
@@ -344,10 +347,10 @@ textarea {
   height: 50px;
   background-color: #aaa;
 
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
+  -webkit-transition: all $transition-time $transition-timing-function;
+  -moz-transition: all $transition-time $transition-timing-function;
+  -o-transition: all $transition-time $transition-timing-function;
+  transition: all $transition-time $transition-timing-function;
 }
 
 .trash.reveal {
