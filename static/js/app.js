@@ -276,8 +276,9 @@ var Cardsy = {
 
               var $this = $(this);
 
-              var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
-              var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
+              var transformString = $(this).css('-moz-transform') || $(this).css('-webkit-transform');
+              var translateX = parseFloat(transformString.match(/[-]?\d+/g)[4]);
+              var translateY = parseFloat(transformString.match(/[-]?\d+/g)[5]);
 
               var newLeft = parseFloat($this.css('left')) + translateX;
               var newTop = parseFloat($this.css('top')) + translateY;
@@ -285,7 +286,11 @@ var Cardsy = {
               // Cancel drag just for this card if any edge exceeds #canvas.
               if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
                 $this.removeClass('notransition');
+                
                 $this.css('-webkit-transform', 'initial');
+                $this.css('-moz-transform', 'initial');
+                $this.css('-o-transform', 'initial');
+                $this.css('transform', 'initial');
               }
               else {
                 $this.css('left', newLeft);
