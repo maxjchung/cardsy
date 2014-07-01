@@ -343,9 +343,16 @@ textarea {
 .trash {
   position: absolute;
   bottom: -50px;
-  width: 100%;
+
   height: 50px;
+  width: 100%;
+
   background-color: #aaa;
+  background-image: url(../img/trash.png);
+  background-repeat: no-repeat;
+  background-size: 2%;
+  background-position-x: 50%;
+  background-position-y: 50%;
 
   -webkit-transition: all $transition-time $transition-timing-function;
   -moz-transition: all $transition-time $transition-timing-function;
