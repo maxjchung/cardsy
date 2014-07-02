@@ -80,6 +80,11 @@ function wasMouseUpInTrashRegion(e) {
   return (e.originalEvent.clientY > topTrashRegion);
 }
 
+function isMouseInTrashRegion(mouseY) {
+  var topTrashRegion = $('#canvas').outerHeight() - 50;
+  return (mouseY > topTrashRegion); 
+}
+
 var Cardsy = {
 
   /*************************/
@@ -421,6 +426,16 @@ var Cardsy = {
       Cardsy.drawSelectionSquare(e, data);      
     }
 
+    else if (mouseDownStartedOnCard) {
+      if(isMouseInTrashRegion(data.originalEvent.clientY)) {
+        $('.trash').addClass('hover');
+      }
+      else {
+        $('.trash').removeClass('hover');
+      }
+
+    }
+
   },
 
   onClickEnd: function(e, data) {
@@ -431,7 +446,7 @@ var Cardsy = {
 
     if(mouseDownStartedOnCard) {
       clearTimeout(cardDragTimeout);
-      $('.trash').removeClass('reveal');
+      $('.trash').removeClass('reveal').removeClass('hover');
     }
     else if(mouseDownStartedOnCanvas) {
 

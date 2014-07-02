@@ -367,6 +367,10 @@ textarea {
   transform: translate3d(0, -50px, 0);
 }
 
+.trash.hover {
+  background-color: #ccc;
+}
+
 .trashed {
   opacity: 0;
   -webkit-opacity: 0;
