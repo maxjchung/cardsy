@@ -301,11 +301,6 @@ var Cardsy = {
                 $this.css('-moz-transform', 'translate3d(0,0,0)');
                 $this.css('-o-transform', 'translate3d(0,0,0)');
                 $this.css('transform', 'translate3d(0,0,0)');
-                
-                
-
-                // TODO: when to remove '.notransition' from these cards,
-                // so they get proper color change transition when selecting another card?
               }
             });
           }
