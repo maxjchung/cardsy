@@ -75,11 +75,6 @@ function doObjectsCollide($square, $card) {
     );
 }  
 
-function wasMouseUpInTrashRegion(e) {
-  var topTrashRegion = $('#canvas').outerHeight() - 50;
-  return (e.originalEvent.clientY > topTrashRegion);
-}
-
 function isMouseInTrashRegion(mouseY) {
   var topTrashRegion = $('#canvas').outerHeight() - 50;
   return (mouseY > topTrashRegion); 
@@ -265,7 +260,8 @@ var Cardsy = {
           }
         }
         else {
-          if (wasMouseUpInTrashRegion(e)) {
+
+          if (isMouseInTrashRegion(e.originalEvent.clientY)) {
             $selected.each(function() {
               $(this).removeClass('notransition');
 
