@@ -457,6 +457,7 @@ var Cardsy = {
       .addClass('selected')
       .css('left', x + 'px')
       .css('top', y + 'px')
+      .attr('spellcheck', false)
       .appendTo('#canvas');
 
     setTimeout(function() { 
