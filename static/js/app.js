@@ -697,10 +697,6 @@ var Cardsy = {
 
   },
 
-  showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
-  hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); },
-
-
 
 
 
