@@ -97,7 +97,7 @@ var Cardsy = {
 
     $('#canvas').on('keydown', '.sticky', Cardsy.handleTyping);
     $('#canvas').on('keyup', '.sticky', Cardsy.handleKeyUp);
-    $('#canvas').on('paste', '.sticky', Cardsy.handlePaste);
+    $('#canvas').on('paste', '.sticky', Cardsy.suppressPaste);
 
   },
 
@@ -141,7 +141,7 @@ var Cardsy = {
     $practicePreArea.html($currentTextArea.val());
   },
 
-  handlePaste: function() {
+  suppressPaste: function() {
     return false;
   },
 
