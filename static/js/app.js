@@ -302,6 +302,7 @@ var Cardsy = {
               else {
                 $this.css('left', newLeft);
                 $this.css('top', newTop);
+                Cardsy.saveCard(Cardsy.jQueryCardToObj($this));
 
                 $this.css('-webkit-transform', 'translate3d(0,0,0)');
                 $this.css('-moz-transform', 'translate3d(0,0,0)');
