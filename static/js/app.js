@@ -137,8 +137,8 @@ var Cardsy = {
     return true;
   },
 
-  handleKeyUp: function() {
-    $practicePreArea.html($currentTextArea.val());
+  handleKeyUp: function(e) {
+    Cardsy.saveCard(Cardsy.jQueryCardToObj($(e.target)));    
   },
 
   suppressPaste: function() {
@@ -270,7 +270,8 @@ var Cardsy = {
             $selected.each(function() {
               $(this).removeClass('notransition');
 
-              $(this).bind('transitionend webkitTransitionEnd', function() { 
+              $(this).bind('transitionend webkitTransitionEnd', function() {
+                Cardsy.removeCardFromStorage($(this));
                 $(this).remove();
               })
 
@@ -567,15 +568,6 @@ var Cardsy = {
   /*************************/
   /*    Card Operations    */
   /*************************/
-
-  deleteCard: function(e) {
-
-    var $card = $(e.target.parentElement);
-
-    $card.hide('highlight', null, s.animationSpeed, function(e) { this.remove(); });
-    Cardsy.removeCardFromStorage($card);
-
-  },
 
   saveCard: function(card) {
     var key = Storage.createCardKey(current_canvas_id, card.id);
