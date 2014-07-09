@@ -1,3 +1,10 @@
+// Card and Canvas ids
+var next_card_id = 1;
+
+var next_canvas_id = 1;
+var current_canvas_id = 1;
+var canvas_ids = [];
+
 // Input state
 var isMouseDown = false;
 var mouseDownStartedOnCard;
@@ -183,6 +190,17 @@ var Cardsy = {
   init: function() {
     Cardsy.bindMouseEventHandlers();
     Cardsy.initSpaceConstrainedStickies();
+
+    s = this.settings;
+
+    if (Cardsy.hasSaveState()) {
+      Cardsy.loadSavedState();
+    }
+
+    else {
+      Cardsy.loadFirstRun();
+      Cardsy.markSavedStateFlag();
+    }
   },
 
   initActionPanel: function() {
@@ -201,19 +219,6 @@ var Cardsy = {
 
     $('#next').click(function() {
       Cardsy.loadNextCanvas();
-    });
-
-  },
-
-  initCanvas: function() {
-
-    $('#canvas').click(function(e) {
-
-      if (this != e.target)
-        return;
-
-      Cardsy.addCardWithIncrement(next_card_id, e.clientX, e.clientY);
-    
     });
 
   },
@@ -445,19 +450,25 @@ var Cardsy = {
       $('.ghost-select').width(0).height(0);      
 
       if(clickStartX == clickEndX && clickStartY == clickEndY) {
-        Cardsy.addSticky(clickStartX, clickStartY);
+        Cardsy.addStickyWithIncrement(clickStartX, clickStartY, next_card_id);
       }
     }
   },
 
-  addSticky: function(x, y) {
+  addStickyWithIncrement: function(x, y, id, text) {
+    Cardsy.addSticky(x, y, id, text);
+    Cardsy.incrementNextCardId();
+  },
 
+  addSticky: function(x, y, id, text) {
     var $newSticky = $("<textarea class='sticky'></textarea>")
+      .attr('id', id)
       .addClass('shrunk')
       .addClass('selected')
       .css('left', x + 'px')
       .css('top', y + 'px')
       .attr('spellcheck', false)
+      .html(text)
       .appendTo('#canvas');
 
     setTimeout(function() { 
@@ -466,6 +477,8 @@ var Cardsy = {
     }, 30);
 
     $newSticky.focus();
+
+    Cardsy.saveCard(Cardsy.jQueryCardToObj($newSticky));
   },
 
   drawSelectionSquare: function(e, data) {
@@ -521,9 +534,9 @@ var Cardsy = {
   loadSavedState: function() {
 
     current_canvas_id = Cardsy.loadCurrentCanvasId(); 
-    next_canvas_id = Cardsy.loadNextCanvasId(); 
+    // next_canvas_id = Cardsy.loadNextCanvasId(); 
     next_card_id = Cardsy.loadNextCardId();
-    canvas_ids = Cardsy.loadCanvasIds();
+    //canvas_ids = Cardsy.loadCanvasIds();
 
     Cardsy.loadCanvas(current_canvas_id);
 
@@ -542,8 +555,8 @@ var Cardsy = {
     var y = Math.floor($('#canvas').height() / 2) - 60;
 
     setTimeout(function () {
-      Cardsy.addCardWithIncrement(next_card_id, x, y, s.introText);
-    }, 710);
+      Cardsy.addStickyWithIncrement(next_card_id, x, y, s.introText);
+    }, 500);
 
   },
 
@@ -555,13 +568,6 @@ var Cardsy = {
   /*    Card Operations    */
   /*************************/
 
-  addCardWithIncrement: function(id, x, y, text) {
-
-    Cardsy.addCard(id, x, y, text);
-    Cardsy.incrementNextCardId();
-    
-  },
-
   deleteCard: function(e) {
 
     var $card = $(e.target.parentElement);
@@ -572,10 +578,8 @@ var Cardsy = {
   },
 
   saveCard: function(card) {
-
     var key = Storage.createCardKey(current_canvas_id, card.id);
     Storage.setCard(key, card);
-
   },
 
 
@@ -595,7 +599,7 @@ var Cardsy = {
     Cardsy.incrementNextCanvasId();
 
     Cardsy.clearCurrentCanvas();
-    Cardsy.updateCanvasIndicator();
+    // Cardsy.updateCanvasIndicator();
   },
 
   deleteCanvas: function() {
@@ -674,10 +678,8 @@ var Cardsy = {
 
     for (var i = 0; i < length; i++) {
       var card = Storage.getCard(keys[i]);
-      Cardsy.addCard(card.id, card.x, card.y, card.text);
+      Cardsy.addSticky(card.x, card.y, card.id, card.text);
     }
-
-    Cardsy.updateCanvasIndicator();
 
   },
 
@@ -687,18 +689,6 @@ var Cardsy = {
     Storage.set('current_canvas_id', current_canvas_id); 
 
   },
-
-  updateCanvasIndicator: function() {
-
-    var currentCanvasIndex = $.inArray(current_canvas_id, canvas_ids);
-    var numCanvases = canvas_ids.length;
-
-    $('#canvas-indicator').html((currentCanvasIndex+1) + ' of ' + numCanvases);
-
-  },
-
-
-
 
   /*********************************/
   /*    State Management Helpers   */
@@ -771,9 +761,7 @@ var Cardsy = {
   /*************************/
 
   clearCurrentCanvas: function() {
-
-    $('#canvas').find('.card').remove();
-
+    $('.sticky').remove();
   },
 
   jQueryCardToObj: function ($card) {
@@ -782,7 +770,7 @@ var Cardsy = {
       id: $card.attr('id'),
       x: getNumberFromPositionString($card.css('left')),
       y: getNumberFromPositionString($card.css('top')),
-      text: $card.find('textarea').val()
+      text: $card.val()
     };
 
     function getNumberFromPositionString(position) {
