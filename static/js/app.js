@@ -479,6 +479,11 @@ var Cardsy = {
     Cardsy.saveCard(Cardsy.jQueryCardToObj($newSticky));
   },
 
+  loadSticky: function(x, y, id, text) {
+    var $loadedSticky = Cardsy.createStickyElement(x, y, id, text);
+    $loadedSticky.appendTo('#canvas');
+  },
+
   createStickyElement: function(x, y, id, text) {
     return $("<textarea class='sticky'></textarea>")
             .attr('id', id)
@@ -676,7 +681,7 @@ var Cardsy = {
 
     for (var i = 0; i < length; i++) {
       var card = Storage.getCard(keys[i]);
-      Cardsy.addSticky(card.x, card.y, card.id, card.text);
+      Cardsy.loadSticky(card.x, card.y, card.id, card.text);
     }
 
   },
