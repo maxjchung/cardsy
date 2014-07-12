@@ -24,6 +24,8 @@ var $practicePreArea = $('#practice');
 var CLASS_SELECTED = 'selected';
 var CLASS_SHRUNK = 'shrunk';
 
+var SELECTOR_GHOST = '.ghost-select';
+
 function log(s) {
   console.log(s);
 }
@@ -54,7 +56,7 @@ function setTarget(e) {
 function updateSelectionSet(e) {
 
     $('.sticky').each(function () {
-        var $aElem = $(".ghost-select");
+        var $aElem = $(SELECTOR_GHOST);
         var $bElem = $(this);
         var result = doObjectsCollide($aElem, $bElem);
 
@@ -414,8 +416,8 @@ var Cardsy = {
       Cardsy.clearSelections();
     }
 
-    $(".ghost-select").addClass("ghost-active");
-    $(".ghost-select").css({
+    $(SELECTOR_GHOST).addClass("ghost-active");
+    $(SELECTOR_GHOST).css({
         'left': clickStartX,
         'top': clickStartY
     });
@@ -424,7 +426,7 @@ var Cardsy = {
   onClickDrag: function(e, data) {
 
     if(mouseDownStartedOnCanvas) {
-      $('.ghost-select').addClass('selecting');
+      $(SELECTOR_GHOST).addClass('selecting');
       Cardsy.drawSelectionSquare(e, data);      
     }
 
@@ -452,8 +454,8 @@ var Cardsy = {
     }
     else if(mouseDownStartedOnCanvas) {
 
-      $('.ghost-select').removeClass('selecting');
-      $('.ghost-select').width(0).height(0);      
+      $(SELECTOR_GHOST).removeClass('selecting');
+      $(SELECTOR_GHOST).width(0).height(0);      
 
       if(clickStartX == clickEndX && clickStartY == clickEndY) {
         Cardsy.addStickyWithIncrement(clickStartX, clickStartY, next_card_id);
@@ -506,20 +508,20 @@ var Cardsy = {
     var h = Math.abs(clickStartY - mouseY);
 
 
-    $('.ghost-select').css({
+    $(SELECTOR_GHOST).css({
         'width': w,
         'height': h
     });
     if (mouseX <= clickStartX && mouseY >= clickStartY) {
-        $('.ghost-select').css({
+        $(SELECTOR_GHOST).css({
             'left': mouseX
         });
     } else if (mouseY <= clickStartY && mouseX >= clickStartX) {
-        $('.ghost-select').css({
+        $(SELECTOR_GHOST).css({
             'top': mouseY
         });
     } else if (mouseY < clickStartY && mouseX < clickStartX) {
-        $('.ghost-select').css({
+        $(SELECTOR_GHOST).css({
             'left': mouseX,
             "top": mouseY
         });
