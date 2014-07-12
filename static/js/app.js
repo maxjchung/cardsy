@@ -20,6 +20,9 @@ var clickEndY;
 var $currentTextArea;
 var $practicePreArea = $('#practice');
 
+// Class names
+var CLASS_SELECTED = 'selected';
+
 function log(s) {
   console.log(s);
 }
@@ -55,10 +58,10 @@ function updateSelectionSet(e) {
         var result = doObjectsCollide($aElem, $bElem);
 
         if (result == true) {
-          $bElem.addClass('selected');
+          $bElem.addClass(CLASS_SELECTED);
         }
         else {
-          $bElem.removeClass('selected');
+          $bElem.removeClass(CLASS_SELECTED);
         }
 
     });
@@ -242,12 +245,12 @@ var Cardsy = {
       var mouseDownY = e.originalEvent.clientY;
       var $targetCard = $(e.originalEvent.target);
 
-      if($(this).hasClass('selected')) {
+      if($(this).hasClass(CLASS_SELECTED)) {
         e.preventDefault();  // prevent textarea focus in case user attempts to drag card(s)
       }
       else {
         Cardsy.clearSelections();
-        $(this).addClass('selected');
+        $(this).addClass(CLASS_SELECTED);
       }
 
       var $cards = $('.selected');
@@ -258,9 +261,9 @@ var Cardsy = {
 
         if(mouseDownX == e.originalEvent.clientX && mouseDownY == e.originalEvent.clientY) {
 
-          if($(this).hasClass('selected')) {
+          if($(this).hasClass(CLASS_SELECTED)) {
             Cardsy.clearSelections();
-            $(this).addClass('selected');
+            $(this).addClass(CLASS_SELECTED);
             $(this).focus();
           }
         }
@@ -466,7 +469,7 @@ var Cardsy = {
     var $newSticky = Cardsy.createStickyElement(x, y, id, text);
 
     $newSticky.addClass('shrunk')
-              .addClass('selected')
+              .addClass(CLASS_SELECTED)
               .appendTo('#canvas');
 
     setTimeout(function() { 
@@ -527,7 +530,7 @@ var Cardsy = {
   clearSelections: function() {
     $('.selected').each(function() {
       $(this).removeClass('notransition');
-      $(this).removeClass('selected');
+      $(this).removeClass(CLASS_SELECTED);
     });
   },
 
