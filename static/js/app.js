@@ -22,6 +22,7 @@ var $practicePreArea = $('#practice');
 
 // Class names
 var CLASS_SELECTED = 'selected';
+var CLASS_SHRUNK = 'shrunk';
 
 function log(s) {
   console.log(s);
@@ -278,7 +279,7 @@ var Cardsy = {
                 $(this).remove();
               })
 
-              $(this).addClass('trashed').addClass('shrunk');
+              $(this).addClass('trashed').addClass(CLASS_SHRUNK);
             })
           }
           else {
@@ -468,12 +469,12 @@ var Cardsy = {
   addSticky: function(x, y, id, text) {
     var $newSticky = Cardsy.createStickyElement(x, y, id, text);
 
-    $newSticky.addClass('shrunk')
+    $newSticky.addClass(CLASS_SHRUNK)
               .addClass(CLASS_SELECTED)
               .appendTo('#canvas');
 
     setTimeout(function() { 
-      $newSticky.removeClass('shrunk');
+      $newSticky.removeClass(CLASS_SHRUNK);
       $newSticky.focus();
     }, 30);
 
