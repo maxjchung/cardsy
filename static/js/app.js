@@ -463,15 +463,11 @@ var Cardsy = {
   },
 
   addSticky: function(x, y, id, text) {
-    var $newSticky = $("<textarea class='sticky'></textarea>")
-      .attr('id', id)
-      .addClass('shrunk')
-      .addClass('selected')
-      .css('left', x + 'px')
-      .css('top', y + 'px')
-      .attr('spellcheck', false)
-      .html(text)
-      .appendTo('#canvas');
+    var $newSticky = Cardsy.createStickyElement(x, y, id, text);
+
+    $newSticky.addClass('shrunk')
+              .addClass('selected')
+              .appendTo('#canvas');
 
     setTimeout(function() { 
       $newSticky.removeClass('shrunk');
@@ -481,6 +477,15 @@ var Cardsy = {
     $newSticky.focus();
 
     Cardsy.saveCard(Cardsy.jQueryCardToObj($newSticky));
+  },
+
+  createStickyElement: function(x, y, id, text) {
+    return $("<textarea class='sticky'></textarea>")
+            .attr('id', id)
+            .css('left', x + 'px')
+            .css('top', y + 'px')
+            .attr('spellcheck', false)
+            .html(text);
   },
 
   drawSelectionSquare: function(e, data) {
