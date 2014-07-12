@@ -238,33 +238,16 @@ body {
 
 
 
-.card {
-  position: absolute;
 
-  width: 200px;
-  padding: 10px;
 
-  background-image: url(/static/img/lined_paper.png);
-  background-color: #fff;
-
-  -moz-box-shadow: 0 0 2px #888;
-  -webkit-box-shadow: 0 0 2px #888;
-  box-shadow: 0 0 2px #888;
-
-  cursor: hand;
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}
-
-.sticky, #practice {
+.card, #practice {
   width: 200px;
   line-height:1.4em;
   border: solid 2px $color-sticky-border;
   padding: 10px;
 }
 
-.sticky {
+.card {
   position: absolute;
   height: 125px;
   background-color: $color-sticky-fill;
@@ -276,7 +259,7 @@ body {
   transition: all $transition-time $transition-timing-function;
 }
 
-.sticky.shrunk {
+.card.shrunk {
   height: 0;
   width: 0;
   padding: 0;
@@ -290,14 +273,14 @@ body {
   transition: none !important;
 }
 
-.sticky.selected {
+.card.selected {
   border: 2px solid $color-sticky-selected-border;
   background-color: $color-sticky-selected-fill;
   color: #333;
 }
 
 #practice {
-  min-height: 125px;  /* matches .sticky's height */
+  min-height: 125px;  /* matches .card's height */
 }
 
 #practice {

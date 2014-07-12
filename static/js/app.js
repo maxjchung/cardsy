@@ -21,6 +21,7 @@ var $currentTextArea;
 var $practicePreArea = $('#practice');
 
 // Class names
+var CLASS_CARD = 'card';
 var CLASS_SELECTED = 'selected';
 var CLASS_SHRUNK = 'shrunk';
 
@@ -42,7 +43,7 @@ function consumeEvent(event)
 
 function setTarget(e) {
 
-  if ($(e.target).hasClass("sticky")) {
+  if ($(e.target).hasClass(CLASS_CARD)) {
       mouseDownStartedOnCard = true;
       mouseDownStartedOnCanvas = false;
   }
@@ -55,7 +56,7 @@ function setTarget(e) {
 
 function updateSelectionSet(e) {
 
-    $('.sticky').each(function () {
+    $('.' + CLASS_CARD).each(function () {
         var $aElem = $(SELECTOR_GHOST);
         var $bElem = $(this);
         var result = doObjectsCollide($aElem, $bElem);
@@ -101,9 +102,9 @@ var Cardsy = {
 
   initSpaceConstrainedStickies : function() {
 
-    $('#canvas').on('keydown', '.sticky', Cardsy.handleTyping);
-    $('#canvas').on('keyup', '.sticky', Cardsy.handleKeyUp);
-    $('#canvas').on('paste', '.sticky', Cardsy.suppressPaste);
+    $('#canvas').on('keydown', '.' + CLASS_CARD, Cardsy.handleTyping);
+    $('#canvas').on('keyup', '.' + CLASS_CARD, Cardsy.handleKeyUp);
+    $('#canvas').on('paste', '.' + CLASS_CARD, Cardsy.suppressPaste);
 
   },
 
@@ -242,7 +243,7 @@ var Cardsy = {
         maxLeft = $('#canvas').outerWidth() - 200,
         maxTop = $('#canvas').outerHeight() - 125;
 
-    $('#canvas').on('mousedown', '.sticky', function(e) {
+    $('#canvas').on('mousedown', '.' + CLASS_CARD, function(e) {
 
       var mouseDownX = e.originalEvent.clientX;
       var mouseDownY = e.originalEvent.clientY;
@@ -364,7 +365,7 @@ var Cardsy = {
 
 
       });
-    });  // $('#canvas').on('mousedown', '.sticky', function(e) {
+    });  // $('#canvas').on('mousedown', '.' + CLASS_CARD, function(e) {
 
   },
 
@@ -491,7 +492,8 @@ var Cardsy = {
   },
 
   createStickyElement: function(x, y, id, text) {
-    return $("<textarea class='sticky'></textarea>")
+    return $("<textarea />")
+            .addClass(CLASS_CARD)
             .attr('id', id)
             .css('left', x + 'px')
             .css('top', y + 'px')
@@ -770,7 +772,7 @@ var Cardsy = {
   /*************************/
 
   clearCurrentCanvas: function() {
-    $('.sticky').remove();
+    $('.' + CLASS_CARD).remove();
   },
 
   jQueryCardToObj: function ($card) {
