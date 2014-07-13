@@ -1,3 +1,10 @@
+// Card and Canvas ids
+var next_card_id = 1;
+
+var next_canvas_id = 1;
+var current_canvas_id = 1;
+var canvas_ids = [];
+
 // Input state
 var isMouseDown = false;
 var mouseDownStartedOnCard;
@@ -75,6 +82,10 @@ function doObjectsCollide($square, $card) {
     );
 }  
 
+function isMouseInTrashRegion(mouseY) {
+  var topTrashRegion = $('#canvas').outerHeight() - 50;
+  return (mouseY > topTrashRegion); 
+}
 
 var Cardsy = {
 
@@ -86,7 +97,7 @@ var Cardsy = {
 
     $('#canvas').on('keydown', '.sticky', Cardsy.handleTyping);
     $('#canvas').on('keyup', '.sticky', Cardsy.handleKeyUp);
-    $('#canvas').on('paste', '.sticky', Cardsy.handlePaste);
+    $('#canvas').on('paste', '.sticky', Cardsy.suppressPaste);
 
   },
 
@@ -126,11 +137,11 @@ var Cardsy = {
     return true;
   },
 
-  handleKeyUp: function() {
-    $practicePreArea.html($currentTextArea.val());
+  handleKeyUp: function(e) {
+    Cardsy.saveCard(Cardsy.jQueryCardToObj($(e.target)));    
   },
 
-  handlePaste: function() {
+  suppressPaste: function() {
     return false;
   },
 
@@ -179,6 +190,17 @@ var Cardsy = {
   init: function() {
     Cardsy.bindMouseEventHandlers();
     Cardsy.initSpaceConstrainedStickies();
+
+    s = this.settings;
+
+    if (Cardsy.hasSaveState()) {
+      Cardsy.loadSavedState();
+    }
+
+    else {
+      Cardsy.loadFirstRun();
+      Cardsy.markSavedStateFlag();
+    }
   },
 
   initActionPanel: function() {
@@ -201,19 +223,6 @@ var Cardsy = {
 
   },
 
-  initCanvas: function() {
-
-    $('#canvas').click(function(e) {
-
-      if (this != e.target)
-        return;
-
-      Cardsy.addCardWithIncrement(next_card_id, e.clientX, e.clientY);
-    
-    });
-
-  },
-
   bindMouseEventHandlers: function() {
     Cardsy.bindCardEvents();
     Cardsy.bindCanvasEvents();
@@ -231,6 +240,7 @@ var Cardsy = {
 
       var mouseDownX = e.originalEvent.clientX;
       var mouseDownY = e.originalEvent.clientY;
+      var $targetCard = $(e.originalEvent.target);
 
       if($(this).hasClass('selected')) {
         e.preventDefault();  // prevent textarea focus in case user attempts to drag card(s)
@@ -241,6 +251,69 @@ var Cardsy = {
       }
 
       var $cards = $('.selected');
+
+      $targetCard.on('mouseup', function(e) {
+
+        var $selected = $('.selected');
+
+        if(mouseDownX == e.originalEvent.clientX && mouseDownY == e.originalEvent.clientY) {
+
+          if($(this).hasClass('selected')) {
+            Cardsy.clearSelections();
+            $(this).addClass('selected');
+            $(this).focus();
+          }
+        }
+        else {
+
+          if (isMouseInTrashRegion(e.originalEvent.clientY)) {
+            $selected.each(function() {
+              $(this).removeClass('notransition');
+
+              $(this).bind('transitionend webkitTransitionEnd', function() {
+                Cardsy.removeCardFromStorage($(this));
+                $(this).remove();
+              })
+
+              $(this).addClass('trashed').addClass('shrunk');
+            })
+          }
+          else {
+            $selected.each(function(e) {
+
+              var $this = $(this);
+
+              var transformString = $(this).css('-moz-transform') || $(this).css('-webkit-transform');
+              var translateX = parseFloat(transformString.match(/[-]?\d+/g)[4]);
+              var translateY = parseFloat(transformString.match(/[-]?\d+/g)[5]);
+
+              var newLeft = parseFloat($this.css('left')) + translateX;
+              var newTop = parseFloat($this.css('top')) + translateY;
+
+              // Cancel drag just for this card if any edge exceeds #canvas.
+              if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
+                $this.removeClass('notransition');
+                
+                $this.css('-webkit-transform', 'initial');
+                $this.css('-moz-transform', 'initial');
+                $this.css('-o-transform', 'initial');
+                $this.css('transform', 'initial');
+              }
+              else {
+                $this.css('left', newLeft);
+                $this.css('top', newTop);
+                Cardsy.saveCard(Cardsy.jQueryCardToObj($this));
+
+                $this.css('-webkit-transform', 'translate3d(0,0,0)');
+                $this.css('-moz-transform', 'translate3d(0,0,0)');
+                $this.css('-o-transform', 'translate3d(0,0,0)');
+                $this.css('transform', 'translate3d(0,0,0)');
+              }
+            });
+          }
+        }
+      });
+
 
       $cards.each(function(e) {
 
@@ -269,64 +342,23 @@ var Cardsy = {
             + '0)';
 
           $card.css('-webkit-transform', translateString);
+          $card.css('-moz-transform', translateString);
+          $card.css('-o-transform', translateString);
+          $card.css('transform', translateString);
 
-          // TODO!!!  Bind this once on mousedown -- this is bound on *every mousemove.
-          $card.on('mouseup', function(e) {
-            
-            var $selected = $('.selected');
-
-            $selected.each(function(e) {
-
-              var $this = $(this);
-
-              var translateX = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[4]);
-              var translateY = parseFloat($(this).css('-webkit-transform').match(/[-]?\d+/g)[5]);
-
-              var newLeft = parseFloat($this.css('left')) + translateX;
-              var newTop = parseFloat($this.css('top')) + translateY;
-
-              // Cancel drag just for this card if any edge exceeds #canvas.
-              if(newLeft < minLeft || newLeft > maxLeft || newTop < minTop || newTop > maxTop) {
-                $this.removeClass('notransition');
-                $this.css('-webkit-transform', 'initial');
-              }
-              else {
-                $this.css('left', newLeft);
-                $this.css('top', newTop);
-                $this.css('-webkit-transform', 'translate3d(0,0,0)');
-
-                // TODO: when to remove '.notransition' from these cards,
-                // so they get proper color change transition when selecting another card?
-              }
-            });
-
-          });
-        });
-
-
+        });  // $cards.each(function(e) { ... }
 
         $card.on("mouseup", function(e) {
-
 
           $(this).css('z-index', z_idx);
           $(this).parents().unbind('mousemove');
           $(this).unbind('mouseup');
 
-          if(mouseDownX == e.originalEvent.clientX && mouseDownY == e.originalEvent.clientY) {
-
-            if($(this).hasClass('selected')) {
-              Cardsy.clearSelections();
-              $(this).addClass('selected');
-              $(this).focus();
-            }
-          }
-
-
         });
 
 
       });
-    });
+    });  // $('#canvas').on('mousedown', '.sticky', function(e) {
 
   },
 
@@ -338,6 +370,13 @@ var Cardsy = {
 
 
       setTarget(e);
+
+      if(mouseDownStartedOnCard) {
+        cardDragTimeout = setTimeout(function(e) {
+          $('.trash').addClass('reveal');
+        }, 500);
+      }
+
       $(this).trigger('clickStart', { originalEvent: e});
 
         $(document).bind('clickDrag', Cardsy.onClickDrag);
@@ -380,13 +419,19 @@ var Cardsy = {
 
   onClickDrag: function(e, data) {
 
-    if(mouseDownStartedOnCard) {
-      log('TODO: drag card');
-    }
-    else if(mouseDownStartedOnCanvas) {
-
+    if(mouseDownStartedOnCanvas) {
       $('.ghost-select').addClass('selecting');
       Cardsy.drawSelectionSquare(e, data);      
+    }
+
+    else if (mouseDownStartedOnCard) {
+      if(isMouseInTrashRegion(data.originalEvent.clientY)) {
+        $('.trash').addClass('hover');
+      }
+      else {
+        $('.trash').removeClass('hover');
+      }
+
     }
 
   },
@@ -398,7 +443,8 @@ var Cardsy = {
     clickEndY = data.originalEvent.clientY;
 
     if(mouseDownStartedOnCard) {
-      log('TODO: handle drag end');
+      clearTimeout(cardDragTimeout);
+      $('.trash').removeClass('reveal').removeClass('hover');
     }
     else if(mouseDownStartedOnCanvas) {
 
@@ -406,20 +452,45 @@ var Cardsy = {
       $('.ghost-select').width(0).height(0);      
 
       if(clickStartX == clickEndX && clickStartY == clickEndY) {
-        Cardsy.addSticky(clickStartX, clickStartY);
+        Cardsy.addStickyWithIncrement(clickStartX, clickStartY, next_card_id);
       }
     }
   },
 
-  addSticky: function(x, y) {
+  addStickyWithIncrement: function(x, y, id, text) {
+    Cardsy.addSticky(x, y, id, text);
+    Cardsy.incrementNextCardId();
+  },
 
-    var $newSticky = $("<textarea class='sticky'></textarea>")
-      .addClass('selected')
-      .css('left', x + 'px')
-      .css('top', y + 'px')
-      .appendTo('#canvas');
+  addSticky: function(x, y, id, text) {
+    var $newSticky = Cardsy.createStickyElement(x, y, id, text);
+
+    $newSticky.addClass('shrunk')
+              .addClass('selected')
+              .appendTo('#canvas');
+
+    setTimeout(function() { 
+      $newSticky.removeClass('shrunk');
+      $newSticky.focus();
+    }, 30);
 
     $newSticky.focus();
+
+    Cardsy.saveCard(Cardsy.jQueryCardToObj($newSticky));
+  },
+
+  loadSticky: function(x, y, id, text) {
+    var $loadedSticky = Cardsy.createStickyElement(x, y, id, text);
+    $loadedSticky.appendTo('#canvas');
+  },
+
+  createStickyElement: function(x, y, id, text) {
+    return $("<textarea class='sticky'></textarea>")
+            .attr('id', id)
+            .css('left', x + 'px')
+            .css('top', y + 'px')
+            .attr('spellcheck', false)
+            .html(text);
   },
 
   drawSelectionSquare: function(e, data) {
@@ -455,6 +526,7 @@ var Cardsy = {
 
   clearSelections: function() {
     $('.selected').each(function() {
+      $(this).removeClass('notransition');
       $(this).removeClass('selected');
     });
   },
@@ -474,9 +546,9 @@ var Cardsy = {
   loadSavedState: function() {
 
     current_canvas_id = Cardsy.loadCurrentCanvasId(); 
-    next_canvas_id = Cardsy.loadNextCanvasId(); 
+    // next_canvas_id = Cardsy.loadNextCanvasId(); 
     next_card_id = Cardsy.loadNextCardId();
-    canvas_ids = Cardsy.loadCanvasIds();
+    //canvas_ids = Cardsy.loadCanvasIds();
 
     Cardsy.loadCanvas(current_canvas_id);
 
@@ -495,8 +567,8 @@ var Cardsy = {
     var y = Math.floor($('#canvas').height() / 2) - 60;
 
     setTimeout(function () {
-      Cardsy.addCardWithIncrement(next_card_id, x, y, s.introText);
-    }, 710);
+      Cardsy.addStickyWithIncrement(next_card_id, x, y, s.introText);
+    }, 500);
 
   },
 
@@ -508,133 +580,9 @@ var Cardsy = {
   /*    Card Operations    */
   /*************************/
 
-  addCardWithIncrement: function(id, x, y, text) {
-
-    Cardsy.addCard(id, x, y, text);
-    Cardsy.incrementNextCardId();
-    
-  },
-
-  addCard: function(id, x, y, text) {
-
-    var $card = createCard(id, text);
-    addToCanvas($card);
-
-    function addToCanvas($card) {
-
-      $card.hide();
-      $card.find('.delete').hide();
-
-      $('#canvas').append($card);
-
-      $card.fadeIn(s.animationSpeed);
-
-      if (undefined == text)
-        $card.find('textarea').focus();
-
-      bindDragEvents($card);
-
-      Cardsy.saveCard(Cardsy.jQueryCardToObj($card));
-
-    }
-
-    function bindDragEvents($card) {
-
-      $card.draggable({
-
-        scroll: false,
-        containment: 'parent',
-
-        start: function() {
-          $card.find('textarea').blur();
-          $card.find('.delete').hide();
-        },
-
-        drag: function() {
-          $card.find('.delete').hide();
-        },
-
-        stop: function() {
-          $card.find('.delete').show();
-          Cardsy.saveCard(Cardsy.jQueryCardToObj($card));
-        }
-
-      });
-    
-    }
-
-    function createCard(id, text) {
-
-      var $newCard = $('<div />')
-        .attr('id', id)
-        .addClass('card')
-        .css('left', x + 'px')
-        .css('top', y + 'px')
-        .hover(
-          function(e) { Cardsy.showDeleteButton(e) },
-          function(e) { Cardsy.hideDeleteButton(e) }
-        );
-
-      var $textArea = createTextArea();
-
-      if (undefined != text)
-        $textArea.html(text);
-
-      $deleteButton = createDeleteButton();
-
-      return $newCard.append($textArea).append($deleteButton);
-
-    }
-
-    function createTextArea() {
-
-      var $textArea = $('<textarea />');
-      
-      $textArea.hover(
-        function(e) { $(this).addClass('hover') },
-        function(e) { $(this).removeClass('hover') }
-      );
-
-      $textArea.bind('textchange', function() {
-        Cardsy.saveCard(Cardsy.jQueryCardToObj($(this.parentElement)))
-      });
-
-      return $textArea;
-
-    }
-
-    function createDeleteButton() {
-
-      var $deleteButton = $('<div />')
-        .addClass('delete')
-        .html('&#10006;')
-        .click(function(e) { Cardsy.deleteCard(e) });
-
-      $deleteButton.hover(
-        function(e) { $(this).addClass('hover') },
-        function(e) { $(this).removeClass('hover') }
-      );
-
-      return $deleteButton;
-
-    }
-
-  },
-
-  deleteCard: function(e) {
-
-    var $card = $(e.target.parentElement);
-
-    $card.hide('highlight', null, s.animationSpeed, function(e) { this.remove(); });
-    Cardsy.removeCardFromStorage($card);
-
-  },
-
   saveCard: function(card) {
-
     var key = Storage.createCardKey(current_canvas_id, card.id);
     Storage.setCard(key, card);
-
   },
 
 
@@ -654,7 +602,7 @@ var Cardsy = {
     Cardsy.incrementNextCanvasId();
 
     Cardsy.clearCurrentCanvas();
-    Cardsy.updateCanvasIndicator();
+    // Cardsy.updateCanvasIndicator();
   },
 
   deleteCanvas: function() {
@@ -733,10 +681,8 @@ var Cardsy = {
 
     for (var i = 0; i < length; i++) {
       var card = Storage.getCard(keys[i]);
-      Cardsy.addCard(card.id, card.x, card.y, card.text);
+      Cardsy.loadSticky(card.x, card.y, card.id, card.text);
     }
-
-    Cardsy.updateCanvasIndicator();
 
   },
 
@@ -746,22 +692,6 @@ var Cardsy = {
     Storage.set('current_canvas_id', current_canvas_id); 
 
   },
-
-  updateCanvasIndicator: function() {
-
-    var currentCanvasIndex = $.inArray(current_canvas_id, canvas_ids);
-    var numCanvases = canvas_ids.length;
-
-    $('#canvas-indicator').html((currentCanvasIndex+1) + ' of ' + numCanvases);
-
-  },
-
-  showDeleteButton: function(e) { $(e.target).find('.delete').show(); },
-  hideDeleteButton: function(e) { $(e.target).find('.delete').hide(); },
-
-
-
-
 
   /*********************************/
   /*    State Management Helpers   */
@@ -834,9 +764,7 @@ var Cardsy = {
   /*************************/
 
   clearCurrentCanvas: function() {
-
-    $('#canvas').find('.card').remove();
-
+    $('.sticky').remove();
   },
 
   jQueryCardToObj: function ($card) {
@@ -845,7 +773,7 @@ var Cardsy = {
       id: $card.attr('id'),
       x: getNumberFromPositionString($card.css('left')),
       y: getNumberFromPositionString($card.css('top')),
-      text: $card.find('textarea').val()
+      text: $card.val()
     };
 
     function getNumberFromPositionString(position) {

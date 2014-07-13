@@ -6,6 +6,9 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
+$transition-time: 200ms;
+$transition-timing-function: ease-out;
+
 $color-canvas: #fff;
 
 $color-selection-square-fill: rgba(239, 28, 190, 0.6);
@@ -65,7 +68,8 @@ input,
 select,
 textarea {
     color: #222;
-    font-size:14px;
+    font-size:13px;
+    font-family: 'Lato', sans-serif;
 }
 
 body {
@@ -165,24 +169,24 @@ body {
 }
 
 /* ==========================================================================
-   New Action Panel
+   V2 Nav Bar
    ========================================================================== */
 
-#controls {
+#nav {
   position: absolute;
-  top: 0;
-  left: 0;
-
-  padding: 20px;
+  top: 20px;
+  left: 30px;
+  font-weight: 300;
 }
 
-.control {
+.board-title {
+  font-size:20px;
+  color: #aaa;
+}
 
-  color: $color-control;
+.my-boards, .my-boards:hover {
   text-decoration: none;
-  margin-left: 10px;
-
-  cursor: pointer;
+  color: #aaa;
 }
 
 /* ==========================================================================
@@ -295,11 +299,24 @@ body {
   background-color: $color-sticky-fill;
   color: $color-sticky-font;  
 
-  transition: all 300ms;
+  -webkit-transition: all $transition-time $transition-timing-function;
+  -moz-transition: all $transition-time $transition-timing-function;
+  -o-transition: all $transition-time $transition-timing-function;
+  transition: all $transition-time $transition-timing-function;
+}
+
+.sticky.shrunk {
+  height: 0;
+  width: 0;
+  padding: 0;
+  border: 0px;
 }
 
 .notransition {
-  transition: 0 !important;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
 }
 
 .sticky.selected {
@@ -371,18 +388,45 @@ textarea {
 }
 
 /* ==========================================================================
-   Expanding.js overrides
+   Trashcan
    ========================================================================== */
 
-.expanding-wrapper {
-  background-color: gray;
-  width: 250px;
-  min-height: 150px;
+.trash {
+  position: absolute;
+  bottom: -50px;
+
+  height: 50px;
+  width: 100%;
+
+  background-color: #eee;
+  background-image: url(../img/trash.png);
+  background-repeat: no-repeat;
+  background-size: 2%;
+  background-position-x: 50%;
+  background-position-y: 50%;
+
+  -webkit-transition: all $transition-time $transition-timing-function;
+  -moz-transition: all $transition-time $transition-timing-function;
+  -o-transition: all $transition-time $transition-timing-function;
+  transition: all $transition-time $transition-timing-function;
 }
 
-.expanding {
-  padding: 10px;
+.trash.reveal {
+  -webkit-transform: translate3d(0, -50px, 0);
+  -moz-transform: translate3d(0, -50px, 0);
+  -o-transform: translate3d(0, -50px, 0);
+  transform: translate3d(0, -50px, 0);
 }
+
+.trash.hover {
+  background-color: #ccc;
+}
+
+.trashed {
+  opacity: 0;
+  -webkit-opacity: 0;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
