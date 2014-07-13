@@ -47,7 +47,39 @@ $color-control: #333;
   $color-control: $palette-accent-dark !global;
 }
 
-@include palette_ivory();
+@mixin palette-gray-and-red {
+  
+  $palette-canvas: #EEE;
+  $palette-accent: #848B8C;
+  $palette-accent-dark: #242526;
+  $palette-highlight: #A60522;
+
+
+  $palette-card-fill: darken($palette-canvas, 5%);
+
+  $color-canvas: $palette-canvas !global;
+
+  $color-selection-square-fill: rgba($palette-highlight, 0.1) !global;
+  $color-selection-square-border: $palette-highlight !global;
+
+  $color-sticky-border: $palette-accent !global;
+  $color-sticky-fill: $palette-card-fill !global;
+  $color-sticky-font: darken($palette-canvas, 50%) !global;
+
+  $color-sticky-selected-border: $palette-highlight !global;
+
+  // TODO: can we mix the highlight color into the card fill with a mixin?
+  $color-sticky-selected-fill: mix($color-sticky-fill, $palette-highlight, 90%) !global;
+  $color-sticky-selected-font: darken($color-sticky-font, 50%) !global;
+
+  $color-control: $palette-accent-dark !global;
+}
+
+
+
+
+// @include palette_ivory();
+@include palette-gray-and-red();
 
 /* ==========================================================================
    Base styles: opinionated defaults
