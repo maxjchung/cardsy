@@ -72,7 +72,7 @@ $color-control: #333;
   $color-sticky-selected-fill: mix($color-sticky-fill, $palette-highlight, 90%) !global;
   $color-sticky-selected-font: $color-sticky-selected-border !global;
 
-  $color-control: $palette-accent-dark !global;
+  $color-control: $color-sticky-font !global;
 }
 
 
@@ -209,16 +209,20 @@ body {
   top: 20px;
   left: 30px;
   font-weight: 300;
+
+  color: $color-control;
 }
 
 .board-title {
   font-size:20px;
-  color: #aaa;
 }
 
 .my-boards, .my-boards:hover {
   text-decoration: none;
-  color: #aaa;
+}
+
+.board-title, .my-boards, .my-boards:hover {
+  color: $color-control;  
 }
 
 /* ==========================================================================
