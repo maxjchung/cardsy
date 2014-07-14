@@ -66,7 +66,7 @@ $color-control: #333;
   $color-sticky-selected-border: lighten($palette-highlight, 20%) !global;
 
   // TODO: can we mix the highlight color into the card fill with a mixin?
-  $color-sticky-selected-fill: lighten($color-sticky-selected-border, 45%);
+  $color-sticky-selected-fill: lighten($color-sticky-selected-border, 50%);
   $color-sticky-selected-font: $color-sticky-selected-border !global;
 
   $color-control: $color-sticky-font !global;
