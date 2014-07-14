@@ -59,9 +59,6 @@ $color-control: #333;
 
   $color-canvas: $palette-canvas !global;
 
-  $color-selection-square-fill: rgba($palette-highlight, 0.1) !global;
-  $color-selection-square-border: $palette-highlight !global;
-
   $color-sticky-border: $palette-accent !global;
   $color-sticky-fill: $palette-card-fill !global;
   $color-sticky-font: darken($palette-canvas, 50%) !global;
@@ -73,6 +70,9 @@ $color-control: #333;
   $color-sticky-selected-font: $color-sticky-selected-border !global;
 
   $color-control: $color-sticky-font !global;
+
+  $color-selection-square-fill: rgba($color-sticky-selected-fill, 0.3) !global;
+  $color-selection-square-border: $color-sticky-selected-border !global;
 }
 
 
