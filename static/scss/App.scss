@@ -55,7 +55,7 @@ $color-control: #333;
   $palette-highlight: #731E34;
 
 
-  $palette-card-fill: darken($palette-canvas, 5%);
+  $palette-card-fill: $palette-canvas;
 
   $color-canvas: $palette-canvas !global;
 
