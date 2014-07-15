@@ -27,7 +27,7 @@ $color-control: #333;
 @mixin palette_ivory {
 
   $palette-canvas: #F0EBD2;
-  $palette-accent: mix(#666, $palette-canvas, 90%);
+  $palette-accent: mix(#333, $palette-canvas, 80%);
   $palette-accent-dark: #706E62;
   $palette-highlight: #706E62;
 
@@ -41,8 +41,8 @@ $color-control: #333;
   $color-sticky-font: $color-sticky-border !global;
 
   $color-sticky-selected-border: $palette-highlight !global;
-  $color-sticky-selected-fill: #fff;
-  $color-sticky-selected-font: $color-sticky-selected-border !global;
+  $color-sticky-selected-fill: mix(#fff, $palette-canvas, 80%);
+  $color-sticky-selected-font: darken($color-sticky-selected-border, 20%) !global;
 
   $color-control: $color-sticky-font !global;
 
