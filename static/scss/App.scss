@@ -26,25 +26,31 @@ $color-control: #333;
 
 @mixin palette_ivory {
 
-  $palette-accent: #BDB9A5;
   $palette-canvas: #F0EBD2;
+  $palette-accent: mix(#666, $palette-canvas, 90%);
   $palette-accent-dark: #706E62;
-  $palette-card-fill: darken($palette-canvas, 5%);
+  $palette-highlight: #706E62;
+
+
+  $palette-card-fill: $palette-canvas;
 
   $color-canvas: $palette-canvas !global;
 
-  $color-selection-square-fill: rgba(255, 255, 255, 0.3) !global;
-  $color-selection-square-border: #fff !global;
-
   $color-sticky-border: $palette-accent !global;
   $color-sticky-fill: $palette-card-fill !global;
-  $color-sticky-font: $palette-accent-dark !global;
+  $color-sticky-font: $color-sticky-border !global;
 
-  $color-sticky-selected-border: $palette-accent-dark !global;
-  $color-sticky-selected-fill: $palette-card-fill !global;
-  $color-sticky-selected-font: $palette-accent-dark !global;
+  $color-sticky-selected-border: $palette-highlight !global;
+  $color-sticky-selected-fill: #fff;
+  $color-sticky-selected-font: $color-sticky-selected-border !global;
 
-  $color-control: $palette-accent-dark !global;
+  $color-control: $color-sticky-font !global;
+
+  $color-selection-square-fill: rgba($color-sticky-selected-fill, 0.2) !global;
+  $color-selection-square-border: $color-sticky-selected-border !global;
+
+
+
 }
 
 @mixin palette-gray-and-pink {
@@ -64,8 +70,6 @@ $color-control: #333;
   $color-sticky-font: darken($palette-canvas, 50%) !global;
 
   $color-sticky-selected-border: lighten($palette-highlight, 20%) !global;
-
-  // TODO: can we mix the highlight color into the card fill with a mixin?
   $color-sticky-selected-fill: #fff;
   $color-sticky-selected-font: $color-sticky-selected-border !global;
 
@@ -78,8 +82,8 @@ $color-control: #333;
 
 
 
-// @include palette_ivory();
-@include palette-gray-and-pink();
+@include palette_ivory();
+// @include palette-gray-and-pink();
 
 /* ==========================================================================
    Base styles: opinionated defaults
