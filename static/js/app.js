@@ -567,7 +567,7 @@ var Cardsy = {
     var y = Math.floor($('#canvas').height() / 2) - 60;
 
     setTimeout(function () {
-      Cardsy.addStickyWithIncrement(next_card_id, x, y, s.introText);
+      Cardsy.addStickyWithIncrement(x, y, next_card_id, s.introText);
     }, 500);
 
   },
