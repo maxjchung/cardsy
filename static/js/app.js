@@ -567,7 +567,13 @@ var Cardsy = {
     var y = Math.floor($('#canvas').height() / 2) - 60;
 
     setTimeout(function () {
-      Cardsy.addStickyWithIncrement(x, y, next_card_id, s.introText);
+      Cardsy.addStickyWithIncrement(30, 80, next_card_id, "Welcome to Cardsy, a free app for brainstorming and organizing your ideas.");
+
+      Cardsy.addStickyWithIncrement(330, 80, next_card_id, "ADD CARDS by clicking on the board.");      
+      Cardsy.addStickyWithIncrement(330, 230, next_card_id, "SELECT MULTIPLE CARDS by dragging a square around them.");      
+      Cardsy.addStickyWithIncrement(330, 380, next_card_id, "DELETE CARDS by dragging them to the trash can.");      
+
+      Cardsy.addStickyWithIncrement(630, 80, next_card_id, "Everything's saved in your browser, as long as you keep your cache.");      
     }, 500);
 
   },
