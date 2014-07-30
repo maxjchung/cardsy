@@ -443,6 +443,7 @@ var Cardsy = {
     clickEndY = data.originalEvent.clientY;
 
     if(mouseDownStartedOnCard) {
+      $('.trash').removeClass('hover');
       // clearTimeout(cardDragTimeout);
       // $('.trash').removeClass('reveal').removeClass('hover');
     }
