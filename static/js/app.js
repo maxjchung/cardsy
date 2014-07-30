@@ -571,10 +571,10 @@ var Cardsy = {
       Cardsy.addStickyWithIncrement(30, 80, next_card_id, "Welcome to Cardsy, a free app for brainstorming and organizing your ideas.");
 
       Cardsy.addStickyWithIncrement(330, 80, next_card_id, "ADD CARDS by clicking on the board.");      
-      Cardsy.addStickyWithIncrement(330, 230, next_card_id, "SELECT MULTIPLE CARDS by dragging a square around them.");      
-      Cardsy.addStickyWithIncrement(330, 380, next_card_id, "DELETE CARDS by dragging them to the trash can.");      
+      Cardsy.addStickyWithIncrement(330, 230, next_card_id, "SELECT MULTIPLE CARDS by drawing a square around them.");      
+      Cardsy.addStickyWithIncrement(330, 380, next_card_id, "DELETE CARDS by dragging them to the trash below.");      
 
-      Cardsy.addStickyWithIncrement(630, 80, next_card_id, "Everything's saved in your browser, as long as you keep your cache.");      
+      Cardsy.addStickyWithIncrement(630, 80, next_card_id, "Your cards are automatically saved (as long as you don't clear your cache)");
     }, 500);
 
   },
