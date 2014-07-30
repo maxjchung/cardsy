@@ -16,9 +16,74 @@ $color-selection-square-border: #b20e8c;
 
 $color-sticky-border: #ccc;
 $color-sticky-fill: #eee;
+$color-sticky-font: #888;
 
 $color-sticky-selected-border: #333;
-$color-sticky-selected-fill: #ccc;
+$color-sticky-selected-fill: #333;
+$color-sticky-selected-font: #ccc;
+
+$color-control: #333;
+
+@mixin palette_ivory {
+
+  $palette-canvas: #F0EBD2;
+  $palette-accent: mix(#333, $palette-canvas, 80%);
+  $palette-accent-dark: #706E62;
+  $palette-highlight: #706E62;
+
+
+  $palette-card-fill: $palette-canvas;
+
+  $color-canvas: $palette-canvas !global;
+
+  $color-sticky-border: $palette-accent !global;
+  $color-sticky-fill: $palette-card-fill !global;
+  $color-sticky-font: $color-sticky-border !global;
+
+  $color-sticky-selected-border: $palette-highlight !global;
+  $color-sticky-selected-fill: mix(#fff, $palette-canvas, 80%);
+  $color-sticky-selected-font: darken($color-sticky-selected-border, 20%) !global;
+
+  $color-control: $color-sticky-font !global;
+
+  $color-selection-square-fill: rgba($color-sticky-selected-fill, 0.2) !global;
+  $color-selection-square-border: $color-sticky-selected-border !global;
+
+
+
+}
+
+@mixin palette-gray-and-pink {
+  
+  $palette-canvas: #EEE;
+  $palette-accent: #848B8C;
+  $palette-accent-dark: #242526;
+  $palette-highlight: #731E34;
+
+
+  $palette-card-fill: $palette-canvas;
+
+  $color-canvas: $palette-canvas !global;
+
+  $color-sticky-border: $palette-accent !global;
+  $color-sticky-fill: $palette-card-fill !global;
+  $color-sticky-font: darken($palette-canvas, 50%) !global;
+
+  $color-sticky-selected-border: lighten($palette-highlight, 20%) !global;
+  $color-sticky-selected-fill: #fff;
+  $color-sticky-selected-font: $color-sticky-selected-border !global;
+
+  $color-control: $color-sticky-font !global;
+
+  $color-selection-square-fill: rgba($color-sticky-selected-fill, 0.3) !global;
+  $color-selection-square-border: $color-sticky-selected-border !global;
+}
+
+
+
+
+@include palette_ivory();
+// @include palette-gray-and-pink();
 
 /* ==========================================================================
    Base styles: opinionated defaults
@@ -148,16 +213,20 @@ body {
   top: 20px;
   left: 30px;
   font-weight: 300;
+
+  color: $color-control;
 }
 
 .board-title {
   font-size:20px;
-  color: #aaa;
 }
 
 .my-boards, .my-boards:hover {
   text-decoration: none;
-  color: #aaa;
+}
+
+.board-title, .my-boards, .my-boards:hover {
+  color: $color-control;  
 }
 
 /* ==========================================================================
@@ -268,7 +337,7 @@ body {
   position: absolute;
   height: 125px;
   background-color: $color-sticky-fill;
-  color: #888;
+  color: $color-sticky-font;  
 
   -webkit-transition: all $transition-time $transition-timing-function;
   -moz-transition: all $transition-time $transition-timing-function;
@@ -293,7 +362,7 @@ body {
 .sticky.selected {
   border: 2px solid $color-sticky-selected-border;
   background-color: $color-sticky-selected-fill;
-  color: #333;
+  color: $color-sticky-selected-font;
 }
 
 #practice {
@@ -389,7 +458,7 @@ textarea {
 }
 
 .trash.hover {
-  background-color: #ccc;
+  background-color: $color-sticky-selected-fill;
 }
 
 .trashed {
