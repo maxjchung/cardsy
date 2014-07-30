@@ -371,11 +371,11 @@ var Cardsy = {
 
       setTarget(e);
 
-      if(mouseDownStartedOnCard) {
-        cardDragTimeout = setTimeout(function(e) {
-          $('.trash').addClass('reveal');
-        }, 500);
-      }
+      // if(mouseDownStartedOnCard) {
+      //   cardDragTimeout = setTimeout(function(e) {
+      //     $('.trash').addClass('reveal');
+      //   }, 500);
+      // }
 
       $(this).trigger('clickStart', { originalEvent: e});
 
@@ -443,8 +443,8 @@ var Cardsy = {
     clickEndY = data.originalEvent.clientY;
 
     if(mouseDownStartedOnCard) {
-      clearTimeout(cardDragTimeout);
-      $('.trash').removeClass('reveal').removeClass('hover');
+      // clearTimeout(cardDragTimeout);
+      // $('.trash').removeClass('reveal').removeClass('hover');
     }
     else if(mouseDownStartedOnCanvas) {
 

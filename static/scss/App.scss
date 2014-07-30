@@ -364,7 +364,7 @@ textarea {
 
 .trash {
   position: absolute;
-  bottom: -50px;
+  bottom: 0px;
 
   height: 50px;
   width: 100%;
@@ -383,10 +383,10 @@ textarea {
 }
 
 .trash.reveal {
-  -webkit-transform: translate3d(0, -50px, 0);
-  -moz-transform: translate3d(0, -50px, 0);
-  -o-transform: translate3d(0, -50px, 0);
-  transform: translate3d(0, -50px, 0);
+  // -webkit-transform: translate3d(0, -50px, 0);
+  // -moz-transform: translate3d(0, -50px, 0);
+  // -o-transform: translate3d(0, -50px, 0);
+  // transform: translate3d(0, -50px, 0);
 }
 
 .trash.hover {
